@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "875415812843",
+    "project_id": "carteirapalito-zveeap",
+    "storage_bucket": "carteirapalito-zveeap.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:875415812843:android:8e7cf774ca69c0e2efdcae",
+        "android_client_info": {
+          "package_name": "com.carteirapalitonestles.br"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCL2ymGgojVcyDgHpZJHCpmSglEyzWDXSQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

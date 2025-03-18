@@ -1,0 +1,74 @@
+{
+  "indexes": [
+    {
+      "collectionGroup": "transacoes",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "minhas",
+          "arrayConfig": "CONTAINS"
+        },
+        {
+          "fieldPath": "data",
+          "order": "DESCENDING"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "postagem",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "dono",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "data",
+          "order": "DESCENDING"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "postagem",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "favoritos_user",
+          "arrayConfig": "CONTAINS"
+        },
+        {
+          "fieldPath": "data",
+          "order": "DESCENDING"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "Historico",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "refeVendedor",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "data",
+          "order": "ASCENDING"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "Historico",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "refeVendedor",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "data",
+          "order": "DESCENDING"
+        }
+      ]
+    }
+  ]
+}
