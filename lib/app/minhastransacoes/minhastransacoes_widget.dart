@@ -1,8 +1,11 @@
+import 'dart:ui';
 import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
+import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'minhastransacoes_model.dart';
 export 'minhastransacoes_model.dart';
 
@@ -45,101 +48,94 @@ class _MinhastransacoesWidgetState extends State<MinhastransacoesWidget> {
       },
       child: Scaffold(
         key: scaffoldKey,
-        backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
-        appBar: AppBar(
-          backgroundColor: FlutterFlowTheme.of(context).primary,
-          automaticallyImplyLeading: false,
-          leading: InkWell(
-            splashColor: Colors.transparent,
-            focusColor: Colors.transparent,
-            hoverColor: Colors.transparent,
-            highlightColor: Colors.transparent,
-            onTap: () async {
-              context.safePop();
-            },
-            child: Icon(
-              Icons.arrow_back_sharp,
-              color: Color(0xF3FFFFFF),
-              size: 24.0,
-            ),
-          ),
-          title: Text(
-            'Historico',
-            style: FlutterFlowTheme.of(context).bodyMedium.override(
-                  fontFamily: 'Roboto Mono',
-                  color: Color(0xF3FFFFFF),
-                  letterSpacing: 0.0,
-                ),
-          ),
-          actions: [],
-          centerTitle: false,
-          elevation: 2.0,
-        ),
-        body: SafeArea(
-          top: true,
-          child: Container(
-            width: double.infinity,
-            height: double.infinity,
-            decoration: BoxDecoration(),
-            child: SingleChildScrollView(
-              child: Column(
-                mainAxisSize: MainAxisSize.max,
-                children: [
-                  Padding(
-                    padding: EdgeInsets.all(14.0),
+        backgroundColor: const Color(0xFF0A0B10),
+        body: Column(
+          mainAxisSize: MainAxisSize.max,
+          children: [
+            // Glassmorphic Header
+            ClipRRect(
+              child: BackdropFilter(
+                filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
+                child: Container(
+                  width: double.infinity,
+                  height: 120,
+                  decoration: const BoxDecoration(
+                    color: Color(0xCC0A0B10),
+                    border: Border(
+                      bottom: BorderSide(
+                        color: Color(0x0DFFFFFF),
+                        width: 1,
+                      ),
+                    ),
+                  ),
+                  child: Padding(
+                    padding: const EdgeInsetsDirectional.fromSTEB(20, 50, 20, 0),
                     child: Row(
                       mainAxisSize: MainAxisSize.max,
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Text(
-                          'Minhas Transações',
-                          style:
-                              FlutterFlowTheme.of(context).bodyMedium.override(
-                                    fontFamily: 'Roboto Mono',
-                                    fontSize: 20.0,
-                                    letterSpacing: 0.0,
-                                  ),
+                        Row(
+                          children: [
+                            FlutterFlowIconButton(
+                              borderColor: const Color(0x1AFFFFFF),
+                              borderRadius: 16.0,
+                              borderWidth: 1.0,
+                              buttonSize: 45.0,
+                              fillColor: const Color(0x0DFFFFFF),
+                              icon: const Icon(
+                                Icons.arrow_back_rounded,
+                                color: Colors.white,
+                                size: 22.0,
+                              ),
+                              onPressed: () async {
+                                context.safePop();
+                              },
+                            ),
+                            const SizedBox(width: 16),
+                            Text(
+                              'Histórico',
+                              style: GoogleFonts.syne(
+                                color: Colors.white,
+                                fontSize: 22.0,
+                                fontWeight: FontWeight.w700,
+                                letterSpacing: -0.5,
+                              ),
+                            ),
+                          ],
                         ),
-                        InkWell(
-                          splashColor: Colors.transparent,
-                          focusColor: Colors.transparent,
-                          hoverColor: Colors.transparent,
-                          highlightColor: Colors.transparent,
-                          onTap: () async {
+                        FlutterFlowIconButton(
+                          borderColor: const Color(0x1AFFFFFF),
+                          borderRadius: 16.0,
+                          borderWidth: 1.0,
+                          buttonSize: 45.0,
+                          fillColor: const Color(0x0DFFFFFF),
+                          icon: const Icon(
+                            Icons.calendar_today_rounded,
+                            color: Color(0xFF9896A8),
+                            size: 20.0,
+                          ),
+                          onPressed: () async {
                             final _datePickedDate = await showDatePicker(
                               context: context,
                               initialDate: getCurrentTimestamp,
                               firstDate: DateTime(1900),
                               lastDate: DateTime(2050),
                               builder: (context, child) {
-                                return wrapInMaterialDatePickerTheme(
-                                  context,
-                                  child!,
-                                  headerBackgroundColor:
-                                      FlutterFlowTheme.of(context).primary,
-                                  headerForegroundColor:
-                                      FlutterFlowTheme.of(context).info,
-                                  headerTextStyle: FlutterFlowTheme.of(context)
-                                      .headlineLarge
-                                      .override(
-                                        fontFamily: 'baloo2',
-                                        fontSize: 32.0,
-                                        letterSpacing: 0.0,
-                                        fontWeight: FontWeight.w600,
-                                        useGoogleFonts: false,
+                                return Theme(
+                                  data: ThemeData.dark().copyWith(
+                                    colorScheme: const ColorScheme.dark(
+                                      primary: Color(0xFF6B5FEF),
+                                      onPrimary: Colors.white,
+                                      surface: Color(0xFF12141C),
+                                      onSurface: Colors.white,
+                                    ),
+                                    textButtonTheme: TextButtonThemeData(
+                                      style: TextButton.styleFrom(
+                                        foregroundColor: const Color(0xFFA89FF8),
                                       ),
-                                  pickerBackgroundColor:
-                                      FlutterFlowTheme.of(context)
-                                          .secondaryBackground,
-                                  pickerForegroundColor:
-                                      FlutterFlowTheme.of(context).primaryText,
-                                  selectedDateTimeBackgroundColor:
-                                      FlutterFlowTheme.of(context).primary,
-                                  selectedDateTimeForegroundColor:
-                                      FlutterFlowTheme.of(context).info,
-                                  actionButtonForegroundColor:
-                                      FlutterFlowTheme.of(context).primaryText,
-                                  iconSize: 24.0,
+                                    ),
+                                  ),
+                                  child: child!,
                                 );
                               },
                             );
@@ -152,358 +148,207 @@ class _MinhastransacoesWidgetState extends State<MinhastransacoesWidget> {
                                   _datePickedDate.day,
                                 );
                               });
-                            } else if (_model.datePicked != null) {
-                              safeSetState(() {
-                                _model.datePicked = getCurrentTimestamp;
-                              });
                             }
                           },
-                          child: Icon(
-                            Icons.date_range_sharp,
-                            color: FlutterFlowTheme.of(context).secondaryText,
-                            size: 24.0,
-                          ),
                         ),
                       ],
                     ),
                   ),
-                  Padding(
-                    padding:
-                        EdgeInsetsDirectional.fromSTEB(15.0, 0.0, 15.0, 0.0),
-                    child: StreamBuilder<List<TransacoesRecord>>(
-                      stream: queryTransacoesRecord(
-                        queryBuilder: (transacoesRecord) => transacoesRecord
-                            .where(
-                              'minhas',
-                              arrayContains: currentUserReference,
-                            )
-                            .where(
-                              'data',
-                              isLessThanOrEqualTo: _model.datePicked,
-                            )
-                            .orderBy('data', descending: true),
-                        limit: 30,
+                ),
+              ),
+            ),
+            Expanded(
+              child: SingleChildScrollView(
+                child: Column(
+                  mainAxisSize: MainAxisSize.max,
+                  children: [
+                    Padding(
+                      padding: const EdgeInsetsDirectional.fromSTEB(20, 24, 20, 0),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(
+                            'Atividades Recentes',
+                            style: GoogleFonts.syne(
+                              color: const Color(0xFF9896A8),
+                              fontSize: 12,
+                              fontWeight: FontWeight.w700,
+                              letterSpacing: 1.5,
+                            ),
+                          ),
+                          if (_model.datePicked != null)
+                             InkWell(
+                               onTap: () => safeSetState(() => _model.datePicked = null),
+                               child: Text(
+                                 'Limpar Filtro',
+                                 style: GoogleFonts.dmSans(
+                                   color: const Color(0xFF6B5FEF),
+                                   fontSize: 12,
+                                   fontWeight: FontWeight.w600,
+                                 ),
+                               ),
+                             ),
+                        ],
                       ),
-                      builder: (context, snapshot) {
-                        // Customize what your widget looks like when it's loading.
-                        if (!snapshot.hasData) {
-                          return Center(
-                            child: SizedBox(
-                              width: 50.0,
-                              height: 50.0,
-                              child: CircularProgressIndicator(
-                                valueColor: AlwaysStoppedAnimation<Color>(
-                                  FlutterFlowTheme.of(context).primary,
+                    ),
+                    Padding(
+                      padding: const EdgeInsetsDirectional.fromSTEB(20, 16, 20, 40),
+                      child: StreamBuilder<List<TransacoesRecord>>(
+                        stream: queryTransacoesRecord(
+                          queryBuilder: (transacoesRecord) => transacoesRecord
+                              .where(
+                                'minhas',
+                                arrayContains: currentUserReference,
+                              )
+                              .where(
+                                'data',
+                                isLessThanOrEqualTo: _model.datePicked ?? getCurrentTimestamp,
+                              )
+                              .orderBy('data', descending: true),
+                          limit: 50,
+                        ),
+                        builder: (context, snapshot) {
+                          if (!snapshot.hasData) {
+                            return const Center(
+                              child: Padding(
+                                padding: EdgeInsets.all(40),
+                                child: CircularProgressIndicator(
+                                  valueColor: AlwaysStoppedAnimation<Color>(Color(0xFF6B5FEF)),
                                 ),
                               ),
-                            ),
-                          );
-                        }
-                        List<TransacoesRecord> listViewTransacoesRecordList =
-                            snapshot.data!;
+                            );
+                          }
+                          List<TransacoesRecord> transactions = snapshot.data!;
+                          
+                          if (transactions.isEmpty) {
+                            return Padding(
+                              padding: const EdgeInsets.only(top: 100),
+                              child: Column(
+                                children: [
+                                  const Icon(Icons.history_rounded, color: Color(0xFF222535), size: 64),
+                                  const SizedBox(height: 16),
+                                  Text(
+                                    'Nenhuma transação encontrada',
+                                    style: GoogleFonts.dmSans(color: const Color(0xFF5C5A6A)),
+                                  ),
+                                ],
+                              ),
+                            );
+                          }
 
-                        return ListView.separated(
-                          padding: EdgeInsets.symmetric(vertical: 10.0),
-                          primary: false,
-                          shrinkWrap: true,
-                          scrollDirection: Axis.vertical,
-                          itemCount: listViewTransacoesRecordList.length,
-                          separatorBuilder: (_, __) => SizedBox(height: 10.0),
-                          itemBuilder: (context, listViewIndex) {
-                            final listViewTransacoesRecord =
-                                listViewTransacoesRecordList[listViewIndex];
-                            return StreamBuilder<UserRecord>(
-                              stream: UserRecord.getDocument(
-                                  listViewTransacoesRecord.pagador!),
-                              builder: (context, snapshot) {
-                                // Customize what your widget looks like when it's loading.
-                                if (!snapshot.hasData) {
-                                  return Center(
-                                    child: SizedBox(
-                                      width: 50.0,
-                                      height: 50.0,
-                                      child: CircularProgressIndicator(
-                                        valueColor:
-                                            AlwaysStoppedAnimation<Color>(
-                                          FlutterFlowTheme.of(context).primary,
+                          return ListView.separated(
+                            padding: EdgeInsets.zero,
+                            primary: false,
+                            shrinkWrap: true,
+                            physics: const NeverScrollableScrollPhysics(),
+                            itemCount: transactions.length,
+                            separatorBuilder: (_, __) => const SizedBox(height: 12),
+                            itemBuilder: (context, index) {
+                              final transaction = transactions[index];
+                              final bool isOutgoing = transaction.pagador == currentUserReference;
+                              
+                              return Container(
+                                decoration: BoxDecoration(
+                                  color: const Color(0xFF12141C),
+                                  borderRadius: BorderRadius.circular(16),
+                                  border: Border.all(
+                                    color: const Color(0x0DFFFFFF),
+                                    width: 1,
+                                  ),
+                                ),
+                                child: Padding(
+                                  padding: const EdgeInsets.all(12),
+                                  child: Row(
+                                    children: [
+                                      // Transaction Icon
+                                      Container(
+                                        width: 48,
+                                        height: 48,
+                                        decoration: BoxDecoration(
+                                          color: isOutgoing 
+                                              ? const Color(0xFFE84040).withOpacity(0.1)
+                                              : const Color(0xFF1FBF7A).withOpacity(0.1),
+                                          shape: BoxShape.circle,
+                                        ),
+                                        child: Icon(
+                                          isOutgoing ? Icons.arrow_upward_rounded : Icons.arrow_downward_rounded,
+                                          color: isOutgoing ? const Color(0xFFE84040) : const Color(0xFF1FBF7A),
+                                          size: 20,
                                         ),
                                       ),
-                                    ),
-                                  );
-                                }
-
-                                final containerUserRecord = snapshot.data!;
-
-                                return Container(
-                                  width: 100.0,
-                                  decoration: BoxDecoration(
-                                    color: FlutterFlowTheme.of(context)
-                                        .secondaryBackground,
-                                    boxShadow: [
-                                      BoxShadow(
-                                        blurRadius: 4.0,
-                                        color: Color(0x15000000),
-                                        offset: Offset(
-                                          0.0,
-                                          2.0,
-                                        ),
-                                      )
-                                    ],
-                                    borderRadius: BorderRadius.circular(12.0),
-                                  ),
-                                  child: Column(
-                                    mainAxisSize: MainAxisSize.max,
-                                    children: [
-                                      Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
-                                            5.0, 5.0, 5.0, 0.0),
-                                        child: Row(
-                                          mainAxisSize: MainAxisSize.max,
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.start,
+                                      const SizedBox(width: 12),
+                                      // Details
+                                      Expanded(
+                                        child: Column(
+                                          crossAxisAlignment: CrossAxisAlignment.start,
                                           children: [
-                                            Padding(
-                                              padding: EdgeInsets.all(8.0),
-                                              child: StreamBuilder<UserRecord>(
-                                                stream: UserRecord.getDocument(
-                                                    listViewTransacoesRecord
-                                                        .recebedor!),
-                                                builder: (context, snapshot) {
-                                                  // Customize what your widget looks like when it's loading.
-                                                  if (!snapshot.hasData) {
-                                                    return Center(
-                                                      child: SizedBox(
-                                                        width: 50.0,
-                                                        height: 50.0,
-                                                        child:
-                                                            CircularProgressIndicator(
-                                                          valueColor:
-                                                              AlwaysStoppedAnimation<
-                                                                  Color>(
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .primary,
-                                                          ),
-                                                        ),
-                                                      ),
-                                                    );
-                                                  }
-
-                                                  final circleImageUserRecord =
-                                                      snapshot.data!;
-
-                                                  return Container(
-                                                    width: 50.0,
-                                                    height: 50.0,
-                                                    clipBehavior:
-                                                        Clip.antiAlias,
-                                                    decoration: BoxDecoration(
-                                                      shape: BoxShape.circle,
-                                                    ),
-                                                    child: Image.network(
-                                                      listViewTransacoesRecord.pagador ==
-                                                              currentUserReference
-                                                          ? circleImageUserRecord
-                                                              .photoUrl
-                                                          : containerUserRecord
-                                                              .photoUrl,
-                                                      fit: BoxFit.cover,
-                                                    ),
-                                                  );
-                                                },
+                                            Text(
+                                              isOutgoing 
+                                                  ? 'Pago para ${transaction.nomedorecebedor}'
+                                                  : 'Recebido de ${transaction.nomedopagador}',
+                                              style: GoogleFonts.syne(
+                                                color: Colors.white,
+                                                fontSize: 14,
+                                                fontWeight: FontWeight.w600,
                                               ),
+                                              maxLines: 1,
+                                              overflow: TextOverflow.ellipsis,
                                             ),
-                                            Expanded(
-                                              child: Padding(
-                                                padding: EdgeInsets.all(6.0),
-                                                child: Column(
-                                                  mainAxisSize:
-                                                      MainAxisSize.max,
-                                                  children: [
-                                                    Row(
-                                                      mainAxisSize:
-                                                          MainAxisSize.max,
-                                                      mainAxisAlignment:
-                                                          MainAxisAlignment
-                                                              .spaceBetween,
-                                                      children: [
-                                                        if (listViewTransacoesRecord
-                                                                .nomedorecebedor !=
-                                                            currentUserDisplayName)
-                                                          Expanded(
-                                                            child:
-                                                                AuthUserStreamWidget(
-                                                              builder:
-                                                                  (context) =>
-                                                                      Text(
-                                                                listViewTransacoesRecord
-                                                                    .nomedorecebedor,
-                                                                style: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .bodyLarge
-                                                                    .override(
-                                                                      fontFamily:
-                                                                          'Roboto Mono',
-                                                                      fontSize:
-                                                                          18.0,
-                                                                      letterSpacing:
-                                                                          0.0,
-                                                                      fontWeight:
-                                                                          FontWeight
-                                                                              .w600,
-                                                                    ),
-                                                              ),
-                                                            ),
-                                                          ),
-                                                        if (listViewTransacoesRecord
-                                                                .nomedopagador !=
-                                                            currentUserDisplayName)
-                                                          Expanded(
-                                                            child:
-                                                                AuthUserStreamWidget(
-                                                              builder:
-                                                                  (context) =>
-                                                                      Text(
-                                                                listViewTransacoesRecord
-                                                                    .nomedopagador,
-                                                                style: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .bodyLarge
-                                                                    .override(
-                                                                      fontFamily:
-                                                                          'Roboto Mono',
-                                                                      fontSize:
-                                                                          18.0,
-                                                                      letterSpacing:
-                                                                          0.0,
-                                                                      fontWeight:
-                                                                          FontWeight
-                                                                              .w600,
-                                                                    ),
-                                                              ),
-                                                            ),
-                                                          ),
-                                                        if (listViewTransacoesRecord
-                                                                .pagador ==
-                                                            currentUserReference)
-                                                          Padding(
-                                                            padding:
-                                                                EdgeInsetsDirectional
-                                                                    .fromSTEB(
-                                                                        0.0,
-                                                                        0.0,
-                                                                        0.0,
-                                                                        5.0),
-                                                            child: Text(
-                                                              '-',
-                                                              style: FlutterFlowTheme
-                                                                      .of(context)
-                                                                  .bodyMedium
-                                                                  .override(
-                                                                    fontFamily:
-                                                                        'Roboto Mono',
-                                                                    color: FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .primaryText,
-                                                                    fontSize:
-                                                                        28.0,
-                                                                    letterSpacing:
-                                                                        0.0,
-                                                                    fontWeight:
-                                                                        FontWeight
-                                                                            .w500,
-                                                                  ),
-                                                            ),
-                                                          ),
-                                                        Padding(
-                                                          padding:
-                                                              EdgeInsetsDirectional
-                                                                  .fromSTEB(
-                                                                      0.0,
-                                                                      0.0,
-                                                                      5.0,
-                                                                      0.0),
-                                                          child: Text(
-                                                            'PW\$ ${formatNumber(
-                                                              listViewTransacoesRecord
-                                                                  .valor,
-                                                              formatType:
-                                                                  FormatType
-                                                                      .decimal,
-                                                              decimalType:
-                                                                  DecimalType
-                                                                      .commaDecimal,
-                                                            )}',
-                                                            style: FlutterFlowTheme
-                                                                    .of(context)
-                                                                .bodyMedium
-                                                                .override(
-                                                                  fontFamily:
-                                                                      'Roboto Mono',
-                                                                  fontSize:
-                                                                      18.0,
-                                                                  letterSpacing:
-                                                                      0.0,
-                                                                  fontWeight:
-                                                                      FontWeight
-                                                                          .normal,
-                                                                ),
-                                                          ),
-                                                        ),
-                                                      ],
-                                                    ),
-                                                    Row(
-                                                      mainAxisSize:
-                                                          MainAxisSize.max,
-                                                      mainAxisAlignment:
-                                                          MainAxisAlignment
-                                                              .spaceBetween,
-                                                      children: [
-                                                        Text(
-                                                          dateTimeFormat(
-                                                            "d/M H:mm",
-                                                            listViewTransacoesRecord
-                                                                .data!,
-                                                            locale: FFLocalizations
-                                                                    .of(context)
-                                                                .languageCode,
-                                                          ),
-                                                          style: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .bodyMedium
-                                                              .override(
-                                                                fontFamily:
-                                                                    'Roboto Mono',
-                                                                color: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .secondaryText,
-                                                                letterSpacing:
-                                                                    0.0,
-                                                              ),
-                                                        ),
-                                                      ],
-                                                    ),
-                                                  ],
-                                                ),
+                                            const SizedBox(height: 4),
+                                            Text(
+                                              dateTimeFormat("d MMMM, HH:mm", transaction.data!, locale: 'pt_BR'),
+                                              style: GoogleFonts.dmSans(
+                                                color: const Color(0xFF5C5A6A),
+                                                fontSize: 12,
                                               ),
                                             ),
                                           ],
                                         ),
                                       ),
+                                      // Amount
+                                      Column(
+                                        crossAxisAlignment: CrossAxisAlignment.end,
+                                        children: [
+                                          Text(
+                                            '${isOutgoing ? '-' : '+'} PW\$ ${formatNumber(transaction.valor, formatType: FormatType.decimal, decimalType: DecimalType.commaDecimal)}',
+                                            style: GoogleFonts.syne(
+                                              color: isOutgoing ? const Color(0xFFF0EFFB) : const Color(0xFF1FBF7A),
+                                              fontSize: 15,
+                                              fontWeight: FontWeight.w700,
+                                            ),
+                                          ),
+                                          const SizedBox(height: 4),
+                                          Container(
+                                            padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
+                                            decoration: BoxDecoration(
+                                              color: const Color(0xFF222535),
+                                              borderRadius: BorderRadius.circular(100),
+                                            ),
+                                            child: Text(
+                                              'Sucesso',
+                                              style: GoogleFonts.dmSans(
+                                                color: const Color(0xFF1FBF7A),
+                                                fontSize: 10,
+                                                fontWeight: FontWeight.w700,
+                                              ),
+                                            ),
+                                          ),
+                                        ],
+                                      ),
                                     ],
                                   ),
-                                );
-                              },
-                            );
-                          },
-                        );
-                      },
+                                ),
+                              );
+                            },
+                          );
+                        },
+                      ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             ),
-          ),
+          ],
         ),
       ),
     );

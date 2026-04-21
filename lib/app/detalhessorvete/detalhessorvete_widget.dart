@@ -1,10 +1,8 @@
 import '/backend/backend.dart';
-import '/flutter_flow/flutter_flow_icon_button.dart';
-import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/flutter_flow/flutter_flow_widgets.dart';
 import '/index.dart';
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'detalhessorvete_model.dart';
@@ -56,155 +54,200 @@ class _DetalhessorveteWidgetState extends State<DetalhessorveteWidget> {
       },
       child: Scaffold(
         key: scaffoldKey,
-        backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
+        backgroundColor: const Color(0xFF0A0B10), // --bg-base
         body: StreamBuilder<ProdutosRecord>(
           stream: ProdutosRecord.getDocument(widget.sorvete!),
           builder: (context, snapshot) {
-            // Customize what your widget looks like when it's loading.
             if (!snapshot.hasData) {
-              return Center(
+              return const Center(
                 child: SizedBox(
                   width: 50.0,
                   height: 50.0,
                   child: CircularProgressIndicator(
-                    valueColor: AlwaysStoppedAnimation<Color>(
-                      FlutterFlowTheme.of(context).primary,
-                    ),
+                    valueColor: AlwaysStoppedAnimation<Color>(Color(0xFF6B5FEF)),
                   ),
                 ),
               );
             }
 
-            final containerProdutosRecord = snapshot.data!;
+            final productData = snapshot.data!;
 
-            return Container(
-              width: double.infinity,
-              height: double.infinity,
-              decoration: BoxDecoration(
-                color: FlutterFlowTheme.of(context).secondaryBackground,
-              ),
-              child: SingleChildScrollView(
-                child: Column(
-                  mainAxisSize: MainAxisSize.max,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Row(
-                      mainAxisSize: MainAxisSize.max,
-                      children: [
-                        Expanded(
-                          child: Container(
-                            width: 100.0,
-                            height: 100.0,
-                            decoration: BoxDecoration(
-                              color: FlutterFlowTheme.of(context)
-                                  .secondaryBackground,
+            return Stack(
+              children: [
+                // --- Scrollable Content ---
+                SingleChildScrollView(
+                  physics: const BouncingScrollPhysics(),
+                  child: Column(
+                    mainAxisSize: MainAxisSize.max,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      // Spacer for the sticky header
+                      const SizedBox(height: 110),
+
+                      // --- Image Section ---
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                        child: Stack(
+                          clipBehavior: Clip.none,
+                          children: [
+                            // Decorative glow behind image
+                            Positioned(
+                              top: -20,
+                              right: -20,
+                              child: Container(
+                                width: 180,
+                                height: 180,
+                                decoration: const BoxDecoration(
+                                  shape: BoxShape.circle,
+                                  color: Color(0x1F6B5FEF), // --accent-glow
+                                ),
+                                child: Container(
+                                  decoration: const BoxDecoration(
+                                    shape: BoxShape.circle,
+                                    boxShadow: [
+                                      BoxShadow(
+                                        color: Color(0x1F6B5FEF),
+                                        blurRadius: 80,
+                                        spreadRadius: 20,
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ),
                             ),
-                            child: Padding(
-                              padding: EdgeInsets.all(8.0),
-                              child: Row(
-                                mainAxisSize: MainAxisSize.max,
-                                crossAxisAlignment: CrossAxisAlignment.end,
+                            Container(
+                              height: 400.0,
+                              width: double.infinity,
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(24.0),
+                                boxShadow: [
+                                  BoxShadow(
+                                    color: Colors.black.withOpacity(0.4),
+                                    blurRadius: 40,
+                                    offset: const Offset(0, 20),
+                                  ),
+                                ],
+                              ),
+                              child: ClipRRect(
+                                borderRadius: BorderRadius.circular(24.0),
+                                child: CachedNetworkImage(
+                                  imageUrl: productData.imagem,
+                                  fit: BoxFit.cover,
+                                  placeholder: (context, url) => Container(color: const Color(0xFF12141C)),
+                                  errorWidget: (context, url, error) => const Icon(Icons.error),
+                                ),
+                              ),
+                            ),
+                            // Floating Action Button
+                            Positioned(
+                              bottom: -28,
+                              right: 20,
+                              child: _buildActionBtn(context, productData),
+                            ),
+                          ],
+                        ),
+                      ),
+
+                      // --- Product Info Section ---
+                      Padding(
+                        padding: const EdgeInsetsDirectional.fromSTEB(20.0, 52.0, 20.0, 0.0),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            _buildBadge(productData.categoria),
+                            const SizedBox(height: 16),
+                            Text(
+                              productData.nome,
+                              style: GoogleFonts.syne(
+                                color: const Color(0xFFF0EFFB), // --text-primary
+                                fontSize: 32.0, // Display style
+                                fontWeight: FontWeight.w800,
+                                height: 1.1,
+                                letterSpacing: -0.03 * 32, // -0.03em
+                              ),
+                            ),
+                            
+                            const SizedBox(height: 32),
+                            
+                            // Price Card (Wallet Style)
+                            Container(
+                              width: double.infinity,
+                              decoration: BoxDecoration(
+                                color: const Color(0xFF1A1D28), // --bg-card
+                                borderRadius: BorderRadius.circular(20.0), // --radius-xl
+                                border: Border.all(color: const Color(0x1AFFFFFF)), // --border-default
+                                gradient: const LinearGradient(
+                                  begin: Alignment.topLeft,
+                                  end: Alignment.bottomRight,
+                                  colors: [Color(0xFF1A1D28), Color(0xFF222535)],
+                                ),
+                              ),
+                              child: Stack(
                                 children: [
-                                  Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
-                                        5.0, 0.0, 0.0, 0.0),
-                                    child: InkWell(
-                                      splashColor: Colors.transparent,
-                                      focusColor: Colors.transparent,
-                                      hoverColor: Colors.transparent,
-                                      highlightColor: Colors.transparent,
-                                      onTap: () async {
-                                        context.pushNamed(HomeWidget.routeName);
-                                      },
-                                      child: Icon(
-                                        Icons.keyboard_backspace,
-                                        color: FlutterFlowTheme.of(context)
-                                            .secondaryText,
-                                        size: 32.0,
+                                  Positioned(
+                                    top: -40,
+                                    right: -40,
+                                    child: Container(
+                                      width: 120,
+                                      height: 120,
+                                      decoration: const BoxDecoration(
+                                        shape: BoxShape.circle,
+                                        color: Color(0x146B5FEF), // faint accent glow
                                       ),
                                     ),
                                   ),
                                   Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
-                                        10.0, 0.0, 0.0, 5.0),
-                                    child: Text(
-                                      'Detalhes',
-                                      style: FlutterFlowTheme.of(context)
-                                          .bodyMedium
-                                          .override(
-                                            fontFamily: 'Roboto Mono',
-                                            letterSpacing: 0.0,
-                                          ),
-                                    ),
-                                  ),
-                                  Expanded(
+                                    padding: const EdgeInsets.all(24.0),
                                     child: Row(
-                                      mainAxisSize: MainAxisSize.max,
-                                      mainAxisAlignment: MainAxisAlignment.end,
+                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                       children: [
-                                        InkWell(
-                                          splashColor: Colors.transparent,
-                                          focusColor: Colors.transparent,
-                                          hoverColor: Colors.transparent,
-                                          highlightColor: Colors.transparent,
-                                          onTap: () async {
-                                            if (FFAppState().valor > 0.0) {
-                                              context.pushNamed(
-                                                  PagarprodutoWidget.routeName);
-                                            }
-                                          },
-                                          child: Card(
-                                            clipBehavior:
-                                                Clip.antiAliasWithSaveLayer,
-                                            color: FlutterFlowTheme.of(context)
-                                                .secondaryBackground,
-                                            elevation: 0.0,
-                                            shape: RoundedRectangleBorder(
-                                              borderRadius:
-                                                  BorderRadius.circular(8.0),
+                                        Column(
+                                          crossAxisAlignment: CrossAxisAlignment.start,
+                                          children: [
+                                            Text(
+                                              'PREÇO UNITÁRIO',
+                                              style: GoogleFonts.syne(
+                                                color: const Color(0xFF9896A8), // --text-secondary
+                                                fontSize: 10.0,
+                                                fontWeight: FontWeight.w700,
+                                                letterSpacing: 0.18 * 10, // Overline style
+                                              ),
                                             ),
-                                            child: Row(
-                                              mainAxisSize: MainAxisSize.max,
+                                            const SizedBox(height: 8),
+                                            Row(
+                                              crossAxisAlignment: CrossAxisAlignment.baseline,
+                                              textBaseline: TextBaseline.alphabetic,
                                               children: [
-                                                Icon(
-                                                  Icons
-                                                      .shopping_cart_outlined,
-                                                  color: Color(0x76000000),
-                                                  size: 24.0,
+                                                Text(
+                                                  'PW\$ ',
+                                                  style: GoogleFonts.syne(
+                                                    color: const Color(0xFF6B5FEF),
+                                                    fontSize: 16.0,
+                                                    fontWeight: FontWeight.w700,
+                                                  ),
                                                 ),
-                                                Padding(
-                                                  padding:
-                                                      EdgeInsetsDirectional
-                                                          .fromSTEB(10.0, 0.0,
-                                                              15.0, 0.0),
-                                                  child: Text(
-                                                    'PW\$ ${formatNumber(
-                                                      FFAppState().valor,
-                                                      formatType:
-                                                          FormatType.decimal,
-                                                      decimalType: DecimalType
-                                                          .commaDecimal,
-                                                    )}',
-                                                    textAlign:
-                                                        TextAlign.start,
-                                                    style: FlutterFlowTheme
-                                                            .of(context)
-                                                        .bodyLarge
-                                                        .override(
-                                                          fontFamily:
-                                                              'Roboto Mono',
-                                                          color: Color(
-                                                              0x76000000),
-                                                          fontSize: 18.0,
-                                                          letterSpacing: 0.0,
-                                                          fontWeight:
-                                                              FontWeight.bold,
-                                                        ),
+                                                Text(
+                                                  formatNumber(productData.preco, formatType: FormatType.decimal, decimalType: DecimalType.commaDecimal),
+                                                  style: GoogleFonts.syne(
+                                                    color: const Color(0xFFF0EFFB),
+                                                    fontSize: 32.0, // Display style
+                                                    fontWeight: FontWeight.w800,
+                                                    letterSpacing: -0.02 * 32,
                                                   ),
                                                 ),
                                               ],
                                             ),
+                                          ],
+                                        ),
+                                        Container(
+                                          width: 56,
+                                          height: 56,
+                                          decoration: BoxDecoration(
+                                            color: const Color(0xFF12141C), // --bg-surface
+                                            borderRadius: BorderRadius.circular(16),
+                                            border: Border.all(color: const Color(0x1AFFFFFF)),
                                           ),
+                                          child: const Icon(Icons.stars_rounded, color: Color(0xFF6B5FEF), size: 30),
                                         ),
                                       ],
                                     ),
@@ -212,611 +255,422 @@ class _DetalhessorveteWidgetState extends State<DetalhessorveteWidget> {
                                 ],
                               ),
                             ),
-                          ),
-                        ),
-                      ],
-                    ),
-                    Align(
-                      alignment: AlignmentDirectional(1.0, 1.0),
-                      child: Container(
-                        height: 240.0,
-                        child: Stack(
-                          children: [
-                            Container(
-                              width: double.infinity,
-                              decoration: BoxDecoration(),
-                              child: Builder(
-                                builder: (context) {
-                                  final imagens =
-                                      containerProdutosRecord.imagens.toList();
 
-                                  return ListView.builder(
-                                    padding: EdgeInsets.zero,
-                                    primary: false,
-                                    scrollDirection: Axis.horizontal,
-                                    itemCount: imagens.length,
-                                    itemBuilder: (context, imagensIndex) {
-                                      final imagensItem = imagens[imagensIndex];
-                                      return Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
-                                            10.0, 0.0, 0.0, 0.0),
-                                        child: ClipRRect(
-                                          borderRadius:
-                                              BorderRadius.circular(8.0),
-                                          child: CachedNetworkImage(
-                                            fadeInDuration:
-                                                Duration(milliseconds: 500),
-                                            fadeOutDuration:
-                                                Duration(milliseconds: 500),
-                                            imageUrl: imagensItem,
-                                            width: 300.0,
-                                            height: 200.0,
-                                            fit: BoxFit.cover,
-                                          ),
-                                        ),
-                                      );
-                                    },
-                                  );
-                                },
+                            const SizedBox(height: 40),
+                            
+                            Text(
+                              'DESCRIÇÃO',
+                              style: GoogleFonts.syne(
+                                color: const Color(0xFF5C5A6A), // --text-muted
+                                fontSize: 11.0,
+                                fontWeight: FontWeight.w700,
+                                letterSpacing: 0.05 * 11,
                               ),
                             ),
-                            if (!FFAppState()
-                                .produto
-                                .contains(containerProdutosRecord.reference))
-                              Align(
-                                alignment: AlignmentDirectional(1.0, 1.0),
-                                child: Padding(
-                                  padding: EdgeInsets.all(12.0),
-                                  child: FFButtonWidget(
-                                    onPressed: () async {
-                                      FFAppState().addToProduto(
-                                          containerProdutosRecord.reference);
-                                      FFAppState().valor = FFAppState().valor +
-                                          containerProdutosRecord.preco;
-                                      safeSetState(() {});
-                                    },
-                                    text: 'Adicionar',
-                                    icon: Icon(
-                                      Icons.shopping_cart_outlined,
-                                      size: 15.0,
-                                    ),
-                                    options: FFButtonOptions(
-                                      height: 40.0,
-                                      padding: EdgeInsetsDirectional.fromSTEB(
-                                          16.0, 0.0, 16.0, 0.0),
-                                      iconPadding:
-                                          EdgeInsetsDirectional.fromSTEB(
-                                              0.0, 0.0, 0.0, 0.0),
-                                      color:
-                                          FlutterFlowTheme.of(context).primary,
-                                      textStyle: FlutterFlowTheme.of(context)
-                                          .titleSmall
-                                          .override(
-                                            fontFamily: 'Roboto Mono',
-                                            color: Colors.white,
-                                            letterSpacing: 0.0,
-                                          ),
-                                      elevation: 3.0,
-                                      borderSide: BorderSide(
-                                        color: Colors.transparent,
-                                        width: 1.0,
-                                      ),
-                                      borderRadius: BorderRadius.circular(8.0),
-                                    ),
-                                  ),
-                                ),
+                            const SizedBox(height: 16),
+                            Text(
+                              productData.descricao,
+                              style: GoogleFonts.dmSans(
+                                color: const Color(0xFF9896A8), // --text-secondary
+                                fontSize: 15.0, // --font-body
+                                height: 1.6,
+                                fontWeight: FontWeight.w400,
                               ),
-                            if (FFAppState()
-                                .produto
-                                .contains(containerProdutosRecord.reference))
-                              Align(
-                                alignment: AlignmentDirectional(0.9, 1.11),
-                                child: Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
-                                      0.0, 0.0, 0.0, 20.0),
-                                  child: FFButtonWidget(
-                                    onPressed: () async {
-                                      FFAppState().removeFromProduto(
-                                          containerProdutosRecord.reference);
-                                      FFAppState().valor = FFAppState().valor -
-                                          containerProdutosRecord.preco;
-                                      safeSetState(() {});
-                                    },
-                                    text: 'Retirar',
-                                    icon: Icon(
-                                      Icons.check_rounded,
-                                      size: 15.0,
-                                    ),
-                                    options: FFButtonOptions(
-                                      width: 130.0,
-                                      height: 40.0,
-                                      padding: EdgeInsetsDirectional.fromSTEB(
-                                          16.0, 0.0, 16.0, 0.0),
-                                      iconPadding:
-                                          EdgeInsetsDirectional.fromSTEB(
-                                              0.0, 0.0, 0.0, 0.0),
-                                      color:
-                                          FlutterFlowTheme.of(context).tertiary,
-                                      textStyle: FlutterFlowTheme.of(context)
-                                          .titleSmall
-                                          .override(
-                                            fontFamily: 'Roboto Mono',
-                                            color: Colors.white,
-                                            letterSpacing: 0.0,
-                                          ),
-                                      elevation: 3.0,
-                                      borderSide: BorderSide(
-                                        color: Colors.transparent,
-                                        width: 1.0,
-                                      ),
-                                      borderRadius: BorderRadius.circular(8.0),
-                                    ),
-                                  ),
-                                ),
-                              ),
+                            ),
                           ],
                         ),
                       ),
-                    ),
-                    Padding(
-                      padding:
-                          EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 0.0),
-                      child: Text(
-                        containerProdutosRecord.nome,
-                        style: FlutterFlowTheme.of(context)
-                            .headlineMedium
-                            .override(
-                              fontFamily: 'baloo2',
-                              letterSpacing: 0.0,
-                              useGoogleFonts: false,
-                            ),
-                      ),
-                    ),
-                    SingleChildScrollView(
-                      scrollDirection: Axis.horizontal,
-                      child: Row(
-                        mainAxisSize: MainAxisSize.max,
-                        children: [
-                          Card(
-                            clipBehavior: Clip.antiAliasWithSaveLayer,
-                            color: FlutterFlowTheme.of(context).primary,
-                            elevation: 4.0,
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(8.0),
-                            ),
-                            child: Align(
-                              alignment: AlignmentDirectional(0.0, 0.0),
-                              child: Padding(
-                                padding: EdgeInsets.all(8.0),
-                                child: Text(
-                                  containerProdutosRecord.categoria,
-                                  style: FlutterFlowTheme.of(context)
-                                      .bodyMedium
-                                      .override(
-                                        fontFamily: 'Roboto Mono',
-                                        color: FlutterFlowTheme.of(context)
-                                            .secondaryBackground,
-                                        letterSpacing: 0.0,
-                                        fontWeight: FontWeight.bold,
-                                      ),
-                                ),
-                              ),
-                            ),
-                          ),
-                        ]
-                            .divide(SizedBox(width: 8.0))
-                            .addToStart(SizedBox(width: 16.0))
-                            .addToEnd(SizedBox(width: 16.0)),
-                      ),
-                    ),
-                    Padding(
-                      padding:
-                          EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 0.0),
-                      child: Text(
-                        'Sobre:',
-                        style: FlutterFlowTheme.of(context).bodyLarge.override(
-                              fontFamily: 'Roboto Mono',
-                              letterSpacing: 0.0,
-                            ),
-                      ),
-                    ),
-                    Padding(
-                      padding:
-                          EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 0.0),
-                      child: Text(
-                        containerProdutosRecord.descricao,
-                        style:
-                            FlutterFlowTheme.of(context).labelMedium.override(
-                                  fontFamily: 'Roboto Mono',
-                                  letterSpacing: 0.0,
-                                ),
-                      ),
-                    ),
-                    Padding(
-                      padding:
-                          EdgeInsetsDirectional.fromSTEB(15.0, 60.0, 15.0, 0.0),
-                      child: Row(
-                        mainAxisSize: MainAxisSize.max,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          FlutterFlowIconButton(
-                            borderColor: FlutterFlowTheme.of(context).primary,
-                            borderRadius: 20.0,
-                            borderWidth: 1.0,
-                            buttonSize: 40.0,
-                            fillColor: FlutterFlowTheme.of(context).secondary,
-                            icon: Icon(
-                              Icons.icecream_outlined,
-                              color: FlutterFlowTheme.of(context)
-                                  .secondaryBackground,
-                              size: 24.0,
-                            ),
-                            onPressed: () {
-                              print('IconButton pressed ...');
-                            },
-                          ),
-                          Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
-                                10.0, 0.0, 0.0, 0.0),
-                            child: Text(
-                              'Categorias',
-                              style: FlutterFlowTheme.of(context)
-                                  .titleMedium
-                                  .override(
-                                    fontFamily: 'Roboto Mono',
-                                    letterSpacing: 0.0,
-                                  ),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                    Row(
-                      mainAxisSize: MainAxisSize.max,
-                      children: [
-                        Expanded(
-                          child: Container(
-                            width: 100.0,
-                            height: 100.0,
-                            decoration: BoxDecoration(
-                              color: FlutterFlowTheme.of(context)
-                                  .secondaryBackground,
-                            ),
-                            child: Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(
-                                  5.0, 0.0, 0.0, 0.0),
-                              child: StreamBuilder<List<CategoriaRecord>>(
-                                stream: queryCategoriaRecord(),
-                                builder: (context, snapshot) {
-                                  // Customize what your widget looks like when it's loading.
-                                  if (!snapshot.hasData) {
-                                    return Center(
-                                      child: SizedBox(
-                                        width: 50.0,
-                                        height: 50.0,
-                                        child: CircularProgressIndicator(
-                                          valueColor:
-                                              AlwaysStoppedAnimation<Color>(
-                                            FlutterFlowTheme.of(context)
-                                                .primary,
-                                          ),
-                                        ),
-                                      ),
-                                    );
-                                  }
-                                  List<CategoriaRecord>
-                                      listViewCategoriaRecordList =
-                                      snapshot.data!;
 
-                                  return ListView.builder(
-                                    padding: EdgeInsets.zero,
-                                    scrollDirection: Axis.horizontal,
-                                    itemCount:
-                                        listViewCategoriaRecordList.length,
-                                    itemBuilder: (context, listViewIndex) {
-                                      final listViewCategoriaRecord =
-                                          listViewCategoriaRecordList[
-                                              listViewIndex];
-                                      return Padding(
-                                        padding: EdgeInsets.all(6.0),
-                                        child: Container(
-                                          width: 160.0,
-                                          height: 80.0,
-                                          decoration: BoxDecoration(
-                                            color: FlutterFlowTheme.of(context)
-                                                .secondaryBackground,
-                                            image: DecorationImage(
-                                              fit: BoxFit.cover,
-                                              image: Image.network(
-                                                valueOrDefault<String>(
-                                                  listViewCategoriaRecord
-                                                      .imagem,
-                                                  'https://avatars.mds.yandex.net/i?id=ba056d85245a1efa69090339c3a94fb91c88c386-4560317-images-thumbs&n=13',
-                                                ),
-                                              ).image,
-                                            ),
-                                            borderRadius:
-                                                BorderRadius.circular(12.0),
-                                          ),
-                                          child: Column(
-                                            mainAxisSize: MainAxisSize.max,
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.end,
-                                            children: [
-                                              Padding(
-                                                padding: EdgeInsetsDirectional
-                                                    .fromSTEB(
-                                                        0.0, 0.0, 0.0, 10.0),
-                                                child: FFButtonWidget(
-                                                  onPressed: () async {
-                                                    context.pushNamed(
-                                                      NvegacaoWidget.routeName,
-                                                      queryParameters: {
-                                                        'paragre':
-                                                            serializeParam(
-                                                          listViewCategoriaRecord
-                                                              .reference,
-                                                          ParamType
-                                                              .DocumentReference,
-                                                        ),
-                                                      }.withoutNulls,
-                                                    );
-                                                  },
-                                                  text: listViewCategoriaRecord
-                                                      .nome,
-                                                  options: FFButtonOptions(
-                                                    height: 40.0,
-                                                    padding:
-                                                        EdgeInsetsDirectional
-                                                            .fromSTEB(24.0, 0.0,
-                                                                24.0, 0.0),
-                                                    iconPadding:
-                                                        EdgeInsetsDirectional
-                                                            .fromSTEB(0.0, 0.0,
-                                                                0.0, 0.0),
-                                                    color: FlutterFlowTheme.of(
-                                                            context)
-                                                        .primary,
-                                                    textStyle: FlutterFlowTheme
-                                                            .of(context)
-                                                        .titleSmall
-                                                        .override(
-                                                          fontFamily:
-                                                              'Roboto Mono',
-                                                          color: Colors.white,
-                                                          letterSpacing: 0.0,
-                                                        ),
-                                                    elevation: 3.0,
-                                                    borderSide: BorderSide(
-                                                      color: Colors.transparent,
-                                                      width: 1.0,
-                                                    ),
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            8.0),
-                                                  ),
-                                                ),
+                      // --- Other Categories ---
+                      _buildSectionHeader(
+                        icon: Icons.auto_awesome_mosaic_rounded,
+                        title: 'Explorar Outros',
+                      ),
+                      SizedBox(
+                        height: 90.0,
+                        child: StreamBuilder<List<CategoriaRecord>>(
+                          stream: queryCategoriaRecord(),
+                          builder: (context, snapshot) {
+                            if (!snapshot.hasData) return const SizedBox();
+                            final categories = snapshot.data!;
+                            return ListView.builder(
+                              padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                              scrollDirection: Axis.horizontal,
+                              physics: const BouncingScrollPhysics(),
+                              itemCount: categories.length,
+                              itemBuilder: (context, index) {
+                                final cat = categories[index];
+                                return Padding(
+                                  padding: const EdgeInsets.only(right: 12.0),
+                                  child: InkWell(
+                                    borderRadius: BorderRadius.circular(100.0),
+                                    onTap: () => context.pushNamed(
+                                      NvegacaoWidget.routeName,
+                                      queryParameters: {
+                                        'paragre': serializeParam(cat.reference, ParamType.DocumentReference),
+                                      }.withoutNulls,
+                                    ),
+                                    child: Container(
+                                      padding: const EdgeInsets.symmetric(horizontal: 20),
+                                      decoration: BoxDecoration(
+                                        color: const Color(0xFF1A1D28), // --bg-card
+                                        borderRadius: BorderRadius.circular(100.0), // pill
+                                        border: Border.all(color: const Color(0x0DFFFFFF)),
+                                      ),
+                                      child: Center(
+                                        child: Row(
+                                          children: [
+                                            ClipOval(
+                                              child: CachedNetworkImage(
+                                                imageUrl: cat.imagem,
+                                                width: 24,
+                                                height: 24,
+                                                fit: BoxFit.cover,
                                               ),
-                                            ],
-                                          ),
-                                        ),
-                                      );
-                                    },
-                                  );
-                                },
-                              ),
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                    Row(
-                      mainAxisSize: MainAxisSize.max,
-                      children: [
-                        Expanded(
-                          child: Container(
-                            width: 100.0,
-                            height: 300.0,
-                            decoration: BoxDecoration(
-                              color: FlutterFlowTheme.of(context)
-                                  .secondaryBackground,
-                            ),
-                            child: StreamBuilder<List<ProdutosRecord>>(
-                              stream: queryProdutosRecord(),
-                              builder: (context, snapshot) {
-                                // Customize what your widget looks like when it's loading.
-                                if (!snapshot.hasData) {
-                                  return Center(
-                                    child: SizedBox(
-                                      width: 50.0,
-                                      height: 50.0,
-                                      child: CircularProgressIndicator(
-                                        valueColor:
-                                            AlwaysStoppedAnimation<Color>(
-                                          FlutterFlowTheme.of(context).primary,
+                                            ),
+                                            const SizedBox(width: 10),
+                                            Text(
+                                              cat.nome,
+                                              style: GoogleFonts.syne(
+                                                color: const Color(0xFFF0EFFB),
+                                                fontWeight: FontWeight.w600,
+                                                fontSize: 13,
+                                              ),
+                                            ),
+                                          ],
                                         ),
                                       ),
                                     ),
-                                  );
-                                }
-                                List<ProdutosRecord>
-                                    listViewProdutosRecordList = snapshot.data!;
-
-                                return ListView.builder(
-                                  padding: EdgeInsets.zero,
-                                  scrollDirection: Axis.horizontal,
-                                  itemCount: listViewProdutosRecordList.length,
-                                  itemBuilder: (context, listViewIndex) {
-                                    final listViewProdutosRecord =
-                                        listViewProdutosRecordList[
-                                            listViewIndex];
-                                    return Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
-                                          10.0, 12.0, 10.0, 12.0),
-                                      child: InkWell(
-                                        splashColor: Colors.transparent,
-                                        focusColor: Colors.transparent,
-                                        hoverColor: Colors.transparent,
-                                        highlightColor: Colors.transparent,
-                                        onTap: () async {
-                                          context.pushNamed(
-                                            DetalhessorveteWidget.routeName,
-                                            queryParameters: {
-                                              'sorvete': serializeParam(
-                                                listViewProdutosRecord
-                                                    .reference,
-                                                ParamType.DocumentReference,
-                                              ),
-                                            }.withoutNulls,
-                                          );
-                                        },
-                                        child: Container(
-                                          width:
-                                              MediaQuery.sizeOf(context).width *
-                                                  0.45,
-                                          decoration: BoxDecoration(
-                                            color: Colors.white,
-                                            boxShadow: [
-                                              BoxShadow(
-                                                blurRadius: 4.0,
-                                                color: Color(0x33000000),
-                                                offset: Offset(
-                                                  0.0,
-                                                  2.0,
-                                                ),
-                                              )
-                                            ],
-                                            borderRadius:
-                                                BorderRadius.circular(12.0),
-                                          ),
-                                          child: Padding(
-                                            padding:
-                                                EdgeInsetsDirectional.fromSTEB(
-                                                    4.0, 4.0, 4.0, 12.0),
-                                            child: Column(
-                                              mainAxisSize: MainAxisSize.max,
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment.start,
-                                              crossAxisAlignment:
-                                                  CrossAxisAlignment.start,
-                                              children: [
-                                                Padding(
-                                                  padding: EdgeInsetsDirectional
-                                                      .fromSTEB(
-                                                          0.0, 0.0, 0.0, 12.0),
-                                                  child: ClipRRect(
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            10.0),
-                                                    child: Image.network(
-                                                      listViewProdutosRecord
-                                                          .imagem,
-                                                      width: double.infinity,
-                                                      height: 120.0,
-                                                      fit: BoxFit.cover,
-                                                    ),
-                                                  ),
-                                                ),
-                                                Padding(
-                                                  padding: EdgeInsetsDirectional
-                                                      .fromSTEB(
-                                                          8.0, 0.0, 8.0, 4.0),
-                                                  child: Row(
-                                                    mainAxisSize:
-                                                        MainAxisSize.max,
-                                                    children: [
-                                                      Text(
-                                                        listViewProdutosRecord
-                                                            .tipo,
-                                                        style: FlutterFlowTheme
-                                                                .of(context)
-                                                            .labelSmall
-                                                            .override(
-                                                              fontFamily:
-                                                                  'Plus Jakarta Sans',
-                                                              color: Color(
-                                                                  0xFF57636C),
-                                                              fontSize: 12.0,
-                                                              letterSpacing:
-                                                                  0.0,
-                                                              fontWeight:
-                                                                  FontWeight
-                                                                      .w500,
-                                                            ),
-                                                      ),
-                                                    ],
-                                                  ),
-                                                ),
-                                                Padding(
-                                                  padding: EdgeInsetsDirectional
-                                                      .fromSTEB(
-                                                          8.0, 0.0, 0.0, 0.0),
-                                                  child: Text(
-                                                    listViewProdutosRecord.nome,
-                                                    style: FlutterFlowTheme.of(
-                                                            context)
-                                                        .bodyLarge
-                                                        .override(
-                                                          fontFamily:
-                                                              'Plus Jakarta Sans',
-                                                          color:
-                                                              Color(0xFF14181B),
-                                                          fontSize: 16.0,
-                                                          letterSpacing: 0.0,
-                                                          fontWeight:
-                                                              FontWeight.w500,
-                                                        ),
-                                                  ),
-                                                ),
-                                                Padding(
-                                                  padding: EdgeInsetsDirectional
-                                                      .fromSTEB(
-                                                          8.0, 4.0, 0.0, 0.0),
-                                                  child: Text(
-                                                    'PW\$ ${formatNumber(
-                                                      listViewProdutosRecord
-                                                          .preco,
-                                                      formatType:
-                                                          FormatType.decimal,
-                                                      decimalType: DecimalType
-                                                          .commaDecimal,
-                                                    )}',
-                                                    style: FlutterFlowTheme.of(
-                                                            context)
-                                                        .labelSmall
-                                                        .override(
-                                                          fontFamily:
-                                                              'Plus Jakarta Sans',
-                                                          color:
-                                                              Color(0xFF57636C),
-                                                          fontSize: 12.0,
-                                                          letterSpacing: 0.0,
-                                                          fontWeight:
-                                                              FontWeight.w500,
-                                                        ),
-                                                  ),
-                                                ),
-                                              ],
-                                            ),
-                                          ),
-                                        ),
-                                      ),
-                                    );
-                                  },
+                                  ),
                                 );
                               },
-                            ),
+                            );
+                          },
+                        ),
+                      ),
+
+                      // --- Suggestions ---
+                      _buildSectionHeader(
+                        icon: Icons.flash_on_rounded,
+                        title: 'Você Pode Gostar',
+                      ),
+                      SizedBox(
+                        height: 240.0,
+                        child: StreamBuilder<List<ProdutosRecord>>(
+                          stream: queryProdutosRecord(),
+                          builder: (context, snapshot) {
+                            if (!snapshot.hasData) return const SizedBox();
+                            final suggested = snapshot.data!.where((p) => p.reference != productData.reference).take(5).toList();
+                            return ListView.builder(
+                              padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                              scrollDirection: Axis.horizontal,
+                              physics: const BouncingScrollPhysics(),
+                              itemCount: suggested.length,
+                              itemBuilder: (context, index) {
+                                final item = suggested[index];
+                                return _buildSuggestedCard(context, item);
+                              },
+                            );
+                          },
+                        ),
+                      ),
+
+                      const SizedBox(height: 100.0),
+                    ],
+                  ),
+                ),
+
+                // --- Sticky Glass Header ---
+                Positioned(
+                  top: 0,
+                  left: 0,
+                  right: 0,
+                  child: ClipRRect(
+                    child: BackdropFilter(
+                      filter: ColorFilter.mode(Colors.black.withOpacity(0.1), BlendMode.dst),
+                      child: Container(
+                        padding: EdgeInsets.only(top: MediaQuery.of(context).padding.top + 12, bottom: 16),
+                        decoration: BoxDecoration(
+                          color: const Color(0xCC0A0B10), // Semi-transparent bg-base
+                          border: Border(
+                            bottom: BorderSide(color: Colors.white.withOpacity(0.06), width: 1),
                           ),
                         ),
-                      ],
+                        child: Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              _buildHeaderAction(
+                                icon: Icons.chevron_left_rounded,
+                                onTap: () => context.safePop(),
+                              ),
+                              Text(
+                                'DETALHES',
+                                style: GoogleFonts.syne(
+                                  color: const Color(0xFF9896A8), // --text-secondary
+                                  fontSize: 11.0,
+                                  fontWeight: FontWeight.w700,
+                                  letterSpacing: 2.0,
+                                ),
+                              ),
+                              _buildHeaderBag(context),
+                            ],
+                          ),
+                        ).animate().fadeIn(duration: 400.ms),
+                      ),
                     ),
-                  ].divide(SizedBox(height: 12.0)),
+                  ).animate().fadeIn(duration: 400.ms),
                 ),
-              ),
+              ],
             );
           },
         ),
       ),
     );
+  }
+
+  Widget _buildHeaderAction({required IconData icon, required VoidCallback onTap}) {
+    return InkWell(
+      onTap: onTap,
+      borderRadius: BorderRadius.circular(100.0),
+      child: Container(
+        width: 44.0,
+        height: 44.0,
+        decoration: BoxDecoration(
+          color: const Color(0xFF1A1D28),
+          borderRadius: BorderRadius.circular(100.0),
+          border: Border.all(color: const Color(0x1AFFFFFF)),
+        ),
+        child: Icon(icon, color: const Color(0xFFF0EFFB), size: 22.0),
+      ),
+    );
+  }
+
+  Widget _buildHeaderBag(BuildContext context) {
+    return InkWell(
+      onTap: () {
+        if (FFAppState().valor > 0.0) {
+          context.pushNamed(PagarprodutoWidget.routeName);
+        }
+      },
+      borderRadius: BorderRadius.circular(100.0),
+      child: Container(
+        height: 44.0,
+        padding: const EdgeInsets.symmetric(horizontal: 16.0),
+        decoration: BoxDecoration(
+          color: const Color(0xFF1A1D28),
+          borderRadius: BorderRadius.circular(100.0),
+          border: Border.all(
+            color: FFAppState().valor > 0 ? const Color(0xFF6B5FEF).withOpacity(0.5) : const Color(0x1AFFFFFF),
+          ),
+        ),
+        child: Row(
+          children: [
+            Icon(Icons.shopping_bag_outlined, 
+              color: FFAppState().valor > 0 ? const Color(0xFF6B5FEF) : const Color(0xFF9896A8), 
+              size: 20.0
+            ),
+            if (FFAppState().valor > 0) ...[
+              const SizedBox(width: 8.0),
+              Text(
+                '${formatNumber(FFAppState().valor, formatType: FormatType.decimal, decimalType: DecimalType.commaDecimal)}',
+                style: GoogleFonts.syne(
+                  color: const Color(0xFFF0EFFB),
+                  fontWeight: FontWeight.w700,
+                  fontSize: 13,
+                ),
+              ),
+            ],
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget _buildActionBtn(BuildContext context, ProdutosRecord product) {
+    final bool isAdded = FFAppState().produto.contains(product.reference);
+    return Container(
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(100),
+        boxShadow: [
+          BoxShadow(
+            color: isAdded ? const Color(0x26E84040) : const Color(0x406B5FEF),
+            blurRadius: 20,
+            offset: const Offset(0, 10),
+          ),
+        ],
+      ),
+      child: FFButtonWidget(
+        onPressed: () async {
+          if (isAdded) {
+            FFAppState().removeFromProduto(product.reference);
+            FFAppState().valor = FFAppState().valor - product.preco;
+          } else {
+            FFAppState().addToProduto(product.reference);
+            FFAppState().valor = FFAppState().valor + product.preco;
+          }
+          safeSetState(() {});
+        },
+        text: isAdded ? 'REMOVER' : 'ADICIONAR',
+        icon: Icon(isAdded ? Icons.remove_circle_outline_rounded : Icons.add_shopping_cart_rounded, size: 20.0),
+        options: FFButtonOptions(
+          height: 56.0,
+          padding: const EdgeInsets.symmetric(horizontal: 32.0),
+          color: isAdded ? const Color(0xFF1A1D28) : const Color(0xFF6B5FEF),
+          textStyle: GoogleFonts.syne(
+            color: isAdded ? const Color(0xFFE84040) : Colors.white,
+            fontWeight: FontWeight.w700,
+            fontSize: 14,
+            letterSpacing: 1.0,
+          ),
+          elevation: 0,
+          borderSide: BorderSide(
+            color: isAdded ? const Color(0xFFE84040).withOpacity(0.4) : Colors.transparent,
+            width: 1.5,
+          ),
+          borderRadius: BorderRadius.circular(100.0),
+        ),
+      ),
+    );
+  }
+
+  Widget _buildBadge(String label) {
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 14.0, vertical: 8.0),
+      decoration: BoxDecoration(
+        color: const Color(0x1A6B5FEF), // --accent-glow
+        borderRadius: BorderRadius.circular(100.0), // pill
+        border: Border.all(color: const Color(0x336B5FEF)),
+      ),
+      child: Text(
+        label.toUpperCase(),
+        style: GoogleFonts.syne(
+          color: const Color(0xFFA89FF8), // --accent-light
+          fontSize: 10.0,
+          fontWeight: FontWeight.w700,
+          letterSpacing: 2.0,
+        ),
+      ),
+    );
+  }
+
+  Widget _buildSectionHeader({required IconData icon, required String title}) {
+    return Padding(
+      padding: const EdgeInsetsDirectional.fromSTEB(20.0, 48.0, 20.0, 20.0),
+      child: Row(
+        mainAxisSize: MainAxisSize.max,
+        children: [
+          Container(
+            padding: const EdgeInsets.all(10),
+            decoration: BoxDecoration(
+              color: const Color(0xFF1A1D28),
+              borderRadius: BorderRadius.circular(12),
+              border: Border.all(color: const Color(0x0DFFFFFF)),
+            ),
+            child: Icon(icon, color: const Color(0xFF6B5FEF), size: 18.0),
+          ),
+          const SizedBox(width: 14.0),
+          Text(
+            title,
+            style: GoogleFonts.syne(
+              color: const Color(0xFFF0EFFB),
+              fontSize: 18.0,
+              fontWeight: FontWeight.w700,
+              letterSpacing: 0.5,
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildSuggestedCard(BuildContext context, ProdutosRecord item) {
+    return Padding(
+      padding: const EdgeInsets.only(right: 16.0, bottom: 8),
+      child: InkWell(
+        onTap: () => context.pushNamed(
+          DetalhessorveteWidget.routeName,
+          queryParameters: {
+            'sorvete': serializeParam(item.reference, ParamType.DocumentReference),
+          }.withoutNulls,
+        ),
+        borderRadius: BorderRadius.circular(20.0),
+        child: Container(
+          width: 170.0,
+          decoration: BoxDecoration(
+            color: const Color(0xFF1A1D28), // --bg-card
+            borderRadius: BorderRadius.circular(20.0), // radius-xl
+            border: Border.all(color: const Color(0x0DFFFFFF)),
+            boxShadow: [
+              BoxShadow(
+                color: Colors.black.withOpacity(0.2),
+                blurRadius: 10,
+                offset: const Offset(0, 4),
+              ),
+            ],
+          ),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Expanded(
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(14.0),
+                    child: CachedNetworkImage(
+                      imageUrl: item.imagem,
+                      width: double.infinity,
+                      fit: BoxFit.cover,
+                    ),
+                  ),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(16.0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      item.nome,
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                      style: GoogleFonts.syne(
+                        color: const Color(0xFFF0EFFB),
+                        fontWeight: FontWeight.w700,
+                        fontSize: 14.0,
+                      ),
+                    ),
+                    const SizedBox(height: 8),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          'PW\$ ${formatNumber(item.preco, formatType: FormatType.decimal, decimalType: DecimalType.commaDecimal)}',
+                          style: GoogleFonts.syne(
+                            color: const Color(0xFF6B5FEF),
+                            fontWeight: FontWeight.w800,
+                            fontSize: 13.0,
+                          ),
+                        ),
+                        Container(
+                          padding: const EdgeInsets.all(4),
+                          decoration: const BoxDecoration(
+                            color: Color(0x1F6B5FEF),
+                            shape: BoxShape.circle,
+                          ),
+                          child: const Icon(Icons.add_rounded, color: Color(0xFF6B5FEF), size: 16),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
   }
 }

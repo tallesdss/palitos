@@ -61,9 +61,9 @@ class _PerfilWidgetState extends State<PerfilWidget>
       },
       child: Scaffold(
         key: scaffoldKey,
-        backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
+        backgroundColor: const Color(0xFF0A0B10),
         appBar: AppBar(
-          backgroundColor: FlutterFlowTheme.of(context).secondary,
+          backgroundColor: const Color(0xFF0A0B10),
           automaticallyImplyLeading: false,
           leading: FlutterFlowIconButton(
             borderColor: Colors.transparent,
@@ -105,10 +105,10 @@ class _PerfilWidgetState extends State<PerfilWidget>
                           width: 80.0,
                           height: 80.0,
                           decoration: BoxDecoration(
-                            gradient: LinearGradient(
+                            gradient: const LinearGradient(
                               colors: [
-                                FlutterFlowTheme.of(context).primary,
-                                FlutterFlowTheme.of(context).tertiary
+                                Color(0xFF6B5FEF),
+                                Color(0xFF8B80F4)
                               ],
                               stops: [0.0, 1.0],
                               begin: AlignmentDirectional(1.0, -1.0),
@@ -119,25 +119,24 @@ class _PerfilWidgetState extends State<PerfilWidget>
                           child: Align(
                             alignment: AlignmentDirectional(0.0, 0.0),
                             child: Padding(
-                              padding: EdgeInsets.all(4.0),
+                              padding: const EdgeInsets.all(2.0),
                               child: Container(
                                 width: 100.0,
                                 height: 100.0,
-                                decoration: BoxDecoration(
-                                  color: FlutterFlowTheme.of(context)
-                                      .primaryBackground,
+                                decoration: const BoxDecoration(
+                                  color: Color(0xFF0A0B10),
                                   shape: BoxShape.circle,
                                 ),
                                 child: Padding(
-                                  padding: EdgeInsets.all(4.0),
+                                  padding: const EdgeInsets.all(2.0),
                                   child: AuthUserStreamWidget(
                                     builder: (context) => ClipRRect(
                                       borderRadius: BorderRadius.circular(50.0),
                                       child: CachedNetworkImage(
                                         fadeInDuration:
-                                            Duration(milliseconds: 500),
+                                            const Duration(milliseconds: 500),
                                         fadeOutDuration:
-                                            Duration(milliseconds: 500),
+                                            const Duration(milliseconds: 500),
                                         imageUrl: currentUserPhoto,
                                         width: 100.0,
                                         height: 100.0,
@@ -160,36 +159,25 @@ class _PerfilWidgetState extends State<PerfilWidget>
                               builder: (context) => Text(
                                 currentUserDisplayName,
                                 textAlign: TextAlign.center,
-                                style: FlutterFlowTheme.of(context)
-                                    .headlineSmall
-                                    .override(
-                                      fontFamily: 'baloo2',
-                                      letterSpacing: 0.0,
-                                      useGoogleFonts: false,
-                                    ),
+                                style: GoogleFonts.getFont(
+                                  'Syne',
+                                  color: const Color(0xFFF0EFFB),
+                                  fontWeight: FontWeight.w700,
+                                  fontSize: 20.0,
+                                ),
                               ),
                             ),
                             Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
                                   0.0, 4.0, 0.0, 0.0),
-                              child: GradientText(
+                              child: Text(
                                 currentUserEmail,
-                                style: FlutterFlowTheme.of(context)
-                                    .labelSmall
-                                    .override(
-                                      fontFamily: 'Roboto Mono',
-                                      color: FlutterFlowTheme.of(context)
-                                          .secondary,
-                                      fontSize: 14.0,
-                                      letterSpacing: 0.0,
-                                      fontWeight: FontWeight.w500,
-                                    ),
-                                colors: [
-                                  FlutterFlowTheme.of(context).primary,
-                                  FlutterFlowTheme.of(context).tertiary
-                                ],
-                                gradientDirection: GradientDirection.ltr,
-                                gradientType: GradientType.linear,
+                                style: GoogleFonts.getFont(
+                                  'DM Sans',
+                                  color: const Color(0xFF9896A8),
+                                  fontSize: 14.0,
+                                  fontWeight: FontWeight.w500,
+                                ),
                               ),
                             ),
                           ],
@@ -205,16 +193,15 @@ class _PerfilWidgetState extends State<PerfilWidget>
                     Padding(
                       padding:
                           EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 8.0),
-                      child: Text(
-                        'Vendedor',
-                        style: FlutterFlowTheme.of(context)
-                            .headlineMedium
-                            .override(
-                              fontFamily: 'baloo2',
-                              letterSpacing: 0.0,
-                              useGoogleFonts: false,
-                            ),
-                      ),
+                        child: Text(
+                          'Vendedor',
+                          style: GoogleFonts.getFont(
+                            'Syne',
+                            color: const Color(0xFFF0EFFB),
+                            fontWeight: FontWeight.w700,
+                            fontSize: 24.0,
+                          ),
+                        ),
                     ),
                     FFButtonWidget(
                       onPressed: () async {
@@ -244,19 +231,19 @@ class _PerfilWidgetState extends State<PerfilWidget>
                             24.0, 0.0, 24.0, 0.0),
                         iconPadding:
                             EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
-                        color: FlutterFlowTheme.of(context).primary,
-                        textStyle:
-                            FlutterFlowTheme.of(context).titleSmall.override(
-                                  fontFamily: 'Roboto Mono',
-                                  color: Colors.white,
-                                  letterSpacing: 0.0,
-                                ),
-                        elevation: 3.0,
-                        borderSide: BorderSide(
+                        color: const Color(0xFF6B5FEF),
+                        textStyle: GoogleFonts.getFont(
+                          'Syne',
+                          color: Colors.white,
+                          fontWeight: FontWeight.w600,
+                          fontSize: 14.0,
+                        ),
+                        elevation: 0.0,
+                        borderSide: const BorderSide(
                           color: Colors.transparent,
                           width: 1.0,
                         ),
-                        borderRadius: BorderRadius.circular(8.0),
+                        borderRadius: BorderRadius.circular(100.0),
                       ),
                     ),
                   ].divide(SizedBox(width: 10.0)).around(SizedBox(width: 10.0)),
@@ -264,20 +251,22 @@ class _PerfilWidgetState extends State<PerfilWidget>
                 Text(
                   'Bio',
                   textAlign: TextAlign.start,
-                  style: FlutterFlowTheme.of(context).bodySmall.override(
-                        fontFamily: 'Roboto Mono',
-                        letterSpacing: 0.0,
-                      ),
+                  style: GoogleFonts.getFont(
+                    'DM Sans',
+                    color: const Color(0xFF9896A8),
+                    fontSize: 14.0,
+                  ),
                 ),
                 Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 0.0, 0.0),
+                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 0.0, 0.0),
                   child: Text(
                     'Desde de 2019',
                     textAlign: TextAlign.start,
-                    style: FlutterFlowTheme.of(context).labelLarge.override(
-                          fontFamily: 'Roboto Mono',
-                          letterSpacing: 0.0,
-                        ),
+                    style: GoogleFonts.getFont(
+                      'DM Sans',
+                      color: const Color(0xFF5C5A6A),
+                      fontSize: 12.0,
+                    ),
                   ),
                 ),
                 Padding(
@@ -320,28 +309,26 @@ class _PerfilWidgetState extends State<PerfilWidget>
                                   Padding(
                                     padding: EdgeInsetsDirectional.fromSTEB(
                                         0.0, 0.0, 0.0, 8.0),
-                                    child: Text(
-                                      containerCount.toString(),
-                                      textAlign: TextAlign.center,
-                                      style: FlutterFlowTheme.of(context)
-                                          .displaySmall
-                                          .override(
-                                            fontFamily: 'baloo2',
-                                            letterSpacing: 0.0,
-                                            useGoogleFonts: false,
-                                          ),
-                                    ),
-                                  ),
-                                  Text(
-                                    'Compras',
-                                    textAlign: TextAlign.center,
-                                    style: FlutterFlowTheme.of(context)
-                                        .labelMedium
-                                        .override(
-                                          fontFamily: 'Roboto Mono',
-                                          letterSpacing: 0.0,
+                                      child: Text(
+                                        containerCount.toString(),
+                                        textAlign: TextAlign.center,
+                                        style: GoogleFonts.getFont(
+                                          'Syne',
+                                          color: const Color(0xFFF0EFFB),
+                                          fontWeight: FontWeight.w800,
+                                          fontSize: 28.0,
                                         ),
-                                  ),
+                                      ),
+                                    ),
+                                    Text(
+                                      'Compras',
+                                      textAlign: TextAlign.center,
+                                      style: GoogleFonts.getFont(
+                                        'DM Sans',
+                                        color: const Color(0xFF9896A8),
+                                        fontSize: 12.0,
+                                      ),
+                                    ),
                                 ],
                               ),
                             );
@@ -389,24 +376,22 @@ class _PerfilWidgetState extends State<PerfilWidget>
                                       child: Text(
                                         containerCount.toString(),
                                         textAlign: TextAlign.center,
-                                        style: FlutterFlowTheme.of(context)
-                                            .displaySmall
-                                            .override(
-                                              fontFamily: 'baloo2',
-                                              letterSpacing: 0.0,
-                                              useGoogleFonts: false,
-                                            ),
+                                        style: GoogleFonts.getFont(
+                                          'Syne',
+                                          color: const Color(0xFFF0EFFB),
+                                          fontWeight: FontWeight.w800,
+                                          fontSize: 28.0,
+                                        ),
                                       ),
                                     ),
                                     Text(
                                       'Posts',
                                       textAlign: TextAlign.center,
-                                      style: FlutterFlowTheme.of(context)
-                                          .labelMedium
-                                          .override(
-                                            fontFamily: 'Roboto Mono',
-                                            letterSpacing: 0.0,
-                                          ),
+                                      style: GoogleFonts.getFont(
+                                        'DM Sans',
+                                        color: const Color(0xFF9896A8),
+                                        fontSize: 12.0,
+                                      ),
                                     ),
                                   ],
                                 ),
@@ -453,24 +438,22 @@ class _PerfilWidgetState extends State<PerfilWidget>
                                     child: Text(
                                       containerCount.toString(),
                                       textAlign: TextAlign.center,
-                                      style: FlutterFlowTheme.of(context)
-                                          .displaySmall
-                                          .override(
-                                            fontFamily: 'baloo2',
-                                            letterSpacing: 0.0,
-                                            useGoogleFonts: false,
-                                          ),
+                                      style: GoogleFonts.getFont(
+                                        'Syne',
+                                        color: const Color(0xFFF0EFFB),
+                                        fontWeight: FontWeight.w800,
+                                        fontSize: 28.0,
+                                      ),
                                     ),
                                   ),
                                   Text(
                                     'Likes',
                                     textAlign: TextAlign.center,
-                                    style: FlutterFlowTheme.of(context)
-                                        .labelMedium
-                                        .override(
-                                          fontFamily: 'Roboto Mono',
-                                          letterSpacing: 0.0,
-                                        ),
+                                    style: GoogleFonts.getFont(
+                                      'DM Sans',
+                                      color: const Color(0xFF9896A8),
+                                      fontSize: 12.0,
+                                    ),
                                   ),
                                 ],
                               ),
@@ -493,29 +476,27 @@ class _PerfilWidgetState extends State<PerfilWidget>
                       child: Container(
                         width: double.infinity,
                         height: MediaQuery.sizeOf(context).height * 1.0,
-                        decoration: BoxDecoration(
-                          color:
-                              FlutterFlowTheme.of(context).secondaryBackground,
+                        decoration: const BoxDecoration(
+                          color: Color(0xFF0A0B10),
                         ),
                         child: Column(
                           children: [
                             Align(
                               alignment: Alignment(0.0, 0),
                               child: TabBar(
-                                labelColor:
-                                    FlutterFlowTheme.of(context).primaryText,
-                                unselectedLabelColor:
-                                    FlutterFlowTheme.of(context).secondaryText,
-                                labelStyle: FlutterFlowTheme.of(context)
-                                    .titleMedium
-                                    .override(
-                                      fontFamily: 'Roboto Mono',
-                                      fontSize: 18.0,
-                                      letterSpacing: 0.0,
-                                    ),
-                                unselectedLabelStyle: TextStyle(),
-                                indicatorColor:
-                                    FlutterFlowTheme.of(context).primary,
+                                labelColor: const Color(0xFFF0EFFB),
+                                unselectedLabelColor: const Color(0xFF5C5A6A),
+                                labelStyle: GoogleFonts.getFont(
+                                  'Syne',
+                                  fontSize: 14.0,
+                                  fontWeight: FontWeight.w600,
+                                ),
+                                unselectedLabelStyle: GoogleFonts.getFont(
+                                  'Syne',
+                                  fontSize: 14.0,
+                                  fontWeight: FontWeight.w500,
+                                ),
+                                indicatorColor: const Color(0xFF6B5FEF),
                                 padding: EdgeInsets.all(4.0),
                                 tabs: [
                                   Tab(
@@ -654,17 +635,12 @@ class _PerfilWidgetState extends State<PerfilWidget>
                                                                     child: Text(
                                                                       listViewPostagemRecord
                                                                           .nomedono,
-                                                                      style: FlutterFlowTheme.of(
-                                                                              context)
-                                                                          .bodyLarge
-                                                                          .override(
-                                                                            fontFamily:
-                                                                                'Roboto Mono',
-                                                                            letterSpacing:
-                                                                                0.0,
-                                                                            fontWeight:
-                                                                                FontWeight.bold,
-                                                                          ),
+                                                                      style: GoogleFonts.getFont(
+                                                                        'Syne',
+                                                                        color: const Color(0xFFF0EFFB),
+                                                                        fontWeight: FontWeight.w600,
+                                                                        fontSize: 14.0,
+                                                                      ),
                                                                     ),
                                                                   ),
                                                                   Text(
@@ -676,15 +652,11 @@ class _PerfilWidgetState extends State<PerfilWidget>
                                                                               context)
                                                                           .languageCode,
                                                                     ),
-                                                                    style: FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .bodyMedium
-                                                                        .override(
-                                                                          fontFamily:
-                                                                              'Roboto Mono',
-                                                                          letterSpacing:
-                                                                              0.0,
-                                                                        ),
+                                                                    style: GoogleFonts.getFont(
+                                                                      'DM Sans',
+                                                                      color: const Color(0xFF9896A8),
+                                                                      fontSize: 12.0,
+                                                                    ),
                                                                   ),
                                                                 ],
                                                               ),
@@ -712,15 +684,12 @@ class _PerfilWidgetState extends State<PerfilWidget>
                                                               child: Text(
                                                                 listViewPostagemRecord
                                                                     .descricao,
-                                                                style: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .bodyMedium
-                                                                    .override(
-                                                                      fontFamily:
-                                                                          'Roboto Mono',
-                                                                      letterSpacing:
-                                                                          0.0,
-                                                                    ),
+                                                                style: GoogleFonts.getFont(
+                                                                  'DM Sans',
+                                                                  color: const Color(0xFFF0EFFB),
+                                                                  fontSize: 14.0,
+                                                                  height: 1.6,
+                                                                ),
                                                               ),
                                                             ),
                                                           ),
@@ -745,9 +714,7 @@ class _PerfilWidgetState extends State<PerfilWidget>
                                                               height: 300.0,
                                                               decoration:
                                                                   BoxDecoration(
-                                                                color: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .primaryText,
+                                                                color: FlutterFlowTheme.of(context).primaryBackground,
                                                                 image:
                                                                     DecorationImage(
                                                                   fit: BoxFit
@@ -880,7 +847,7 @@ class _PerfilWidgetState extends State<PerfilWidget>
                                                     ),
                                                     Padding(
                                                       padding:
-                                                          EdgeInsetsDirectional
+                                                          const EdgeInsetsDirectional
                                                               .fromSTEB(
                                                                   10.0,
                                                                   0.0,
@@ -898,35 +865,27 @@ class _PerfilWidgetState extends State<PerfilWidget>
                                                                   .toString(),
                                                               '0',
                                                             )} Curtidas',
-                                                            style: FlutterFlowTheme
-                                                                    .of(context)
-                                                                .bodyMedium
-                                                                .override(
-                                                                  fontFamily:
-                                                                      'Roboto Mono',
-                                                                  letterSpacing:
-                                                                      0.0,
-                                                                ),
+                                                            style: GoogleFonts.getFont(
+                                                              'DM Sans',
+                                                              color: const Color(0xFF9896A8),
+                                                              fontSize: 12.0,
+                                                            ),
                                                           ),
                                                           Padding(
                                                             padding:
-                                                                EdgeInsetsDirectional
+                                                                const EdgeInsetsDirectional
                                                                     .fromSTEB(
                                                                         10.0,
                                                                         0.0,
                                                                         0.0,
                                                                         0.0),
                                                             child: Text(
-                                                              ' Comentarios.',
-                                                              style: FlutterFlowTheme
-                                                                      .of(context)
-                                                                  .bodyMedium
-                                                                  .override(
-                                                                    fontFamily:
-                                                                        'Roboto Mono',
-                                                                    letterSpacing:
-                                                                        0.0,
-                                                                  ),
+                                                              ' Comentários',
+                                                              style: GoogleFonts.getFont(
+                                                                'DM Sans',
+                                                                color: const Color(0xFF9896A8),
+                                                                fontSize: 12.0,
+                                                              ),
                                                             ),
                                                           ),
                                                           Expanded(
@@ -934,14 +893,12 @@ class _PerfilWidgetState extends State<PerfilWidget>
                                                               width: 100.0,
                                                               height: 30.0,
                                                               decoration:
-                                                                  BoxDecoration(
-                                                                color: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .secondaryBackground,
+                                                                  const BoxDecoration(
+                                                                color: Colors.transparent,
                                                               ),
                                                               child: Padding(
                                                                 padding:
-                                                                    EdgeInsetsDirectional
+                                                                    const EdgeInsetsDirectional
                                                                         .fromSTEB(
                                                                             15.0,
                                                                             0.0,
@@ -965,28 +922,13 @@ class _PerfilWidgetState extends State<PerfilWidget>
                                                                     // Customize what your widget looks like when it's loading.
                                                                     if (!snapshot
                                                                         .hasData) {
-                                                                      return Center(
-                                                                        child:
-                                                                            SizedBox(
-                                                                          width:
-                                                                              50.0,
-                                                                          height:
-                                                                              50.0,
-                                                                          child:
-                                                                              CircularProgressIndicator(
-                                                                            valueColor:
-                                                                                AlwaysStoppedAnimation<Color>(
-                                                                              FlutterFlowTheme.of(context).primary,
-                                                                            ),
-                                                                          ),
-                                                                        ),
-                                                                      );
+                                                                      return const SizedBox();
                                                                     }
                                                                     List<UserRecord>
                                                                         listViewUserRecordList =
                                                                         snapshot
                                                                             .data!;
-
+11: 41: 39
                                                                     return ListView
                                                                         .builder(
                                                                       padding:
@@ -1015,12 +957,12 @@ class _PerfilWidgetState extends State<PerfilWidget>
                                                                             clipBehavior:
                                                                                 Clip.antiAlias,
                                                                             decoration:
-                                                                                BoxDecoration(
+                                                                                const BoxDecoration(
                                                                               shape: BoxShape.circle,
                                                                             ),
                                                                             child:
-                                                                                Image.network(
-                                                                              listViewUserRecord.photoUrl,
+                                                                                CachedNetworkImage(
+                                                                              imageUrl: listViewUserRecord.photoUrl,
                                                                               fit: BoxFit.cover,
                                                                             ),
                                                                           ),
@@ -1096,18 +1038,11 @@ class _PerfilWidgetState extends State<PerfilWidget>
                                               width: 100.0,
                                               height: 450.0,
                                               decoration: BoxDecoration(
-                                                color:
-                                                    FlutterFlowTheme.of(context)
-                                                        .secondaryBackground,
-                                                borderRadius: BorderRadius.only(
-                                                  bottomLeft:
-                                                      Radius.circular(12.0),
-                                                  bottomRight:
-                                                      Radius.circular(12.0),
-                                                  topLeft:
-                                                      Radius.circular(12.0),
-                                                  topRight:
-                                                      Radius.circular(12.0),
+                                                color: const Color(0xFF1A1D28),
+                                                borderRadius: BorderRadius.circular(16.0),
+                                                side: BorderSide(
+                                                  color: Colors.white.withValues(alpha: 0.06),
+                                                  width: 1.0,
                                                 ),
                                               ),
                                               child: Padding(
@@ -1151,18 +1086,12 @@ class _PerfilWidgetState extends State<PerfilWidget>
                                                             child: Text(
                                                               favoritosPostagemRecord
                                                                   .nomedono,
-                                                              style: FlutterFlowTheme
-                                                                      .of(context)
-                                                                  .bodyLarge
-                                                                  .override(
-                                                                    fontFamily:
-                                                                        'Roboto Mono',
-                                                                    letterSpacing:
-                                                                        0.0,
-                                                                    fontWeight:
-                                                                        FontWeight
-                                                                            .bold,
-                                                                  ),
+                                                              style: GoogleFonts.getFont(
+                                                                'Syne',
+                                                                color: const Color(0xFFF0EFFB),
+                                                                fontWeight: FontWeight.w600,
+                                                                fontSize: 14.0,
+                                                              ),
                                                             ),
                                                           ),
                                                         ],
@@ -1355,23 +1284,19 @@ class _PerfilWidgetState extends State<PerfilWidget>
                                                       mainAxisSize:
                                                           MainAxisSize.max,
                                                       children: [
-                                                        Text(
-                                                          '${valueOrDefault<String>(
-                                                            favoritosPostagemRecord
-                                                                .curtidas.length
-                                                                .toString(),
-                                                            '0',
-                                                          )} Curtidas',
-                                                          style: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .bodyMedium
-                                                              .override(
-                                                                fontFamily:
-                                                                    'Roboto Mono',
-                                                                letterSpacing:
-                                                                    0.0,
-                                                              ),
-                                                        ),
+                                                          Text(
+                                                            '${valueOrDefault<String>(
+                                                              favoritosPostagemRecord
+                                                                  .curtidas.length
+                                                                  .toString(),
+                                                              '0',
+                                                            )} Curtidas',
+                                                            style: GoogleFonts.getFont(
+                                                              'DM Sans',
+                                                              color: const Color(0xFF9896A8),
+                                                              fontSize: 12.0,
+                                                            ),
+                                                          ),
                                                         Expanded(
                                                           child: Container(
                                                             width: 100.0,

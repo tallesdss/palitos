@@ -1,4 +1,4 @@
-import '';
+import 'dart:ui';
 import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
@@ -69,322 +69,286 @@ class _ConfirmasenhaWidgetState extends State<ConfirmasenhaWidget> {
       },
       child: Scaffold(
         key: scaffoldKey,
-        backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
-        appBar: AppBar(
-          backgroundColor: FlutterFlowTheme.of(context).primary,
-          automaticallyImplyLeading: false,
-          leading: InkWell(
-            splashColor: Colors.transparent,
-            focusColor: Colors.transparent,
-            hoverColor: Colors.transparent,
-            highlightColor: Colors.transparent,
-            onTap: () async {
-              context.safePop();
-            },
-            child: Icon(
-              Icons.arrow_back_outlined,
-              color: Color(0xF3FFFFFF),
-              size: 24.0,
-            ),
-          ),
-          title: Text(
-            'Senha',
-            style: FlutterFlowTheme.of(context).bodyLarge.override(
-                  fontFamily: 'Roboto Mono',
-                  color: Color(0xF3FFFFFF),
-                  letterSpacing: 0.0,
-                ),
-          ),
-          actions: [],
-          centerTitle: false,
-          elevation: 2.0,
-        ),
-        body: StreamBuilder<UserRecord>(
-          stream: UserRecord.getDocument(widget.user!),
-          builder: (context, snapshot) {
-            // Customize what your widget looks like when it's loading.
-            if (!snapshot.hasData) {
-              return Center(
-                child: SizedBox(
-                  width: 50.0,
-                  height: 50.0,
-                  child: CircularProgressIndicator(
-                    valueColor: AlwaysStoppedAnimation<Color>(
-                      FlutterFlowTheme.of(context).primary,
-                    ),
-                  ),
-                ),
-              );
-            }
-
-            final containerUserRecord = snapshot.data!;
-
-            return Container(
-              width: double.infinity,
-              height: double.infinity,
-              decoration: BoxDecoration(),
-              child: Padding(
-                padding: EdgeInsets.all(14.0),
-                child: Column(
-                  mainAxisSize: MainAxisSize.max,
-                  children: [
-                    Padding(
-                      padding:
-                          EdgeInsetsDirectional.fromSTEB(0.0, 20.0, 0.0, 0.0),
-                      child: Row(
-                        mainAxisSize: MainAxisSize.max,
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Text(
-                            'Digite sua senha.',
-                            style: FlutterFlowTheme.of(context)
-                                .titleLarge
-                                .override(
-                                  fontFamily: 'baloo2',
-                                  letterSpacing: 0.0,
-                                  useGoogleFonts: false,
-                                ),
-                          ),
-                        ],
-                      ),
-                    ),
-                    Row(
-                      mainAxisSize: MainAxisSize.max,
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text(
-                          'Digite sua senha de 4 digitos.',
-                          style:
-                              FlutterFlowTheme.of(context).bodyLarge.override(
-                                    fontFamily: 'Roboto Mono',
-                                    letterSpacing: 0.0,
-                                  ),
-                        ),
-                      ],
-                    ),
-                    Padding(
-                      padding:
-                          EdgeInsetsDirectional.fromSTEB(0.0, 15.0, 0.0, 0.0),
-                      child: Row(
-                        mainAxisSize: MainAxisSize.max,
-                        children: [
-                          Expanded(
-                            child: Container(
-                              width: 100.0,
-                              height: 60.0,
-                              decoration: BoxDecoration(
-                                color: FlutterFlowTheme.of(context)
-                                    .secondaryBackground,
-                              ),
-                              child: Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
-                                    8.0, 0.0, 8.0, 0.0),
-                                child: Container(
-                                  width: double.infinity,
-                                  child: TextFormField(
-                                    controller: _model.senhaTextController,
-                                    focusNode: _model.senhaFocusNode,
-                                    onChanged: (_) => EasyDebounce.debounce(
-                                      '_model.senhaTextController',
-                                      Duration(milliseconds: 500),
-                                      () async {
-                                        _model.senha = int.tryParse(
-                                            _model.senhaTextController.text);
-                                        safeSetState(() {});
-                                      },
-                                    ),
-                                    autofocus: true,
-                                    obscureText: false,
-                                    decoration: InputDecoration(
-                                      labelText: 'Senha',
-                                      labelStyle: FlutterFlowTheme.of(context)
-                                          .labelMedium
-                                          .override(
-                                            fontFamily: 'Roboto Mono',
-                                            letterSpacing: 0.0,
-                                          ),
-                                      hintStyle: FlutterFlowTheme.of(context)
-                                          .labelMedium
-                                          .override(
-                                            fontFamily: 'Roboto Mono',
-                                            letterSpacing: 0.0,
-                                          ),
-                                      enabledBorder: OutlineInputBorder(
-                                        borderSide: BorderSide(
-                                          color: FlutterFlowTheme.of(context)
-                                              .alternate,
-                                          width: 2.0,
-                                        ),
-                                        borderRadius:
-                                            BorderRadius.circular(8.0),
-                                      ),
-                                      focusedBorder: OutlineInputBorder(
-                                        borderSide: BorderSide(
-                                          color: FlutterFlowTheme.of(context)
-                                              .primary,
-                                          width: 2.0,
-                                        ),
-                                        borderRadius:
-                                            BorderRadius.circular(8.0),
-                                      ),
-                                      errorBorder: OutlineInputBorder(
-                                        borderSide: BorderSide(
-                                          color: FlutterFlowTheme.of(context)
-                                              .error,
-                                          width: 2.0,
-                                        ),
-                                        borderRadius:
-                                            BorderRadius.circular(8.0),
-                                      ),
-                                      focusedErrorBorder: OutlineInputBorder(
-                                        borderSide: BorderSide(
-                                          color: FlutterFlowTheme.of(context)
-                                              .error,
-                                          width: 2.0,
-                                        ),
-                                        borderRadius:
-                                            BorderRadius.circular(8.0),
-                                      ),
-                                    ),
-                                    style: FlutterFlowTheme.of(context)
-                                        .bodyMedium
-                                        .override(
-                                          fontFamily: 'Roboto Mono',
-                                          letterSpacing: 0.0,
-                                        ),
-                                    keyboardType: TextInputType.number,
-                                    validator: _model
-                                        .senhaTextControllerValidator
-                                        .asValidator(context),
-                                    inputFormatters: [_model.senhaMask],
-                                  ),
-                                ),
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                    Padding(
-                      padding:
-                          EdgeInsetsDirectional.fromSTEB(0.0, 15.0, 0.0, 0.0),
-                      child: Row(
-                        mainAxisSize: MainAxisSize.max,
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          FFButtonWidget(
-                            onPressed: () async {
-                              if (valueOrDefault(
-                                      currentUserDocument?.saldo, 0.0) >=
-                                  FFAppState().valor) {
-                                if (containerUserRecord.senha == _model.senha) {
-                                  _model.addToMinhas(
-                                      containerUserRecord.reference);
-                                  safeSetState(() {});
-
-                                  await containerUserRecord.reference
-                                      .update(createUserRecordData(
-                                    saldo: containerUserRecord.saldo +
-                                        FFAppState().valor,
-                                  ));
-
-                                  await TransacoesRecord.collection.doc().set({
-                                    ...createTransacoesRecordData(
-                                      data: getCurrentTimestamp,
-                                      valor: FFAppState().valor,
-                                      pagador: currentUserReference,
-                                      recebedor: containerUserRecord.reference,
-                                      nomedopagador:
-                                          containerUserRecord.displayName,
-                                      nomedorecebedor: currentUserDisplayName,
-                                    ),
-                                    ...mapToFirestore(
-                                      {
-                                        'produtos': FFAppState().produto,
-                                        'minhas': _model.minhas,
-                                      },
-                                    ),
-                                  });
-
-                                  await currentUserReference!
-                                      .update(createUserRecordData(
-                                    saldo: valueOrDefault(
-                                            currentUserDocument?.saldo, 0.0) -
-                                        FFAppState().valor,
-                                  ));
-                                  FFAppState().ultimatransacao =
-                                      FFAppState().valor;
-                                  safeSetState(() {});
-                                  FFAppState().produto = [];
-                                  FFAppState().valor = 0.0;
-                                  safeSetState(() {});
-
-                                  context
-                                      .goNamed(PagamentoconcliWidget.routeName);
-                                } else {
-                                  ScaffoldMessenger.of(context).showSnackBar(
-                                    SnackBar(
-                                      content: Text(
-                                        'Senha incorreta!',
-                                        style: TextStyle(
-                                          color: FlutterFlowTheme.of(context)
-                                              .primaryText,
-                                        ),
-                                      ),
-                                      duration: Duration(milliseconds: 4000),
-                                      backgroundColor:
-                                          FlutterFlowTheme.of(context)
-                                              .secondary,
-                                    ),
-                                  );
-                                }
-                              } else {
-                                ScaffoldMessenger.of(context).showSnackBar(
-                                  SnackBar(
-                                    content: Text(
-                                      'Saldo Insuficiente! ',
-                                      style: TextStyle(
-                                        color: FlutterFlowTheme.of(context)
-                                            .primaryText,
-                                      ),
-                                    ),
-                                    duration: Duration(milliseconds: 4000),
-                                    backgroundColor:
-                                        FlutterFlowTheme.of(context).secondary,
-                                  ),
-                                );
-                              }
-                            },
-                            text: 'PAGAR',
-                            options: FFButtonOptions(
-                              height: 40.0,
-                              padding: EdgeInsetsDirectional.fromSTEB(
-                                  24.0, 0.0, 24.0, 0.0),
-                              iconPadding: EdgeInsetsDirectional.fromSTEB(
-                                  0.0, 0.0, 0.0, 0.0),
-                              color: FlutterFlowTheme.of(context).primary,
-                              textStyle: FlutterFlowTheme.of(context)
-                                  .titleSmall
-                                  .override(
-                                    fontFamily: 'Roboto Mono',
-                                    color: Colors.white,
-                                    letterSpacing: 0.0,
-                                  ),
-                              elevation: 3.0,
-                              borderSide: BorderSide(
-                                color: Colors.transparent,
-                                width: 1.0,
-                              ),
-                              borderRadius: BorderRadius.circular(8.0),
-                            ),
-                          ),
-                        ],
-                      ),
+        backgroundColor: Color(0xFF0A0B10), // --bg-base
+        body: Stack(
+          children: [
+            // Subtle accent glow in background
+            Positioned(
+              top: -150,
+              left: -150,
+              child: Container(
+                width: 400,
+                height: 400,
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  color: Color(0x0D6B5FEF),
+                  捧: [
+                    BoxShadow(
+                      blurRadius: 100,
+                      color: Color(0x0D6B5FEF),
+                      spreadRadius: 50,
                     ),
                   ],
                 ),
               ),
-            );
+            ),
+            SafeArea(
+              top: true,
+              child: Column(
+                mainAxisSize: MainAxisSize.max,
+                children: [
+                  // Glassmorphic Header
+                  ClipRRect(
+                    child: BackdropFilter(
+                      filter: ImageFilter.blur(sigmaX: 12, sigmaY: 12),
+                      child: Container(
+                        width: double.infinity,
+                        height: 70,
+                        decoration: BoxDecoration(
+                          color: Color(0x990A0B10),
+                          border: Border(
+                            bottom: BorderSide(
+                              color: Color(0x33FFFFFF),
+                              width: 1,
+                            ),
+                          ),
+                        ),
+                        child: Padding(
+                          padding: EdgeInsets.symmetric(horizontal: 16),
+                          child: Row(
+                            children: [
+                              FlutterFlowIconButton(
+                                borderColor: Colors.transparent,
+                                borderRadius: 30.0,
+                                borderWidth: 1.0,
+                                buttonSize: 44.0,
+                                icon: Icon(
+                                  Icons.chevron_left_rounded,
+                                  color: Colors.white,
+                                  size: 28.0,
+                                ),
+                                onPressed: () async {
+                                  context.safePop();
+                                },
+                              ),
+                              SizedBox(width: 12),
+                              Text(
+                                'Confirmação',
+                                style: FlutterFlowTheme.of(context).headlineSmall.override(
+                                      fontFamily: 'Syne',
+                                      color: Colors.white,
+                                      fontSize: 20,
+                                      fontWeight: FontWeight.bold,
+                                      useGoogleFonts: true,
+                                    ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                  Expanded(
+                    child: StreamBuilder<UserRecord>(
+                      stream: UserRecord.getDocument(widget.user!),
+                      builder: (context, snapshot) {
+                        if (!snapshot.hasData) {
+                          return Center(child: CircularProgressIndicator(color: Color(0xFF6B5FEF)));
+                        }
+                        final containerUserRecord = snapshot.data!;
+
+                        return SingleChildScrollView(
+                          child: Padding(
+                            padding: EdgeInsets.symmetric(horizontal: 24),
+                            child: Column(
+                              mainAxisSize: MainAxisSize.max,
+                              children: [
+                                SizedBox(height: 48),
+                                // Verification Icon
+                                Container(
+                                  width: 80,
+                                  height: 80,
+                                  decoration: BoxDecoration(
+                                    color: Color(0x336B5FEF),
+                                    shape: BoxShape.circle,
+                                    border: Border.all(color: Color(0x666B5FEF), width: 2),
+                                  ),
+                                  child: Icon(Icons.shield_rounded, color: Color(0xFF6B5FEF), size: 40),
+                                ),
+                                SizedBox(height: 32),
+                                Text(
+                                  'Verificação de Segurança',
+                                  textAlign: TextAlign.center,
+                                  style: FlutterFlowTheme.of(context).headlineMedium.override(
+                                        fontFamily: 'Syne',
+                                        color: Colors.white,
+                                        fontSize: 24,
+                                        fontWeight: FontWeight.bold,
+                                        useGoogleFonts: true,
+                                      ),
+                                ),
+                                SizedBox(height: 12),
+                                Text(
+                                  'Confirme sua senha de 4 dígitos para autorizar o pagamento para \n${containerUserRecord.displayName}.',
+                                  textAlign: TextAlign.center,
+                                  style: FlutterFlowTheme.of(context).bodyMedium.override(
+                                        fontFamily: 'DM Sans',
+                                        color: Colors.white60,
+                                        fontSize: 16,
+                                        useGoogleFonts: true,
+                                      ),
+                                ),
+                                SizedBox(height: 48),
+                                // Password Input
+                                Container(
+                                  decoration: BoxDecoration(
+                                    color: Color(0xFF1A1D28),
+                                    borderRadius: BorderRadius.circular(20),
+                                    border: Border.all(color: Color(0x33FFFFFF)),
+                                  ),
+                                  child: Padding(
+                                    padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                                    child: TextFormField(
+                                      controller: _model.senhaTextController,
+                                      focusNode: _model.senhaFocusNode,
+                                      onChanged: (_) => EasyDebounce.debounce(
+                                        '_model.senhaTextController',
+                                        Duration(milliseconds: 200),
+                                        () async {
+                                          _model.senha = int.tryParse(_model.senhaTextController.text);
+                                          safeSetState(() {});
+                                        },
+                                      ),
+                                      autofocus: true,
+                                      obscureText: true,
+                                      textAlign: TextAlign.center,
+                                      style: TextStyle(
+                                        color: Colors.white,
+                                        fontSize: 32,
+                                        letterSpacing: 24,
+                                        fontWeight: FontWeight.bold,
+                                        fontFamily: 'Syne',
+                                      ),
+                                      decoration: InputDecoration(
+                                        hintText: '••••',
+                                        hintStyle: TextStyle(
+                                          color: Colors.white24,
+                                          fontSize: 32,
+                                          letterSpacing: 24,
+                                        ),
+                                        border: InputBorder.none,
+                                        enabledBorder: InputBorder.none,
+                                        focusedBorder: InputBorder.none,
+                                      ),
+                                      keyboardType: TextInputType.number,
+                                      inputFormatters: [_model.senhaMask],
+                                    ),
+                                  ),
+                                ),
+                                SizedBox(height: 60),
+                                // Payment Button
+                                FFButtonWidget(
+                                  onPressed: () async {
+                                    if (valueOrDefault(currentUserDocument?.saldo, 0.0) >= FFAppState().valor) {
+                                      if (containerUserRecord.senha == _model.senha) {
+                                        _model.addToMinhas(containerUserRecord.reference);
+                                        safeSetState(() {});
+
+                                        await containerUserRecord.reference.update(createUserRecordData(
+                                          saldo: containerUserRecord.saldo + FFAppState().valor,
+                                        ));
+
+                                        await TransacoesRecord.collection.doc().set({
+                                          ...createTransacoesRecordData(
+                                            data: getCurrentTimestamp,
+                                            valor: FFAppState().valor,
+                                            pagador: currentUserReference,
+                                            recebedor: containerUserRecord.reference,
+                                            nomedopagador: containerUserRecord.displayName,
+                                            nomedorecebedor: currentUserDisplayName,
+                                          ),
+                                          ...mapToFirestore({
+                                            'produtos': FFAppState().produto,
+                                            'minhas': _model.minhas,
+                                          }),
+                                        });
+
+                                        await currentUserReference!.update(createUserRecordData(
+                                          saldo: valueOrDefault(currentUserDocument?.saldo, 0.0) - FFAppState().valor,
+                                        ));
+                                        FFAppState().ultimatransacao = FFAppState().valor;
+                                        FFAppState().produto = [];
+                                        FFAppState().valor = 0.0;
+                                        safeSetState(() {});
+
+                                        context.goNamed(PagamentoconcliWidget.routeName);
+                                      } else {
+                                        ScaffoldMessenger.of(context).showSnackBar(
+                                          SnackBar(
+                                            content: Text('Senha incorreta!'),
+                                            backgroundColor: Colors.redAccent,
+                                          ),
+                                        );
+                                      }
+                                    } else {
+                                      ScaffoldMessenger.of(context).showSnackBar(
+                                        SnackBar(
+                                          content: Text('Saldo Insuficiente!'),
+                                          backgroundColor: Colors.redAccent,
+                                        ),
+                                      );
+                                    }
+                                  },
+                                  text: 'CONFIRMAR PAGAMENTO',
+                                  options: FFButtonOptions(
+                                    width: double.infinity,
+                                    height: 56.0,
+                                    padding: EdgeInsetsDirectional.fromSTEB(24.0, 0.0, 24.0, 0.0),
+                                    iconPadding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                                    color: Color(0xFF6B5FEF),
+                                    textStyle: FlutterFlowTheme.of(context).titleSmall.override(
+                                          fontFamily: 'Syne',
+                                          color: Colors.white,
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.bold,
+                                          useGoogleFonts: true,
+                                        ),
+                                    elevation: 8.0,
+                                    borderSide: BorderSide(
+                                      color: Colors.transparent,
+                                      width: 1.0,
+                                    ),
+                                    borderRadius: BorderRadius.circular(16.0),
+                                  ),
+                                ),
+                                SizedBox(height: 24),
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Icon(Icons.lock_outline_rounded, color: Colors.white24, size: 14),
+                                    SizedBox(width: 6),
+                                    Text(
+                                      'Transação criptografada de ponta a ponta',
+                                      style: TextStyle(color: Colors.white24, fontSize: 12, fontFamily: 'DM Sans'),
+                                    ),
+                                  ],
+                                ),
+                              ],
+                            ),
+                          ),
+                        );
+                      },
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
           },
         ),
       ),
