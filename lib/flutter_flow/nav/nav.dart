@@ -225,6 +225,32 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           builder: (context, params) => VendedorAdmWidget(),
         ),
         FFRoute(
+          name: RetornoEstoqueWidget.routeName,
+          path: RetornoEstoqueWidget.routePath,
+          requireAuth: true,
+          asyncParams: {
+            'historico': getDoc(['Historico'], HistoricoRecord.fromSnapshot),
+          },
+          builder: (context, params) => RetornoEstoqueWidget(
+            historico: params.getParam(
+              'historico',
+              ParamType.Document,
+            ) as HistoricoRecord,
+          ),
+        ),
+        FFRoute(
+          name: VendaRapidaWidget.routeName,
+          path: VendaRapidaWidget.routePath,
+          requireAuth: true,
+          builder: (context, params) => VendaRapidaWidget(),
+        ),
+        FFRoute(
+          name: SuporteWidget.routeName,
+          path: SuporteWidget.routePath,
+          requireAuth: true,
+          builder: (context, params) => SuporteWidget(),
+        ),
+        FFRoute(
           name: VendedoresadmWidget.routeName,
           path: VendedoresadmWidget.routePath,
           requireAuth: true,

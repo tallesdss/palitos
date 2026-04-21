@@ -26,9 +26,10 @@ Uma primeira impressão marcante para o vendedor.
 
 ## 🛒 Fase 3: Hub de Operação Diária (Gestão de Carrinho)
 O coração operacional do app.
-- [ ] **3.1 Carregamento de Carrinho**: Interface visual para selecionar produtos e quantidades ao sair para venda.
-- [ ] **3.2 Retorno de Estoque**: Check-out do dia, calculando automaticamente as devoluções.
-- [ ] **3.3 Registro de Vendas**: Interface rápida ("One-Tap") para registrar uma venda realizada na rua.
+- [x] **3.1 Carregamento de Carrinho**: Interface visual para selecionar produtos e quantidades ao sair para venda.
+- [x] **3.2 Retorno de Estoque**: Check-out do dia, calculando automaticamente as devoluções.
+- [x] **3.3 Registro de Vendas**: Interface rápida ("One-Tap") para registrar uma venda realizada na rua.
+- [ ] **3.4 Suporte Integrado**: Canal direto para reporte de problemas operacionais.
 
 ## 💰 Fase 4: Digital Wallet & Transferências (Social Finance)
 Transformando o app em uma ferramenta financeira potente.

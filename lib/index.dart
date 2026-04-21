@@ -52,3 +52,9 @@ export '/adm2/editarprodutos/editarprodutos_widget.dart'
     show EditarprodutosWidget;
 export '/redefinirsenhadousuario/redefinirsenhadousuario_widget.dart'
     show RedefinirsenhadousuarioWidget;
+export '/vendedor/retorno_estoque/retorno_estoque_widget.dart'
+    show RetornoEstoqueWidget;
+export '/vendedor/venda_rapida/venda_rapida_widget.dart'
+    show VendaRapidaWidget;
+export '/vendedor/suporte/suporte_widget.dart'
+    show SuporteWidget;
