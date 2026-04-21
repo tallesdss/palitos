@@ -1,6 +1,5 @@
 import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
-import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/vendedor/carregar_carrinho/carregar_carrinho_model.dart';
@@ -8,7 +7,6 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'dart:math' as math;
-import '/index.dart';
 
 class CarregarCarrinhoWidget extends StatefulWidget {
   const CarregarCarrinhoWidget({super.key});
@@ -41,7 +39,7 @@ class _CarregarCarrinhoWidgetState extends State<CarregarCarrinhoWidget> {
       onTap: () => FocusScope.of(context).requestFocus(_model.unfocusNode),
       child: Scaffold(
         key: scaffoldKey,
-        backgroundColor: Color(0xFF0A0A0A),
+        backgroundColor: Color(0xFF0A0B10),
         body: SafeArea(
           top: true,
           child: Column(
@@ -60,28 +58,29 @@ class _CarregarCarrinhoWidgetState extends State<CarregarCarrinhoWidget> {
                         width: 48.0,
                         height: 48.0,
                         decoration: BoxDecoration(
-                          color: Color(0xFF1A1A1A),
+                          color: Color(0xFF1A1D28),
                           borderRadius: BorderRadius.circular(12.0),
                           border: Border.all(
-                            color: Color(0xFF2D2D2D),
+                            color: Color(0xFF222535),
                             width: 1.0,
                           ),
                         ),
                         child: Icon(
                           Icons.arrow_back_rounded,
-                          color: Colors.white,
+                          color: Color(0xFFF0EFFB),
                           size: 24.0,
                         ),
                       ),
                     ),
-                    Text(
-                      'Carregamento',
-                      style: GoogleFonts.syne(
-                        color: Colors.white,
-                        fontSize: 20.0,
-                        fontWeight: FontWeight.bold,
+                      Text(
+                        'Carregamento',
+                        style: GoogleFonts.syne(
+                          color: Color(0xFFF0EFFB),
+                          fontSize: 24.0,
+                          fontWeight: FontWeight.w800,
+                          letterSpacing: -0.5,
+                        ),
                       ),
-                    ),
                     Container(width: 48.0), // Spacer for centering
                   ],
                 ),
@@ -94,7 +93,7 @@ class _CarregarCarrinhoWidgetState extends State<CarregarCarrinhoWidget> {
                   width: double.infinity,
                   decoration: BoxDecoration(
                     gradient: LinearGradient(
-                      colors: [Color(0xFF7F00FF), Color(0xFFE100FF)],
+                      colors: [Color(0xFF6B5FEF), Color(0xFF8B80F4)],
                       stops: [0.0, 1.0],
                       begin: AlignmentDirectional(0.0, -1.0),
                       end: AlignmentDirectional(0, 1.0),
@@ -133,7 +132,7 @@ class _CarregarCarrinhoWidgetState extends State<CarregarCarrinhoWidget> {
                                     FFAppState().valorcarrinhototal,
                                     formatType: FormatType.decimal,
                                     decimalType: DecimalType.periodDecimal,
-                                    currency: 'R$ ',
+                                    currency: 'R\$ ',
                                   ),
                                   style: GoogleFonts.syne(
                                     color: Colors.white,
@@ -170,12 +169,12 @@ class _CarregarCarrinhoWidgetState extends State<CarregarCarrinhoWidget> {
                                 Icons.inventory_2_outlined,
                               ),
                               _buildSummaryItem(
-                                'Comissão',
+                                'ComissÃ£o',
                                 formatNumber(
                                   FFAppState().valorcarrinhocomissao,
                                   formatType: FormatType.decimal,
                                   decimalType: DecimalType.periodDecimal,
-                                  currency: 'R$ ',
+                                  currency: 'R\$ ',
                                 ),
                                 Icons.account_balance_wallet_outlined,
                               ),
@@ -230,7 +229,7 @@ class _CarregarCarrinhoWidgetState extends State<CarregarCarrinhoWidget> {
                             Padding(
                               padding: EdgeInsets.only(top: 16.0),
                               child: Text(
-                                'Seu carrinho está vazio',
+                                'Seu carrinho estÃ¡ vazio',
                                 style: GoogleFonts.dmSans(color: Color(0xFF8E8E93), fontSize: 16.0),
                               ),
                             ),
@@ -270,7 +269,7 @@ class _CarregarCarrinhoWidgetState extends State<CarregarCarrinhoWidget> {
                         if (produtos.isEmpty) {
                           return Padding(
                             padding: EdgeInsets.all(16.0),
-                            child: Text('Todos os produtos já foram adicionados.', 
+                            child: Text('Todos os produtos jÃ¡ foram adicionados.', 
                               textAlign: TextAlign.center,
                               style: GoogleFonts.dmSans(color: Color(0xFF8E8E93)),
                             ),
@@ -387,7 +386,7 @@ class _CarregarCarrinhoWidgetState extends State<CarregarCarrinhoWidget> {
               Text(
                 value,
                 style: GoogleFonts.syne(
-                  color: Colors.white,
+                  color: Color(0xFFF0EFFB),
                   fontSize: 16.0,
                   fontWeight: FontWeight.bold,
                 ),
@@ -405,9 +404,9 @@ class _CarregarCarrinhoWidgetState extends State<CarregarCarrinhoWidget> {
       child: Container(
         width: double.infinity,
         decoration: BoxDecoration(
-          color: Color(0xFF1A1A1A),
+          color: Color(0xFF1A1D28),
           borderRadius: BorderRadius.circular(16.0),
-          border: Border.all(color: Color(0xFF2D2D2D), width: 1.0),
+          border: Border.all(color: Color(0xFF222535), width: 1.0),
         ),
         child: Padding(
           padding: EdgeInsets.all(12.0),
@@ -416,12 +415,12 @@ class _CarregarCarrinhoWidgetState extends State<CarregarCarrinhoWidget> {
               ClipRRect(
                 borderRadius: BorderRadius.circular(12.0),
                 child: Image.network(
-                  item.imagem != null && item.imagem!.isNotEmpty 
-                    ? item.imagem! 
+                  item.imagem.isNotEmpty 
+                    ? item.imagem 
                     : 'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=100&h=100&fit=crop',
                   width: 64.0,
                   height: 64.0,
-                  fit: BoxType.cover,
+                  fit: BoxFit.cover,
                 ),
               ),
               Expanded(
@@ -430,16 +429,16 @@ class _CarregarCarrinhoWidgetState extends State<CarregarCarrinhoWidget> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(
-                        item.nome ?? 'Produto',
-                        style: GoogleFonts.syne(
-                          color: Colors.white,
-                          fontSize: 16.0,
-                          fontWeight: FontWeight.bold,
+                        Text(
+                          item.nome,
+                          style: GoogleFonts.syne(
+                            color: Color(0xFFF0EFFB),
+                            fontSize: 16.0,
+                            fontWeight: FontWeight.bold,
+                          ),
                         ),
-                      ),
                       Text(
-                        'Qtd: ${item.quantidade} • R$ ${formatNumber(item.totalkit, formatType: FormatType.decimal)}',
+                        'Qtd: ${item.quantidade} â€¢ R\$ ${formatNumber(item.totalkit, formatType: FormatType.decimal)}',
                         style: GoogleFonts.dmSans(
                           color: Color(0xFF8E8E93),
                           fontSize: 14.0,
@@ -455,7 +454,7 @@ class _CarregarCarrinhoWidgetState extends State<CarregarCarrinhoWidget> {
                   setState(() {
                     FFAppState().valorcarrinhototal -= item.totalkit;
                     FFAppState().valorcarrinhocomissao -= item.comissaokit;
-                    FFAppState().quantidadeDiaria -= item.quantidade ?? 0;
+                    FFAppState().quantidadeDiaria -= item.quantidade;
                     FFAppState().removeFromListadeitens(item.produto!);
                     FFAppState().removeAtIndexFromDiariasProdutos(index);
                   });
@@ -496,7 +495,7 @@ class _CarregarCarrinhoWidgetState extends State<CarregarCarrinhoWidget> {
         child: Container(
           width: double.infinity,
           decoration: BoxDecoration(
-            color: Color(0xFF1A1A1A).withOpacity(0.5),
+            color: Color(0xFF1A1A1A).withValues(alpha: 0.5),
             borderRadius: BorderRadius.circular(16.0),
             border: Border.all(color: Color(0xFF2D2D2D), width: 1.0),
           ),
@@ -507,12 +506,12 @@ class _CarregarCarrinhoWidgetState extends State<CarregarCarrinhoWidget> {
                 ClipRRect(
                   borderRadius: BorderRadius.circular(12.0),
                   child: Image.network(
-                    produto.imagem != null && produto.imagem.isNotEmpty 
+                    produto.imagem.isNotEmpty 
                       ? produto.imagem 
                       : 'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=100&h=100&fit=crop',
                     width: 56.0,
                     height: 56.0,
-                    fit: BoxType.cover,
+                    fit: BoxFit.cover,
                   ),
                 ),
                 Expanded(
@@ -530,7 +529,7 @@ class _CarregarCarrinhoWidgetState extends State<CarregarCarrinhoWidget> {
                           ),
                         ),
                         Text(
-                          'R$ ${formatNumber(produto.preco, formatType: FormatType.decimal)}',
+                          'R\$ ${formatNumber(produto.preco, formatType: FormatType.decimal)}',
                           style: GoogleFonts.dmSans(
                             color: Color(0xFF00F2FF),
                             fontSize: 14.0,
@@ -545,7 +544,7 @@ class _CarregarCarrinhoWidgetState extends State<CarregarCarrinhoWidget> {
                   width: 36.0,
                   height: 36.0,
                   decoration: BoxDecoration(
-                    color: Color(0xFF7F00FF).withOpacity(0.2),
+                    color: Color(0xFF7F00FF).withValues(alpha: 0.2),
                     shape: BoxShape.circle,
                   ),
                   child: Icon(Icons.add_rounded, color: Color(0xFF7F00FF), size: 24.0),
@@ -669,3 +668,4 @@ class _PremiumQuantityPickerState extends State<PremiumQuantityPicker> {
     );
   }
 }
+

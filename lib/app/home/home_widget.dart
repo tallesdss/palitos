@@ -822,7 +822,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                 MainAxisAlignment.center,
                                             children: [
                                               FaIcon(
-                                                FontAwesomeIcons.donate,
+                                                FontAwesomeIcons.circleDollarToSlot,
                                                 color:
                                                     FlutterFlowTheme.of(context)
                                                         .secondaryText,

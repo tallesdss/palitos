@@ -60,6 +60,16 @@ class PostagemRecord extends FirestoreRecord {
   List<DocumentReference> get favoritosUser => _favoritosUser ?? const [];
   bool hasFavoritosUser() => _favoritosUser != null;
 
+  // "comentarios" field.
+  List<ComentarioStruct>? _comentarios;
+  List<ComentarioStruct> get comentarios => _comentarios ?? const [];
+  bool hasComentarios() => _comentarios != null;
+
+  // "tipo" field.
+  String? _tipo;
+  String get tipo => _tipo ?? 'post';
+  bool hasTipo() => _tipo != null;
+
   void _initializeFields() {
     _data = snapshotData['data'] as DateTime?;
     _descricao = snapshotData['descricao'] as String?;
@@ -69,7 +79,12 @@ class PostagemRecord extends FirestoreRecord {
     _curtidas = getDataList(snapshotData['curtidas']);
     _video = snapshotData['video'] as String?;
     _fotourl = snapshotData['fotourl'] as String?;
+    _tipo = snapshotData['tipo'] as String?;
     _favoritosUser = getDataList(snapshotData['favoritos_user']);
+    _comentarios = getStructList(
+      snapshotData['comentarios'],
+      ComentarioStruct.fromMap,
+    );
   }
 
   static CollectionReference get collection =>
@@ -114,6 +129,7 @@ Map<String, dynamic> createPostagemRecordData({
   String? imagem,
   String? video,
   String? fotourl,
+  String? tipo,
 }) {
   final firestoreData = mapToFirestore(
     <String, dynamic>{
@@ -124,6 +140,7 @@ Map<String, dynamic> createPostagemRecordData({
       'imagem': imagem,
       'video': video,
       'fotourl': fotourl,
+      'tipo': tipo,
     }.withoutNulls,
   );
 
@@ -144,7 +161,9 @@ class PostagemRecordDocumentEquality implements Equality<PostagemRecord> {
         listEquality.equals(e1?.curtidas, e2?.curtidas) &&
         e1?.video == e2?.video &&
         e1?.fotourl == e2?.fotourl &&
-        listEquality.equals(e1?.favoritosUser, e2?.favoritosUser);
+        e1?.tipo == e2?.tipo &&
+        listEquality.equals(e1?.favoritosUser, e2?.favoritosUser) &&
+        listEquality.equals(e1?.comentarios, e2?.comentarios);
   }
 
   @override
@@ -157,7 +176,9 @@ class PostagemRecordDocumentEquality implements Equality<PostagemRecord> {
         e?.curtidas,
         e?.video,
         e?.fotourl,
-        e?.favoritosUser
+        e?.tipo,
+        e?.favoritosUser,
+        e?.comentarios
       ]);
 
   @override

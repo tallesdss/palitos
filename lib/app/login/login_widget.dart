@@ -1,11 +1,10 @@
-import 'dart:ui';
+﻿import 'dart:ui';
 import '/auth/firebase_auth/auth_util.dart';
 import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/index.dart';
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_animate/flutter_animate.dart';
@@ -113,9 +112,9 @@ class _LoginWidgetState extends State<LoginWidget>
                 decoration: BoxDecoration(
                   gradient: LinearGradient(
                     colors: [
-                      Colors.black.withOpacity(0.3),
+                      Colors.black.withValues(alpha: 0.3),
                       Colors.transparent,
-                      Colors.black.withOpacity(0.6),
+                      Colors.black.withValues(alpha: 0.6),
                     ],
                     begin: Alignment.topCenter,
                     end: Alignment.bottomCenter,
@@ -137,10 +136,10 @@ class _LoginWidgetState extends State<LoginWidget>
                         width: double.infinity,
                         constraints: BoxConstraints(maxWidth: 450.0),
                         decoration: BoxDecoration(
-                          color: FlutterFlowTheme.of(context).secondaryBackground.withOpacity(0.7),
+                          color: FlutterFlowTheme.of(context).secondaryBackground.withValues(alpha: 0.7),
                           borderRadius: BorderRadius.circular(24.0),
                           border: Border.all(
-                            color: Colors.white.withOpacity(0.2),
+                            color: Colors.white.withValues(alpha: 0.2),
                             width: 1.5,
                           ),
                         ),
@@ -155,7 +154,7 @@ class _LoginWidgetState extends State<LoginWidget>
                                 width: 120.0,
                                 height: 120.0,
                                 decoration: BoxDecoration(
-                                  color: Colors.white.withOpacity(0.1),
+                                  color: Colors.white.withValues(alpha: 0.1),
                                   shape: BoxShape.circle,
                                   border: Border.all(
                                     color: FlutterFlowTheme.of(context).primary,
@@ -221,7 +220,7 @@ class _LoginWidgetState extends State<LoginWidget>
                                         borderRadius: BorderRadius.circular(16.0),
                                       ),
                                       filled: true,
-                                      fillColor: FlutterFlowTheme.of(context).primaryBackground.withOpacity(0.5),
+                                      fillColor: FlutterFlowTheme.of(context).primaryBackground.withValues(alpha: 0.5),
                                       prefixIcon: Icon(Icons.email_outlined, color: FlutterFlowTheme.of(context).primary),
                                     ),
                                     style: FlutterFlowTheme.of(context).bodyMedium,
@@ -250,7 +249,7 @@ class _LoginWidgetState extends State<LoginWidget>
                                         borderRadius: BorderRadius.circular(16.0),
                                       ),
                                       filled: true,
-                                      fillColor: FlutterFlowTheme.of(context).primaryBackground.withOpacity(0.5),
+                                      fillColor: FlutterFlowTheme.of(context).primaryBackground.withValues(alpha: 0.5),
                                       prefixIcon: Icon(Icons.lock_outline, color: FlutterFlowTheme.of(context).primary),
                                       suffixIcon: InkWell(
                                         onTap: () => safeSetState(() => _model.passwordVisibility = !_model.passwordVisibility),
@@ -350,7 +349,7 @@ class _LoginWidgetState extends State<LoginWidget>
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     children: [
                                       Text(
-                                        'Não tem uma conta? ',
+                                        'NÃ£o tem uma conta? ',
                                         style: FlutterFlowTheme.of(context).bodyMedium,
                                       ),
                                       TextButton(
@@ -388,4 +387,5 @@ class _LoginWidgetState extends State<LoginWidget>
     );
   }
 }
+
 

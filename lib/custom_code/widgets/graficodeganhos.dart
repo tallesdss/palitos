@@ -1,4 +1,4 @@
-// Automatic FlutterFlow imports
+﻿// Automatic FlutterFlow imports
 import '/backend/backend.dart';
 import '/backend/schema/structs/index.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
@@ -27,19 +27,19 @@ class Graficodeganhos extends StatefulWidget {
 }
 
 class _GraficodeganhosState extends State<Graficodeganhos> {
-  // Estado para rastrear a posição do toque/mouse
+  // Estado para rastrear a posiÃ§Ã£o do toque/mouse
   int? _hoverIndex;
   Offset? _hoverPosition;
 
   @override
   Widget build(BuildContext context) {
-    // Verificar se há dados
+    // Verificar se hÃ¡ dados
     if (widget.historico.isEmpty) {
       return Container(
         width: widget.width ?? double.infinity,
         height: widget.height ?? 300,
         alignment: Alignment.center,
-        child: const Text('Sem dados disponíveis para exibir'),
+        child: const Text('Sem dados disponÃ­veis para exibir'),
       );
     }
 
@@ -50,10 +50,10 @@ class _GraficodeganhosState extends State<Graficodeganhos> {
       if (a.data == null) return -1;
       if (b.data == null) return 1;
       return a.data!
-          .compareTo(b.data!); // Corrigido: adicionado ! para garantir não-nulo
+          .compareTo(b.data!); // Corrigido: adicionado ! para garantir nÃ£o-nulo
     });
 
-    // Encontrar valores máximos para dimensionamento
+    // Encontrar valores mÃ¡ximos para dimensionamento
     double maxComissao = 0;
     for (var item in sortedData) {
       if ((item.comissaoFinal ?? 0) > maxComissao) {
@@ -61,17 +61,17 @@ class _GraficodeganhosState extends State<Graficodeganhos> {
       }
     }
 
-    // Se não houver comissões, exibir mensagem
+    // Se nÃ£o houver comissÃµes, exibir mensagem
     if (maxComissao <= 0) {
       return Container(
         width: widget.width ?? double.infinity,
         height: widget.height ?? 300,
         alignment: Alignment.center,
-        child: const Text('Sem comissões registradas'),
+        child: const Text('Sem comissÃµes registradas'),
       );
     }
 
-    // Adicionar um pouco de espaço acima do valor máximo
+    // Adicionar um pouco de espaÃ§o acima do valor mÃ¡ximo
     maxComissao *= 1.2;
 
     return Container(
@@ -79,7 +79,7 @@ class _GraficodeganhosState extends State<Graficodeganhos> {
       height: widget.height ?? 300,
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
-        border: Border.all(color: Colors.grey.withOpacity(0.5)),
+        border: Border.all(color: Colors.grey.withValues(alpha: 0.5)),
         borderRadius: BorderRadius.circular(8),
       ),
       child: Column(
@@ -88,7 +88,7 @@ class _GraficodeganhosState extends State<Graficodeganhos> {
           Padding(
             padding: const EdgeInsets.only(bottom: 12),
             child: Text(
-              'Evolução de Comissões',
+              'EvoluÃ§Ã£o de ComissÃµes',
               style: TextStyle(
                 fontSize: 16,
                 fontWeight: FontWeight.bold,
@@ -101,25 +101,25 @@ class _GraficodeganhosState extends State<Graficodeganhos> {
               builder: (context, constraints) {
                 return GestureDetector(
                   onPanUpdate: (details) {
-                    // Detecta a posição do toque/arraste e encontra o ponto mais próximo
+                    // Detecta a posiÃ§Ã£o do toque/arraste e encontra o ponto mais prÃ³ximo
                     _updateHoverPosition(details.localPosition,
                         constraints.maxWidth, sortedData.length);
                   },
                   onTapDown: (details) {
-                    // Detecta o toque e encontra o ponto mais próximo
+                    // Detecta o toque e encontra o ponto mais prÃ³ximo
                     _updateHoverPosition(details.localPosition,
                         constraints.maxWidth, sortedData.length);
                   },
                   onPanEnd: (_) {
-                    // Limpa a posição quando o toque termina
+                    // Limpa a posiÃ§Ã£o quando o toque termina
                     setState(() {
                       _hoverIndex = null;
                       _hoverPosition = null;
                     });
                   },
                   onTapUp: (_) {
-                    // Mantém a posição após o toque para mostrar o tooltip
-                    // Opcionalmente, você pode querer limpar após um atraso
+                    // MantÃ©m a posiÃ§Ã£o apÃ³s o toque para mostrar o tooltip
+                    // Opcionalmente, vocÃª pode querer limpar apÃ³s um atraso
                     // Future.delayed(Duration(seconds: 3), () {
                     //   setState(() {
                     //     _hoverIndex = null;
@@ -129,7 +129,7 @@ class _GraficodeganhosState extends State<Graficodeganhos> {
                   },
                   child: Stack(
                     children: [
-                      // Gráfico principal
+                      // GrÃ¡fico principal
                       CustomPaint(
                         size: Size(constraints.maxWidth, constraints.maxHeight),
                         painter: GraficoCustomPainter(
@@ -142,7 +142,7 @@ class _GraficodeganhosState extends State<Graficodeganhos> {
                         ),
                       ),
 
-                      // Tooltip / Caixa de informações
+                      // Tooltip / Caixa de informaÃ§Ãµes
                       if (_hoverIndex != null &&
                           _hoverIndex! < sortedData.length &&
                           _hoverPosition != null)
@@ -158,7 +158,7 @@ class _GraficodeganhosState extends State<Graficodeganhos> {
                               borderRadius: BorderRadius.circular(4),
                               boxShadow: [
                                 BoxShadow(
-                                  color: Colors.black.withOpacity(0.1),
+                                  color: Colors.black.withValues(alpha: 0.1),
                                   blurRadius: 4,
                                   offset: const Offset(0, 2),
                                 ),
@@ -172,7 +172,7 @@ class _GraficodeganhosState extends State<Graficodeganhos> {
                                   sortedData[_hoverIndex!].data != null
                                       ? DateFormat('dd/MM/yyyy').format(
                                           sortedData[_hoverIndex!].data!)
-                                      : 'Data não disponível',
+                                      : 'Data nÃ£o disponÃ­vel',
                                   style: const TextStyle(
                                     fontWeight: FontWeight.bold,
                                     fontSize: 12,
@@ -230,15 +230,15 @@ class _GraficodeganhosState extends State<Graficodeganhos> {
     );
   }
 
-  // Método para atualizar a posição do hover com base na entrada do usuário
+  // MÃ©todo para atualizar a posiÃ§Ã£o do hover com base na entrada do usuÃ¡rio
   void _updateHoverPosition(Offset position, double width, int dataLength) {
     if (dataLength <= 1) return;
 
-    // Calcula o índice com base na posição horizontal
+    // Calcula o Ã­ndice com base na posiÃ§Ã£o horizontal
     final double segmentWidth = width / (dataLength - 1);
     int index = (position.dx / segmentWidth).round();
 
-    // Garante que o índice está dentro dos limites
+    // Garante que o Ã­ndice estÃ¡ dentro dos limites
     index = index.clamp(0, dataLength - 1);
 
     setState(() {
@@ -247,7 +247,7 @@ class _GraficodeganhosState extends State<Graficodeganhos> {
     });
   }
 
-  // Ajusta a posição do tooltip para evitar que ele saia da tela
+  // Ajusta a posiÃ§Ã£o do tooltip para evitar que ele saia da tela
   double _posicionarTooltip(double x, double maxWidth) {
     const tooltipWidth = 120; // Largura estimada do tooltip
 
@@ -266,14 +266,14 @@ class _GraficodeganhosState extends State<Graficodeganhos> {
   }
 }
 
-// Custom Painter para desenhar o gráfico
+// Custom Painter para desenhar o grÃ¡fico
 class GraficoCustomPainter extends CustomPainter {
   final List<HistoricoRecord> sortedData;
   final double maxComissao;
   final Color corPrimaria;
   final BuildContext context;
-  final int? hoverIndex; // Índice do ponto sobre o qual o mouse está
-  final Offset? hoverPosition; // Posição exata do mouse/toque
+  final int? hoverIndex; // Ãndice do ponto sobre o qual o mouse estÃ¡
+  final Offset? hoverPosition; // PosiÃ§Ã£o exata do mouse/toque
 
   GraficoCustomPainter({
     required this.sortedData,
@@ -292,16 +292,16 @@ class GraficoCustomPainter extends CustomPainter {
       ..strokeWidth = 3.0;
 
     final fillPaint = Paint()
-      ..color = corPrimaria.withOpacity(0.2)
+      ..color = corPrimaria.withValues(alpha: 0.2)
       ..style = PaintingStyle.fill;
 
     final gridPaint = Paint()
-      ..color = Colors.grey.withOpacity(0.2)
+      ..color = Colors.grey.withValues(alpha: 0.2)
       ..style = PaintingStyle.stroke
       ..strokeWidth = 1.0;
 
     final crosshairPaint = Paint()
-      ..color = Colors.grey.withOpacity(0.5)
+      ..color = Colors.grey.withValues(alpha: 0.5)
       ..style = PaintingStyle.stroke
       ..strokeWidth = 1.0
       ..strokeCap = StrokeCap.round;
@@ -316,10 +316,10 @@ class GraficoCustomPainter extends CustomPainter {
       );
     }
 
-    // Verificar se há dados para desenhar
+    // Verificar se hÃ¡ dados para desenhar
     if (sortedData.isEmpty) return;
 
-    // Criar o caminho para a linha do gráfico
+    // Criar o caminho para a linha do grÃ¡fico
     final path = Path();
     final fillPath = Path();
 
@@ -371,7 +371,7 @@ class GraficoCustomPainter extends CustomPainter {
     fillPath.lineTo(size.width, size.height);
     fillPath.close();
 
-    // Desenhar o gráfico
+    // Desenhar o grÃ¡fico
     canvas.drawPath(fillPath, fillPaint);
     canvas.drawPath(path, paint);
 
@@ -385,14 +385,14 @@ class GraficoCustomPainter extends CustomPainter {
       double valor = (maxComissao * i / 4);
       double y = size.height - (i * size.height / 4);
 
-      // Desenhar texto usando o método alternativo
+      // Desenhar texto usando o mÃ©todo alternativo
       final texto = 'R\$${valor.toInt()}';
       final textSpan = TextSpan(
         text: texto,
         style: textStyle,
       );
 
-      // Usando o Directionality do contexto para obter a direção do texto
+      // Usando o Directionality do contexto para obter a direÃ§Ã£o do texto
       final textPainter = TextPainter(
         text: textSpan,
         textAlign: TextAlign.right,
@@ -406,7 +406,7 @@ class GraficoCustomPainter extends CustomPainter {
       );
     }
 
-    // Desenhar linhas de crosshair (linha de referência)
+    // Desenhar linhas de crosshair (linha de referÃªncia)
     if (hoverIndex != null && hoverIndex! < points.length) {
       final point = points[hoverIndex!];
 
@@ -433,3 +433,4 @@ class GraficoCustomPainter extends CustomPainter {
         oldDelegate.sortedData != sortedData;
   }
 }
+

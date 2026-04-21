@@ -240,7 +240,7 @@ class _ReporteWidgetState extends State<ReporteWidget> {
                                                                 context)
                                                             .primary,
                                                     icon: FaIcon(
-                                                      FontAwesomeIcons.trashAlt,
+                                                      FontAwesomeIcons.trashCan,
                                                       color: FlutterFlowTheme
                                                               .of(context)
                                                           .primaryBackground,

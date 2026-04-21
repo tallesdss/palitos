@@ -683,7 +683,7 @@ class _CriardiariaunWidgetState extends State<CriardiariaunWidget> {
                                                 FlutterFlowTheme.of(context)
                                                     .secondaryBackground,
                                             icon: FaIcon(
-                                              FontAwesomeIcons.trashAlt,
+                                              FontAwesomeIcons.trashCan,
                                               color:
                                                   FlutterFlowTheme.of(context)
                                                       .info,

@@ -1,7 +1,6 @@
-import '/auth/firebase_auth/auth_util.dart';
+﻿import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
 import '/backend/firebase_storage/storage.dart';
-import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
@@ -47,7 +46,7 @@ class _IniciovendedorWidgetState extends State<IniciovendedorWidget> {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
           content: Text(
-            'Por favor, envie todas as fotos necessárias antes de continuar.',
+            'Por favor, envie todas as fotos necessÃ¡rias antes de continuar.',
             style: TextStyle(color: Colors.white),
           ),
           backgroundColor: FlutterFlowTheme.of(context).error,
@@ -92,7 +91,7 @@ class _IniciovendedorWidgetState extends State<IniciovendedorWidget> {
                 'https://images.unsplash.com/photo-1557683316-973673baf926?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80',
               ).image,
               colorFilter: ColorFilter.mode(
-                Colors.black.withOpacity(0.6),
+                Colors.black.withValues(alpha: 0.6),
                 BlendMode.darken,
               ),
             ),
@@ -147,7 +146,7 @@ class _IniciovendedorWidgetState extends State<IniciovendedorWidget> {
                         index: 0,
                         title: 'Bem-vindo ao Time!',
                         subtitle:
-                            'Transforme sua rotina em lucro vendendo os melhores picolés da região.',
+                            'Transforme sua rotina em lucro vendendo os melhores picolÃ©s da regiÃ£o.',
                         content: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
@@ -182,14 +181,14 @@ class _IniciovendedorWidgetState extends State<IniciovendedorWidget> {
                         ),
                         onNext: () => _model.pageViewController?.nextPage(
                             duration: Duration(milliseconds: 300), curve: Curves.easeInOut),
-                        nextLabel: 'Começar Agora',
+                        nextLabel: 'ComeÃ§ar Agora',
                       ),
 
                       // Step 2: ID Upload
                       _buildStep(
                         index: 1,
-                        title: 'Identificação',
-                        subtitle: 'Precisamos de uma foto nítida do seu documento (CNH ou RG).',
+                        title: 'IdentificaÃ§Ã£o',
+                        subtitle: 'Precisamos de uma foto nÃ­tida do seu documento (CNH ou RG).',
                         content: _buildUploadCard(
                           label: 'Documento de Identidade',
                           icon: Icons.badge_outlined,
@@ -230,14 +229,14 @@ class _IniciovendedorWidgetState extends State<IniciovendedorWidget> {
                           _model.pageViewController?.nextPage(
                               duration: Duration(milliseconds: 300), curve: Curves.easeInOut);
                         },
-                        nextLabel: 'Próximo Passo',
+                        nextLabel: 'PrÃ³ximo Passo',
                       ),
 
                       // Step 3: Selfie Upload
                       _buildStep(
                         index: 2,
                         title: 'Foto de Perfil',
-                        subtitle: 'Uma selfie bem iluminada ajuda na aprovação rápida do seu cadastro.',
+                        subtitle: 'Uma selfie bem iluminada ajuda na aprovaÃ§Ã£o rÃ¡pida do seu cadastro.',
                         content: _buildUploadCard(
                           label: 'Tire uma Selfie',
                           icon: Icons.camera_alt_outlined,
@@ -438,7 +437,7 @@ class _IniciovendedorWidgetState extends State<IniciovendedorWidget> {
             width: 120,
             height: 120,
             decoration: BoxDecoration(
-              color: Color(0xFF4CAF50).withOpacity(0.2),
+              color: Color(0xFF4CAF50).withValues(alpha: 0.2),
               shape: BoxShape.circle,
             ),
             child: Icon(
@@ -449,7 +448,7 @@ class _IniciovendedorWidgetState extends State<IniciovendedorWidget> {
           ).animate().scale(duration: 600.ms, curve: Curves.elasticOut),
           SizedBox(height: 32),
           Text(
-            'Solicitação Enviada!',
+            'SolicitaÃ§Ã£o Enviada!',
             textAlign: TextAlign.center,
             style: FlutterFlowTheme.of(context).headlineLarge.override(
                   fontFamily: 'baloo2',
@@ -460,7 +459,7 @@ class _IniciovendedorWidgetState extends State<IniciovendedorWidget> {
           ),
           SizedBox(height: 16),
           Text(
-            'Seu cadastro está sob análise. Em breve você receberá uma notificação sobre o status da sua conta.',
+            'Seu cadastro estÃ¡ sob anÃ¡lise. Em breve vocÃª receberÃ¡ uma notificaÃ§Ã£o sobre o status da sua conta.',
             textAlign: TextAlign.center,
             style: FlutterFlowTheme.of(context).bodyLarge.override(
                   fontFamily: 'Roboto Mono',
@@ -471,7 +470,7 @@ class _IniciovendedorWidgetState extends State<IniciovendedorWidget> {
           SizedBox(height: 48),
           FFButtonWidget(
             onPressed: () => context.safePop(),
-            text: 'Voltar para o Início',
+            text: 'Voltar para o InÃ­cio',
             options: FFButtonOptions(
               width: 220,
               height: 50,
@@ -493,3 +492,4 @@ class _IniciovendedorWidgetState extends State<IniciovendedorWidget> {
     );
   }
 }
+

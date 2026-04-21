@@ -1269,7 +1269,7 @@ class _DetalhesdiariasWidgetState extends State<DetalhesdiariasWidget>
                                                                       child:
                                                                           FaIcon(
                                                                         FontAwesomeIcons
-                                                                            .trashAlt,
+                                                                            .trashCan,
                                                                         color: FlutterFlowTheme.of(context)
                                                                             .secondaryText,
                                                                         size:

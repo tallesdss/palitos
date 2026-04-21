@@ -1,14 +1,16 @@
-import '/auth/firebase_auth/auth_util.dart';
+﻿import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_toggle_icon.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/pages/comentarios/comentarios_widget.dart';
 import '/pages/criarpostagem/criarpostagem_widget.dart';
+import '/pages/notificacoes/notificacoes_widget.dart';
 import '/index.dart';
+import 'dart:ui';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'social_model.dart';
 export 'social_model.dart';
 
@@ -51,710 +53,280 @@ class _SocialWidgetState extends State<SocialWidget> {
       },
       child: Scaffold(
         key: scaffoldKey,
-        backgroundColor: Color(0xF3FFFFFF),
+        backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
         body: Container(
           width: double.infinity,
           height: double.infinity,
-          decoration: BoxDecoration(),
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+              colors: [
+                FlutterFlowTheme.of(context).primaryBackground,
+                FlutterFlowTheme.of(context).secondaryBackground,
+              ],
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight,
+            ),
+          ),
           child: Stack(
             children: [
-              SingleChildScrollView(
-                child: Column(
-                  mainAxisSize: MainAxisSize.max,
-                  children: [
-                    Row(
-                      mainAxisSize: MainAxisSize.max,
-                      children: [
-                        Expanded(
-                          child: Container(
-                            width: 100.0,
-                            height: 100.0,
-                            decoration: BoxDecoration(
-                              color: FlutterFlowTheme.of(context)
-                                  .secondaryBackground,
-                              boxShadow: [
-                                BoxShadow(
-                                  blurRadius: 4.0,
-                                  color: FlutterFlowTheme.of(context).alternate,
-                                  offset: Offset(
-                                    0.0,
-                                    2.0,
-                                  ),
-                                )
-                              ],
+              // Vibrant Circles Decoration
+              Positioned(
+                top: -120,
+                right: -80,
+                child: Container(
+                  width: 350,
+                  height: 350,
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    color: Color(0xFF6B5FEF).withValues(alpha: 0.12),
+                  ),
+                  child: BackdropFilter(
+                    filter: ImageFilter.blur(sigmaX: 70, sigmaY: 70),
+                    child: Container(color: Colors.transparent),
+                  ),
+                ),
+              ),
+              Positioned(
+                bottom: 200,
+                left: -100,
+                child: Container(
+                  width: 320,
+                  height: 320,
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    color: Color(0xFF1FBF7A).withValues(alpha: 0.08),
+                  ),
+                  child: BackdropFilter(
+                    filter: ImageFilter.blur(sigmaX: 80, sigmaY: 80),
+                    child: Container(color: Colors.transparent),
+                  ),
+                ),
+              ),
+
+              Column(
+                mainAxisSize: MainAxisSize.max,
+                children: [
+                  // Glassmorphism Header
+                  ClipRRect(
+                    child: BackdropFilter(
+                      filter: ImageFilter.blur(sigmaX: 20, sigmaY: 20),
+                      child: Container(
+                        width: double.infinity,
+                        height: 120,
+                        decoration: BoxDecoration(
+                          color: Color(0xCC0A0B10),
+                          border: Border(
+                            bottom: BorderSide(
+                              color: Color(0x1AFFFFFF),
+                              width: 1,
                             ),
-                            child: Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(
-                                  10.0, 15.0, 10.0, 0.0),
-                              child: Row(
-                                mainAxisSize: MainAxisSize.max,
+                          ),
+                        ),
+                        child: Padding(
+                          padding: EdgeInsetsDirectional.fromSTEB(24, 50, 24, 0),
+                          child: Row(
+                            mainAxisSize: MainAxisSize.max,
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    'Comunidade',
+                                    style: GoogleFonts.syne(
+                                      color: Color(0xFFF0EFFB),
+                                      fontSize: 28,
+                                      fontWeight: FontWeight.w800,
+                                      letterSpacing: -0.8,
+                                    ),
+                                  ),
+                                  Text(
+                                    'Troque experiÃªncias e conquistas',
+                                    style: GoogleFonts.dmSans(
+                                      color: Color(0xFF9896A8),
+                                      fontSize: 13,
+                                      fontWeight: FontWeight.w500,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              Row(
                                 children: [
                                   InkWell(
-                                    splashColor: Colors.transparent,
-                                    focusColor: Colors.transparent,
-                                    hoverColor: Colors.transparent,
-                                    highlightColor: Colors.transparent,
-                                    onTap: () async {
-                                      context.safePop();
-                                    },
-                                    child: Icon(
-                                      Icons.keyboard_backspace,
-                                      color: FlutterFlowTheme.of(context)
-                                          .secondaryText,
-                                      size: 24.0,
+                                    onTap: () => context.pushNamed(NotificacoesWidget.routeName),
+                                    child: Container(
+                                      width: 48,
+                                      height: 48,
+                                      decoration: BoxDecoration(
+                                        color: Color(0x1AFFFFFF),
+                                        borderRadius: BorderRadius.circular(16),
+                                        border: Border.all(color: Color(0x0DFFFFFF)),
+                                      ),
+                                      child: Icon(
+                                        Icons.notifications_none_rounded,
+                                        color: Color(0xFFF0EFFB),
+                                        size: 24,
+                                      ),
                                     ),
                                   ),
-                                  Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
-                                        15.0, 0.0, 0.0, 0.0),
-                                    child: Text(
-                                      'Sorvetinho',
-                                      style: FlutterFlowTheme.of(context)
-                                          .bodyMedium
-                                          .override(
-                                            fontFamily: 'Mukta',
-                                            color: FlutterFlowTheme.of(context)
-                                                .primary,
-                                            fontSize: 20.0,
-                                            letterSpacing: 0.0,
-                                            fontWeight: FontWeight.bold,
-                                            fontStyle: FontStyle.italic,
-                                          ),
-                                    ),
-                                  ),
-                                  Expanded(
-                                    child: Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
-                                          10.0, 0.0, 0.0, 0.0),
-                                      child: Row(
-                                        mainAxisSize: MainAxisSize.max,
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.end,
-                                        children: [
-                                          Padding(
-                                            padding:
-                                                EdgeInsetsDirectional.fromSTEB(
-                                                    0.0, 0.0, 15.0, 0.0),
-                                            child: InkWell(
-                                              splashColor: Colors.transparent,
-                                              focusColor: Colors.transparent,
-                                              hoverColor: Colors.transparent,
-                                              highlightColor:
-                                                  Colors.transparent,
-                                              onTap: () async {
-                                                context.pushNamed(
-                                                    PerfilWidget.routeName);
-                                              },
-                                              child: Icon(
-                                                Icons.favorite_rounded,
-                                                color:
-                                                    FlutterFlowTheme.of(context)
-                                                        .primary,
-                                                size: 24.0,
-                                              ),
-                                            ),
-                                          ),
+                                  SizedBox(width: 12),
+                                  InkWell(
+                                    onTap: () => context.pushNamed(PerfilWidget.routeName),
+                                    child: Container(
+                                      width: 48,
+                                      height: 48,
+                                      decoration: BoxDecoration(
+                                        gradient: LinearGradient(
+                                          colors: [Color(0xFF6B5FEF), Color(0xFF8B80F4)],
+                                          begin: Alignment.topLeft,
+                                          end: Alignment.bottomRight,
+                                        ),
+                                        borderRadius: BorderRadius.circular(16),
+                                        boxShadow: [
+                                          BoxShadow(
+                                            color: Color(0x406B5FEF),
+                                            blurRadius: 12,
+                                            offset: Offset(0, 4),
+                                          )
                                         ],
+                                      ),
+                                      child: Icon(
+                                        Icons.person_rounded,
+                                        color: Colors.white,
+                                        size: 22,
                                       ),
                                     ),
                                   ),
                                 ],
                               ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+
+                  // Feed Content
+                  Expanded(
+                    child: StreamBuilder<List<PostagemRecord>>(
+                      stream: queryPostagemRecord(
+                        queryBuilder: (postagemRecord) =>
+                            postagemRecord.orderBy('data', descending: true),
+                      ),
+                      builder: (context, snapshot) {
+                        if (!snapshot.hasData) {
+                          return Center(
+                            child: CircularProgressIndicator(
+                              color: FlutterFlowTheme.of(context).primary,
+                            ),
+                          );
+                        }
+                        List<PostagemRecord> posts = snapshot.data!;
+                        
+                        if (posts.isEmpty) {
+                          return Center(
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Container(
+                                  padding: EdgeInsets.all(24),
+                                  decoration: BoxDecoration(
+                                    color: FlutterFlowTheme.of(context).alternate.withValues(alpha: 0.3),
+                                    shape: BoxShape.circle,
+                                  ),
+                                  child: Icon(
+                                    Icons.auto_awesome_mosaic_rounded,
+                                    size: 64,
+                                    color: FlutterFlowTheme.of(context).primary.withValues(alpha: 0.5),
+                                  ),
+                                ),
+                                SizedBox(height: 24),
+                                Text(
+                                  'Ainda nÃ£o hÃ¡ postagens,\nSeja o primeiro!',
+                                  textAlign: TextAlign.center,
+                                  style: GoogleFonts.syne(
+                                    color: FlutterFlowTheme.of(context).primaryText,
+                                    fontSize: 18,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          );
+                        }
+
+                        return ListView.separated(
+                          padding: EdgeInsets.fromLTRB(16, 20, 16, 120),
+                          itemCount: posts.length,
+                          separatorBuilder: (_, __) => SizedBox(height: 20),
+                          itemBuilder: (context, index) {
+                            final post = posts[index];
+                            return PostCard(post: post);
+                          },
+                        );
+                      },
+                    ),
+                  ),
+                ],
+              ),
+
+              // Floating Action Button - Glassmorphism style
+              Positioned(
+                bottom: 40,
+                left: 0,
+                right: 0,
+                child: Center(
+                  child: InkWell(
+                    onTap: () async {
+                      await showModalBottomSheet(
+                        isScrollControlled: true,
+                        backgroundColor: Colors.transparent,
+                        context: context,
+                        builder: (context) => Padding(
+                          padding: MediaQuery.viewInsetsOf(context),
+                          child: Container(
+                            height: MediaQuery.sizeOf(context).height * 0.85,
+                            child: CriarpostagemWidget(),
+                          ),
+                        ),
+                      ).then((value) => safeSetState(() {}));
+                    },
+                    child: Container(
+                      padding: EdgeInsets.symmetric(horizontal: 24, vertical: 16),
+                      decoration: BoxDecoration(
+                        gradient: LinearGradient(
+                          colors: [
+                            FlutterFlowTheme.of(context).primary,
+                            FlutterFlowTheme.of(context).secondary,
+                          ],
+                          begin: Alignment.topLeft,
+                          end: Alignment.bottomRight,
+                        ),
+                        borderRadius: BorderRadius.circular(30),
+                        boxShadow: [
+                          BoxShadow(
+                            color: FlutterFlowTheme.of(context).primary.withValues(alpha: 0.4),
+                            blurRadius: 20,
+                            offset: Offset(0, 8),
+                          )
+                        ],
+                      ),
+                      child: Row(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Icon(Icons.add_a_photo_rounded, color: Colors.white, size: 24),
+                          SizedBox(width: 12),
+                          Text(
+                            'Postar Novidade',
+                            style: GoogleFonts.dmSans(
+                              color: Colors.white,
+                              fontSize: 16,
+                              fontWeight: FontWeight.bold,
                             ),
                           ),
-                        ),
-                      ],
-                    ),
-                    Padding(
-                      padding: EdgeInsets.all(8.0),
-                      child: StreamBuilder<List<PostagemRecord>>(
-                        stream: queryPostagemRecord(
-                          queryBuilder: (postagemRecord) =>
-                              postagemRecord.orderBy('data', descending: true),
-                        ),
-                        builder: (context, snapshot) {
-                          // Customize what your widget looks like when it's loading.
-                          if (!snapshot.hasData) {
-                            return Center(
-                              child: SizedBox(
-                                width: 50.0,
-                                height: 50.0,
-                                child: CircularProgressIndicator(
-                                  valueColor: AlwaysStoppedAnimation<Color>(
-                                    FlutterFlowTheme.of(context).primary,
-                                  ),
-                                ),
-                              ),
-                            );
-                          }
-                          List<PostagemRecord> listViewPostagemRecordList =
-                              snapshot.data!;
-
-                          return ListView.builder(
-                            padding: EdgeInsets.zero,
-                            primary: false,
-                            shrinkWrap: true,
-                            scrollDirection: Axis.vertical,
-                            itemCount: listViewPostagemRecordList.length,
-                            itemBuilder: (context, listViewIndex) {
-                              final listViewPostagemRecord =
-                                  listViewPostagemRecordList[listViewIndex];
-                              return Card(
-                                clipBehavior: Clip.antiAliasWithSaveLayer,
-                                color: FlutterFlowTheme.of(context)
-                                    .secondaryBackground,
-                                elevation: 4.0,
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(8.0),
-                                ),
-                                child: Padding(
-                                  padding: EdgeInsets.all(6.0),
-                                  child: Column(
-                                    mainAxisSize: MainAxisSize.max,
-                                    children: [
-                                      Padding(
-                                        padding: EdgeInsets.all(6.0),
-                                        child: Row(
-                                          mainAxisSize: MainAxisSize.max,
-                                          children: [
-                                            Container(
-                                              width: 40.0,
-                                              height: 40.0,
-                                              clipBehavior: Clip.antiAlias,
-                                              decoration: BoxDecoration(
-                                                shape: BoxShape.circle,
-                                              ),
-                                              child: Image.network(
-                                                listViewPostagemRecord.fotourl,
-                                                fit: BoxFit.cover,
-                                              ),
-                                            ),
-                                            Expanded(
-                                              child: Padding(
-                                                padding: EdgeInsetsDirectional
-                                                    .fromSTEB(
-                                                        10.0, 0.0, 0.0, 0.0),
-                                                child: Column(
-                                                  mainAxisSize:
-                                                      MainAxisSize.max,
-                                                  crossAxisAlignment:
-                                                      CrossAxisAlignment.start,
-                                                  children: [
-                                                    Row(
-                                                      mainAxisSize:
-                                                          MainAxisSize.max,
-                                                      mainAxisAlignment:
-                                                          MainAxisAlignment
-                                                              .spaceBetween,
-                                                      children: [
-                                                        Padding(
-                                                          padding:
-                                                              EdgeInsetsDirectional
-                                                                  .fromSTEB(
-                                                                      1.0,
-                                                                      0.0,
-                                                                      0.0,
-                                                                      0.0),
-                                                          child: Text(
-                                                            listViewPostagemRecord
-                                                                .nomedono,
-                                                            style: FlutterFlowTheme
-                                                                    .of(context)
-                                                                .bodyLarge
-                                                                .override(
-                                                                  fontFamily:
-                                                                      'Roboto Mono',
-                                                                  letterSpacing:
-                                                                      0.0,
-                                                                  fontWeight:
-                                                                      FontWeight
-                                                                          .bold,
-                                                                ),
-                                                          ),
-                                                        ),
-                                                        if (listViewPostagemRecord
-                                                                .dono ==
-                                                            currentUserReference)
-                                                          InkWell(
-                                                            splashColor: Colors
-                                                                .transparent,
-                                                            focusColor: Colors
-                                                                .transparent,
-                                                            hoverColor: Colors
-                                                                .transparent,
-                                                            highlightColor:
-                                                                Colors
-                                                                    .transparent,
-                                                            onTap: () async {
-                                                              await listViewPostagemRecord
-                                                                  .reference
-                                                                  .delete();
-                                                            },
-                                                            child: FaIcon(
-                                                              FontAwesomeIcons
-                                                                  .trashAlt,
-                                                              color: FlutterFlowTheme
-                                                                      .of(context)
-                                                                  .secondaryText,
-                                                              size: 16.0,
-                                                            ),
-                                                          ),
-                                                      ],
-                                                    ),
-                                                    Text(
-                                                      dateTimeFormat(
-                                                        "relative",
-                                                        listViewPostagemRecord
-                                                            .data!,
-                                                        locale:
-                                                            FFLocalizations.of(
-                                                                    context)
-                                                                .languageCode,
-                                                      ),
-                                                      style: FlutterFlowTheme
-                                                              .of(context)
-                                                          .bodyMedium
-                                                          .override(
-                                                            fontFamily:
-                                                                'Roboto Mono',
-                                                            letterSpacing: 0.0,
-                                                          ),
-                                                    ),
-                                                  ],
-                                                ),
-                                              ),
-                                            ),
-                                          ],
-                                        ),
-                                      ),
-                                      Padding(
-                                        padding: EdgeInsets.all(4.0),
-                                        child: Row(
-                                          mainAxisSize: MainAxisSize.max,
-                                          children: [
-                                            Expanded(
-                                              child: Padding(
-                                                padding: EdgeInsetsDirectional
-                                                    .fromSTEB(
-                                                        10.0, 0.0, 0.0, 0.0),
-                                                child: Text(
-                                                  listViewPostagemRecord
-                                                      .descricao,
-                                                  style: FlutterFlowTheme.of(
-                                                          context)
-                                                      .bodyMedium
-                                                      .override(
-                                                        fontFamily:
-                                                            'Roboto Mono',
-                                                        letterSpacing: 0.0,
-                                                      ),
-                                                ),
-                                              ),
-                                            ),
-                                          ],
-                                        ),
-                                      ),
-                                      Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
-                                            0.0, 8.0, 0.0, 0.0),
-                                        child: Row(
-                                          mainAxisSize: MainAxisSize.max,
-                                          children: [
-                                            Expanded(
-                                              child: Container(
-                                                width: 100.0,
-                                                height: 300.0,
-                                                decoration: BoxDecoration(
-                                                  color: FlutterFlowTheme.of(
-                                                          context)
-                                                      .primaryText,
-                                                  image: DecorationImage(
-                                                    fit: BoxFit.cover,
-                                                    image:
-                                                        CachedNetworkImageProvider(
-                                                      listViewPostagemRecord
-                                                          .imagem,
-                                                    ),
-                                                  ),
-                                                  borderRadius:
-                                                      BorderRadius.circular(
-                                                          14.0),
-                                                ),
-                                              ),
-                                            ),
-                                          ],
-                                        ),
-                                      ),
-                                      Row(
-                                        mainAxisSize: MainAxisSize.max,
-                                        children: [
-                                          ToggleIcon(
-                                            onPressed: () async {
-                                              final favoritosUserElement =
-                                                  currentUserReference;
-                                              final favoritosUserUpdate =
-                                                  listViewPostagemRecord
-                                                          .favoritosUser
-                                                          .contains(
-                                                              favoritosUserElement)
-                                                      ? FieldValue.arrayRemove([
-                                                          favoritosUserElement
-                                                        ])
-                                                      : FieldValue.arrayUnion([
-                                                          favoritosUserElement
-                                                        ]);
-                                              await listViewPostagemRecord
-                                                  .reference
-                                                  .update({
-                                                ...mapToFirestore(
-                                                  {
-                                                    'favoritos_user':
-                                                        favoritosUserUpdate,
-                                                  },
-                                                ),
-                                              });
-                                            },
-                                            value: listViewPostagemRecord
-                                                .favoritosUser
-                                                .contains(currentUserReference),
-                                            onIcon: Icon(
-                                              Icons.favorite,
-                                              color:
-                                                  FlutterFlowTheme.of(context)
-                                                      .primary,
-                                              size: 25.0,
-                                            ),
-                                            offIcon: Icon(
-                                              Icons.favorite_border,
-                                              color:
-                                                  FlutterFlowTheme.of(context)
-                                                      .secondaryText,
-                                              size: 25.0,
-                                            ),
-                                          ),
-                                          InkWell(
-                                            splashColor: Colors.transparent,
-                                            focusColor: Colors.transparent,
-                                            hoverColor: Colors.transparent,
-                                            highlightColor: Colors.transparent,
-                                            onTap: () async {
-                                              await showModalBottomSheet(
-                                                isScrollControlled: true,
-                                                backgroundColor:
-                                                    Colors.transparent,
-                                                enableDrag: false,
-                                                context: context,
-                                                builder: (context) {
-                                                  return GestureDetector(
-                                                    onTap: () {
-                                                      FocusScope.of(context)
-                                                          .unfocus();
-                                                      FocusManager
-                                                          .instance.primaryFocus
-                                                          ?.unfocus();
-                                                    },
-                                                    child: Padding(
-                                                      padding: MediaQuery
-                                                          .viewInsetsOf(
-                                                              context),
-                                                      child: Container(
-                                                        height:
-                                                            MediaQuery.sizeOf(
-                                                                        context)
-                                                                    .height *
-                                                                0.95,
-                                                        child:
-                                                            ComentariosWidget(
-                                                          comentarios:
-                                                              listViewPostagemRecord
-                                                                  .reference,
-                                                        ),
-                                                      ),
-                                                    ),
-                                                  );
-                                                },
-                                              ).then((value) =>
-                                                  safeSetState(() {}));
-                                            },
-                                            child: FaIcon(
-                                              FontAwesomeIcons.commentDots,
-                                              color:
-                                                  FlutterFlowTheme.of(context)
-                                                      .secondaryText,
-                                              size: 24.0,
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                      Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
-                                            10.0, 0.0, 0.0, 0.0),
-                                        child: Row(
-                                          mainAxisSize: MainAxisSize.max,
-                                          children: [
-                                            Text(
-                                              '${valueOrDefault<String>(
-                                                listViewPostagemRecord
-                                                    .favoritosUser.length
-                                                    .toString(),
-                                                '0',
-                                              )} Curtidas',
-                                              style:
-                                                  FlutterFlowTheme.of(context)
-                                                      .bodyMedium
-                                                      .override(
-                                                        fontFamily:
-                                                            'Roboto Mono',
-                                                        letterSpacing: 0.0,
-                                                      ),
-                                            ),
-                                            Padding(
-                                              padding: EdgeInsetsDirectional
-                                                  .fromSTEB(
-                                                      10.0, 0.0, 0.0, 0.0),
-                                              child: InkWell(
-                                                splashColor: Colors.transparent,
-                                                focusColor: Colors.transparent,
-                                                hoverColor: Colors.transparent,
-                                                highlightColor:
-                                                    Colors.transparent,
-                                                onTap: () async {
-                                                  await showModalBottomSheet(
-                                                    isScrollControlled: true,
-                                                    backgroundColor:
-                                                        Colors.transparent,
-                                                    enableDrag: false,
-                                                    context: context,
-                                                    builder: (context) {
-                                                      return GestureDetector(
-                                                        onTap: () {
-                                                          FocusScope.of(context)
-                                                              .unfocus();
-                                                          FocusManager.instance
-                                                              .primaryFocus
-                                                              ?.unfocus();
-                                                        },
-                                                        child: Padding(
-                                                          padding: MediaQuery
-                                                              .viewInsetsOf(
-                                                                  context),
-                                                          child: Container(
-                                                            height: MediaQuery
-                                                                        .sizeOf(
-                                                                            context)
-                                                                    .height *
-                                                                0.95,
-                                                            child:
-                                                                ComentariosWidget(
-                                                              comentarios:
-                                                                  listViewPostagemRecord
-                                                                      .reference,
-                                                            ),
-                                                          ),
-                                                        ),
-                                                      );
-                                                    },
-                                                  ).then((value) =>
-                                                      safeSetState(() {}));
-                                                },
-                                                child: Text(
-                                                  ' Comentarios.',
-                                                  style: FlutterFlowTheme.of(
-                                                          context)
-                                                      .bodyMedium
-                                                      .override(
-                                                        fontFamily:
-                                                            'Roboto Mono',
-                                                        letterSpacing: 0.0,
-                                                      ),
-                                                ),
-                                              ),
-                                            ),
-                                            Expanded(
-                                              child: Container(
-                                                width: 100.0,
-                                                height: 30.0,
-                                                decoration: BoxDecoration(
-                                                  color: FlutterFlowTheme.of(
-                                                          context)
-                                                      .secondaryBackground,
-                                                ),
-                                                child: Padding(
-                                                  padding: EdgeInsetsDirectional
-                                                      .fromSTEB(
-                                                          15.0, 0.0, 0.0, 0.0),
-                                                  child: StreamBuilder<
-                                                      List<UserRecord>>(
-                                                    stream: queryUserRecord(
-                                                      queryBuilder: (userRecord) =>
-                                                          userRecord.whereIn(
-                                                              'uid',
-                                                              listViewPostagemRecord
-                                                                  .favoritosUser
-                                                                  .map((e) =>
-                                                                      e.id)
-                                                                  .toList()),
-                                                    ),
-                                                    builder:
-                                                        (context, snapshot) {
-                                                      // Customize what your widget looks like when it's loading.
-                                                      if (!snapshot.hasData) {
-                                                        return Center(
-                                                          child: SizedBox(
-                                                            width: 50.0,
-                                                            height: 50.0,
-                                                            child:
-                                                                CircularProgressIndicator(
-                                                              valueColor:
-                                                                  AlwaysStoppedAnimation<
-                                                                      Color>(
-                                                                FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .primary,
-                                                              ),
-                                                            ),
-                                                          ),
-                                                        );
-                                                      }
-                                                      List<UserRecord>
-                                                          listViewUserRecordList =
-                                                          snapshot.data!;
-
-                                                      return ListView.builder(
-                                                        padding:
-                                                            EdgeInsets.zero,
-                                                        scrollDirection:
-                                                            Axis.horizontal,
-                                                        itemCount:
-                                                            listViewUserRecordList
-                                                                .length,
-                                                        itemBuilder: (context,
-                                                            listViewIndex) {
-                                                          final listViewUserRecord =
-                                                              listViewUserRecordList[
-                                                                  listViewIndex];
-                                                          return Visibility(
-                                                            visible: listViewPostagemRecord
-                                                                .favoritosUser
-                                                                .contains(
-                                                                    listViewUserRecord
-                                                                        .reference),
-                                                            child: Container(
-                                                              width: 20.0,
-                                                              height: 20.0,
-                                                              clipBehavior: Clip
-                                                                  .antiAlias,
-                                                              decoration:
-                                                                  BoxDecoration(
-                                                                shape: BoxShape
-                                                                    .circle,
-                                                              ),
-                                                              child:
-                                                                  Image.network(
-                                                                listViewUserRecord
-                                                                    .photoUrl,
-                                                                fit: BoxFit
-                                                                    .cover,
-                                                              ),
-                                                            ),
-                                                          );
-                                                        },
-                                                      );
-                                                    },
-                                                  ),
-                                                ),
-                                              ),
-                                            ),
-                                          ],
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              );
-                            },
-                          );
-                        },
+                        ],
                       ),
                     ),
-                  ],
-                ),
-              ),
-              Align(
-                alignment: AlignmentDirectional(0.0, 1.0),
-                child: Padding(
-                  padding: EdgeInsets.all(18.0),
-                  child: Row(
-                    mainAxisSize: MainAxisSize.max,
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: [
-                      Container(
-                        width: 75.0,
-                        height: 75.0,
-                        decoration: BoxDecoration(
-                          boxShadow: [
-                            BoxShadow(
-                              blurRadius: 4.0,
-                              color: Color(0x33FFFFFF),
-                              offset: Offset(
-                                0.0,
-                                2.0,
-                              ),
-                            )
-                          ],
-                          gradient: LinearGradient(
-                            colors: [
-                              FlutterFlowTheme.of(context).primary,
-                              FlutterFlowTheme.of(context).secondary
-                            ],
-                            stops: [0.0, 1.0],
-                            begin: AlignmentDirectional(0.0, -1.0),
-                            end: AlignmentDirectional(0, 1.0),
-                          ),
-                          shape: BoxShape.circle,
-                          border: Border.all(
-                            color: Color(0xF3E4E1E1),
-                          ),
-                        ),
-                        child: InkWell(
-                          splashColor: Colors.transparent,
-                          focusColor: Colors.transparent,
-                          hoverColor: Colors.transparent,
-                          highlightColor: Colors.transparent,
-                          onTap: () async {
-                            await showModalBottomSheet(
-                              isScrollControlled: true,
-                              backgroundColor: Colors.transparent,
-                              enableDrag: false,
-                              context: context,
-                              builder: (context) {
-                                return GestureDetector(
-                                  onTap: () {
-                                    FocusScope.of(context).unfocus();
-                                    FocusManager.instance.primaryFocus
-                                        ?.unfocus();
-                                  },
-                                  child: Padding(
-                                    padding: MediaQuery.viewInsetsOf(context),
-                                    child: Container(
-                                      height:
-                                          MediaQuery.sizeOf(context).height *
-                                              0.8,
-                                      child: CriarpostagemWidget(),
-                                    ),
-                                  ),
-                                );
-                              },
-                            ).then((value) => safeSetState(() {}));
-                          },
-                          child: Icon(
-                            Icons.auto_awesome_rounded,
-                            color: Color(0xFFECE9E9),
-                            size: 35.0,
-                          ),
-                        ),
-                      ),
-                    ],
                   ),
                 ),
               ),
@@ -765,3 +337,295 @@ class _SocialWidgetState extends State<SocialWidget> {
     );
   }
 }
+
+class PostCard extends StatelessWidget {
+  final PostagemRecord post;
+
+  const PostCard({super.key, required this.post});
+
+  Widget _buildTypeBadge(BuildContext context) {
+    if (post.tipo == 'post') return SizedBox.shrink();
+    
+    IconData icon;
+    String label;
+    Color color;
+    
+    if (post.tipo == 'conquista') {
+      icon = Icons.emoji_events_rounded;
+      label = 'CONQUISTA';
+      color = Color(0xFFF5A623);
+    } else {
+      icon = Icons.lightbulb_rounded;
+      label = 'DICA';
+      color = Color(0xFF6B5FEF);
+    }
+    
+    return Container(
+      padding: EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+      decoration: BoxDecoration(
+        color: color.withValues(alpha: 0.12),
+        borderRadius: BorderRadius.circular(6),
+        border: Border.all(color: color.withValues(alpha: 0.2), width: 1),
+      ),
+      child: Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Icon(icon, size: 12, color: color),
+          SizedBox(width: 4),
+          Text(
+            label,
+            style: GoogleFonts.syne(
+              fontSize: 9,
+              fontWeight: FontWeight.w800,
+              color: color,
+              letterSpacing: 0.8,
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    bool isConquest = post.tipo == 'conquista';
+    
+    return Container(
+      decoration: BoxDecoration(
+        color: isConquest ? Color(0xFF1A1D28) : Color(0xFF12141C),
+        borderRadius: BorderRadius.circular(24),
+        border: Border.all(
+          color: isConquest ? Color(0x33F5A623) : Color(0x1AFFFFFF),
+          width: 1,
+        ),
+        boxShadow: isConquest ? [
+          BoxShadow(
+            color: Color(0x1AF5A623),
+            blurRadius: 20,
+            offset: Offset(0, 4),
+          )
+        ] : [],
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          // Header: User Info
+          Padding(
+            padding: EdgeInsets.all(16),
+            child: Row(
+              children: [
+                Container(
+                  width: 52,
+                  height: 52,
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    gradient: LinearGradient(
+                      colors: [
+                        FlutterFlowTheme.of(context).primary,
+                        FlutterFlowTheme.of(context).secondary.withValues(alpha: 0.5),
+                      ],
+                    ),
+                  ),
+                  child: Padding(
+                    padding: EdgeInsets.all(2),
+                    child: Container(
+                      decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                        color: FlutterFlowTheme.of(context).secondaryBackground,
+                        image: DecorationImage(
+                          image: CachedNetworkImageProvider(post.fotourl),
+                          fit: BoxFit.cover,
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+                SizedBox(width: 14),
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Row(
+                        children: [
+                          Flexible(
+                            child: Text(
+                              post.nomedono,
+                              style: GoogleFonts.dmSans(
+                                fontWeight: FontWeight.bold,
+                                fontSize: 16,
+                                color: FlutterFlowTheme.of(context).primaryText,
+                              ),
+                              overflow: TextOverflow.ellipsis,
+                            ),
+                          ),
+                          SizedBox(width: 8),
+                          _buildTypeBadge(context),
+                        ],
+                      ),
+                      Text(
+                        dateTimeFormat('relative', post.data!, locale: 'pt_BR'),
+                        style: GoogleFonts.dmSans(
+                          fontSize: 12,
+                          color: FlutterFlowTheme.of(context).secondaryText,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                if (post.dono == currentUserReference)
+                  IconButton(
+                    icon: Icon(Icons.more_horiz_rounded, color: FlutterFlowTheme.of(context).secondaryText),
+                    onPressed: () async {
+                      final confirmDeletion = await showDialog<bool>(
+                        context: context,
+                        builder: (ctx) => AlertDialog(
+                          backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
+                          title: Text('Apagar Post', style: GoogleFonts.syne(fontWeight: FontWeight.bold)),
+                          content: Text('Deseja realmente remover esta postagem do feed?'),
+                          actions: [
+                            TextButton(onPressed: () => Navigator.pop(ctx, false), child: Text('NÃ£o', style: TextStyle(color: FlutterFlowTheme.of(context).primaryText))),
+                            TextButton(
+                              onPressed: () => Navigator.pop(ctx, true), 
+                              child: Text('Sim, Apagar', style: TextStyle(color: Colors.red))
+                            ),
+                          ],
+                        ),
+                      );
+                      if (confirmDeletion == true) {
+                        await post.reference.delete();
+                      }
+                    },
+                  ),
+              ],
+            ),
+          ),
+
+          // Content: Description
+          if (post.descricao.isNotEmpty)
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: 20, vertical: 4),
+              child: Text(
+                post.descricao,
+                style: GoogleFonts.dmSans(
+                  fontSize: 15,
+                  color: FlutterFlowTheme.of(context).primaryText,
+                  height: 1.5,
+                ),
+              ),
+            ),
+
+          // Content: Image
+          if (post.imagem.isNotEmpty)
+            Padding(
+              padding: EdgeInsets.fromLTRB(16, 12, 16, 8),
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(20),
+                child: CachedNetworkImage(
+                  imageUrl: post.imagem,
+                  width: double.infinity,
+                  height: 280,
+                  fit: BoxFit.cover,
+                ),
+              ),
+            ),
+
+          // Footer: Actions
+          Padding(
+            padding: EdgeInsets.fromLTRB(12, 8, 20, 16),
+            child: Row(
+              children: [
+                ToggleIcon(
+                  onPressed: () async {
+                    final isFav = post.favoritosUser.contains(currentUserReference);
+                    await post.reference.update({
+                      'favoritos_user': isFav 
+                        ? FieldValue.arrayRemove([currentUserReference]) 
+                        : FieldValue.arrayUnion([currentUserReference]),
+                    });
+                  },
+                  value: post.favoritosUser.contains(currentUserReference),
+                  onIcon: Icon(Icons.favorite_rounded, color: Color(0xFFFF3B3B), size: 30),
+                  offIcon: Icon(Icons.favorite_border_rounded, color: FlutterFlowTheme.of(context).secondaryText, size: 30),
+                ),
+                Text(
+                  '${post.favoritosUser.length}',
+                  style: GoogleFonts.dmSans(
+                    fontWeight: FontWeight.bold,
+                    color: FlutterFlowTheme.of(context).primaryText,
+                  ),
+                ),
+                SizedBox(width: 24),
+                InkWell(
+                  onTap: () async {
+                    await showModalBottomSheet(
+                      isScrollControlled: true,
+                      backgroundColor: Colors.transparent,
+                      context: context,
+                      builder: (context) => Padding(
+                        padding: MediaQuery.viewInsetsOf(context),
+                        child: Container(
+                          height: MediaQuery.sizeOf(context).height * 0.9,
+                          child: ComentariosWidget(comentarios: post.reference),
+                        ),
+                      ),
+                    ).then((value) => (context as Element).markNeedsBuild());
+                  },
+                  child: Row(
+                    children: [
+                      Icon(Icons.chat_bubble_outline_rounded, color: FlutterFlowTheme.of(context).secondaryText, size: 26),
+                      SizedBox(width: 8),
+                      Text(
+                        '${post.comentarios.length}',
+                        style: GoogleFonts.dmSans(
+                          fontWeight: FontWeight.bold,
+                          color: FlutterFlowTheme.of(context).primaryText,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                Spacer(),
+                // Tiny avatar stack for likes
+                if (post.favoritosUser.isNotEmpty)
+                  SizedBox(
+                    width: 70,
+                    height: 28,
+                    child: Stack(
+                      children: List.generate(
+                        post.favoritosUser.take(4).length,
+                        (i) => Positioned(
+                          right: i * 14.0,
+                          child: Container(
+                            width: 28,
+                            height: 28,
+                            decoration: BoxDecoration(
+                              shape: BoxShape.circle,
+                              border: Border.all(color: FlutterFlowTheme.of(context).secondaryBackground, width: 2),
+                              color: FlutterFlowTheme.of(context).secondaryBackground,
+                            ),
+                            child: ClipRRect(
+                              borderRadius: BorderRadius.circular(14),
+                              child: FutureBuilder<UserRecord>(
+                                future: UserRecord.getDocumentOnce(post.favoritosUser[post.favoritosUser.length - 1 - i]),
+                                builder: (context, snapshot) {
+                                  if (snapshot.hasData) {
+                                    return Image.network(snapshot.data!.photoUrl, fit: BoxFit.cover);
+                                  }
+                                  return Container(color: FlutterFlowTheme.of(context).alternate);
+                                }
+                              ),
+                            ),
+                          ),
+                        ),
+                      ).reversed.toList(),
+                    ),
+                  ),
+              ],
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+

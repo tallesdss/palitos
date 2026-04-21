@@ -114,7 +114,7 @@ class _NavbarraWidgetState extends State<NavbarraWidget> {
                     ),
                     MouseRegion(
                       opaque: false,
-                      cursor: MouseCursor.defer ?? MouseCursor.defer,
+                      cursor: MouseCursor.defer,
                       child: Padding(
                         padding: EdgeInsetsDirectional.fromSTEB(
                             25.0, 8.0, 40.0, 0.0),
@@ -168,7 +168,7 @@ class _NavbarraWidgetState extends State<NavbarraWidget> {
                     ),
                     MouseRegion(
                       opaque: false,
-                      cursor: MouseCursor.defer ?? MouseCursor.defer,
+                      cursor: MouseCursor.defer,
                       child: Padding(
                         padding: EdgeInsetsDirectional.fromSTEB(
                             25.0, 8.0, 40.0, 0.0),
@@ -231,7 +231,7 @@ class _NavbarraWidgetState extends State<NavbarraWidget> {
                     ),
                     MouseRegion(
                       opaque: false,
-                      cursor: MouseCursor.defer ?? MouseCursor.defer,
+                      cursor: MouseCursor.defer,
                       child: Padding(
                         padding: EdgeInsetsDirectional.fromSTEB(
                             25.0, 8.0, 40.0, 0.0),
@@ -294,7 +294,7 @@ class _NavbarraWidgetState extends State<NavbarraWidget> {
                     ),
                     MouseRegion(
                       opaque: false,
-                      cursor: MouseCursor.defer ?? MouseCursor.defer,
+                      cursor: MouseCursor.defer,
                       child: Padding(
                         padding: EdgeInsetsDirectional.fromSTEB(
                             25.0, 8.0, 40.0, 0.0),
@@ -357,7 +357,7 @@ class _NavbarraWidgetState extends State<NavbarraWidget> {
                     ),
                     MouseRegion(
                       opaque: false,
-                      cursor: MouseCursor.defer ?? MouseCursor.defer,
+                      cursor: MouseCursor.defer,
                       child: Padding(
                         padding: EdgeInsetsDirectional.fromSTEB(
                             25.0, 8.0, 40.0, 0.0),

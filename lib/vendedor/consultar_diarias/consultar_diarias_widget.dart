@@ -1439,7 +1439,7 @@ class _ConsultarDiariasWidgetState extends State<ConsultarDiariasWidget>
                                                                           },
                                                                           child:
                                                                               FaIcon(
-                                                                            FontAwesomeIcons.trashAlt,
+                                                                            FontAwesomeIcons.trashCan,
                                                                             color:
                                                                                 FlutterFlowTheme.of(context).secondaryText,
                                                                             size:

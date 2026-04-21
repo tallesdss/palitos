@@ -1,8 +1,7 @@
-import '/auth/firebase_auth/auth_util.dart';
+﻿import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
-import '/flutter_flow/flutter_flow_icon_button.dart';
-import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/flutter_flow_widgets.dart';
 import '/index.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -73,7 +72,7 @@ class _VendedorAdmWidgetState extends State<VendedorAdmWidget> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            'Olá,',
+                            'OlÃ¡,',
                             style: GoogleFonts.dmSans(
                               color: Color(0xFF8E8E93),
                               fontSize: 16.0,
@@ -103,7 +102,7 @@ class _VendedorAdmWidgetState extends State<VendedorAdmWidget> {
                           child: AuthUserStreamWidget(
                             builder: (context) => Image.network(
                               currentUserPhoto != '' ? currentUserPhoto : 'https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=100&h=100&fit=crop',
-                              fit: BoxType.cover,
+                              fit: BoxFit.cover,
                             ),
                           ),
                         ),
@@ -149,7 +148,7 @@ class _VendedorAdmWidgetState extends State<VendedorAdmWidget> {
                   SizedBox(height: 32.0),
 
                   Text(
-                    'Ações Rápidas',
+                    'AÃ§Ãµes RÃ¡pidas',
                     style: GoogleFonts.syne(
                       color: Colors.white,
                       fontSize: 18.0,
@@ -173,19 +172,19 @@ class _VendedorAdmWidgetState extends State<VendedorAdmWidget> {
                     children: [
                       _buildActionCard(
                         'Registrar Venda',
-                        'Venda rápida',
+                        'Venda rÃ¡pida',
                         Icons.bolt_rounded,
                         () => context.pushNamed('VendaRapida'),
                       ),
                       _buildActionCard(
-                        'Histórico',
-                        'Ver diárias passadas',
+                        'HistÃ³rico',
+                        'Ver diÃ¡rias passadas',
                         Icons.history_rounded,
                         () => context.pushNamed(HistoricoVendedorWidget.routeName),
                       ),
                       _buildActionCard(
                         'Ganhos',
-                        'Minhas comissões',
+                        'Minhas comissÃµes',
                         Icons.account_balance_wallet_rounded,
                         () => context.pushNamed(MeusganhosWidget.routeName),
                       ),
@@ -244,7 +243,7 @@ class _VendedorAdmWidgetState extends State<VendedorAdmWidget> {
             ),
             SizedBox(height: 8.0),
             Text(
-              'Carregue seu carrinho para começar a registrar suas vendas de hoje.',
+              'Carregue seu carrinho para comeÃ§ar a registrar suas vendas de hoje.',
               textAlign: TextAlign.center,
               style: GoogleFonts.dmSans(
                 color: Color(0xFF8E8E93),
@@ -254,7 +253,7 @@ class _VendedorAdmWidgetState extends State<VendedorAdmWidget> {
             SizedBox(height: 24.0),
             FFButtonWidget(
               onPressed: () => context.pushNamed('carregar_carrinho'),
-              text: 'Começar Agora',
+              text: 'ComeÃ§ar Agora',
               options: FFButtonOptions(
                 width: double.infinity,
                 height: 50.0,
@@ -301,11 +300,11 @@ class _VendedorAdmWidgetState extends State<VendedorAdmWidget> {
                 Container(
                   padding: EdgeInsets.symmetric(horizontal: 12, vertical: 6),
                   decoration: BoxDecoration(
-                    color: Colors.white.withOpacity(0.2),
+                    color: Colors.white.withValues(alpha: 0.2),
                     borderRadius: BorderRadius.circular(20),
                   ),
                   child: Text(
-                    'SESSÃO ATIVA',
+                    'SESSÃƒO ATIVA',
                     style: GoogleFonts.dmSans(
                       color: Colors.white,
                       fontSize: 10.0,
@@ -315,7 +314,7 @@ class _VendedorAdmWidgetState extends State<VendedorAdmWidget> {
                   ),
                 ),
                 Text(
-                  'Cód: ${session.codigo}',
+                  'CÃ³d: ${session.codigo}',
                   style: GoogleFonts.dmSans(
                     color: Colors.white,
                     fontWeight: FontWeight.bold,
@@ -335,7 +334,7 @@ class _VendedorAdmWidgetState extends State<VendedorAdmWidget> {
             Text(
               'Valor em carga carregada',
               style: GoogleFonts.dmSans(
-                color: Colors.white.withOpacity(0.8),
+                color: Colors.white.withValues(alpha: 0.8),
                 fontSize: 14.0,
               ),
             ),
@@ -345,7 +344,7 @@ class _VendedorAdmWidgetState extends State<VendedorAdmWidget> {
                 Expanded(
                   child: FFButtonWidget(
                     onPressed: () => context.pushNamed('VendaRapida'),
-                    text: 'Venda Rápida',
+                    text: 'Venda RÃ¡pida',
                     icon: Icon(
                       Icons.bolt_rounded,
                       color: Color(0xFF7F00FF),
@@ -381,7 +380,7 @@ class _VendedorAdmWidgetState extends State<VendedorAdmWidget> {
                   options: FFButtonOptions(
                     width: 100.0,
                     height: 50.0,
-                    color: Colors.white.withOpacity(0.15),
+                    color: Colors.white.withValues(alpha: 0.15),
                     textStyle: GoogleFonts.dmSans(
                       color: Colors.white,
                       fontSize: 14.0,
@@ -448,3 +447,4 @@ class _VendedorAdmWidgetState extends State<VendedorAdmWidget> {
     );
   }
 }
+

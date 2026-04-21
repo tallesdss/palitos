@@ -1,8 +1,6 @@
 import '/backend/backend.dart';
 import '/auth/firebase_auth/auth_util.dart';
-import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/flutter_flow/flutter_flow_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -25,7 +23,7 @@ class _VendaRapidaWidgetState extends State<VendaRapidaWidget> {
       onTap: () => FocusScope.of(context).unfocus(),
       child: Scaffold(
         key: scaffoldKey,
-        backgroundColor: Color(0xFF0A0A0A),
+        backgroundColor: Color(0xFF0A0B10),
         appBar: AppBar(
           backgroundColor: Colors.transparent,
           elevation: 0,
@@ -34,7 +32,7 @@ class _VendaRapidaWidgetState extends State<VendaRapidaWidget> {
             onPressed: () => context.safePop(),
           ),
           title: Text(
-            'Venda Rápida',
+            'Venda RÃ¡pida',
             style: GoogleFonts.syne(
               color: Colors.white,
               fontSize: 20.0,
@@ -48,7 +46,7 @@ class _VendaRapidaWidgetState extends State<VendaRapidaWidget> {
           height: double.infinity,
           decoration: BoxDecoration(
             gradient: LinearGradient(
-              colors: [Color(0xFF0A0A0A), Color(0xFF121212)],
+              colors: [Color(0xFF0A0B10), Color(0xFF12141C)],
               begin: AlignmentDirectional(0, -1),
               end: AlignmentDirectional(0, 1),
             ),
@@ -74,7 +72,7 @@ class _VendaRapidaWidgetState extends State<VendaRapidaWidget> {
                       Icon(Icons.inventory_2_outlined, color: Color(0xFF8E8E93), size: 64),
                       SizedBox(height: 16),
                       Text(
-                        'Nenhuma sessão ativa encontrada.',
+                        'Nenhuma sessÃ£o ativa encontrada.',
                         style: GoogleFonts.dmSans(color: Colors.white70, fontSize: 16),
                       ),
                       SizedBox(height: 8),
@@ -120,12 +118,19 @@ class _VendaRapidaWidgetState extends State<VendaRapidaWidget> {
       child: Container(
         padding: EdgeInsets.all(12),
         decoration: BoxDecoration(
-          color: Color(0xFF1E1E1E),
-          borderRadius: BorderRadius.circular(24),
+          color: Color(0xFF1A1D28),
+          borderRadius: BorderRadius.circular(20),
           border: Border.all(
-            color: canSell ? Color(0xFF2D2D2D) : Colors.redAccent.withOpacity(0.3),
+            color: canSell ? Color(0xFF222535) : Color(0x4DE84040),
             width: 1,
           ),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black12,
+              blurRadius: 10,
+              offset: Offset(0, 4),
+            ),
+          ],
         ),
         child: Column(
           children: [
@@ -135,8 +140,10 @@ class _VendaRapidaWidgetState extends State<VendaRapidaWidget> {
                   ClipRRect(
                     borderRadius: BorderRadius.circular(16),
                     child: Image.network(
-                      item.imagem != '' ? item.imagem : 'https://images.unsplash.com/photo-1563805042-7684c019e1cb?w=200&h=200&fit=crop',
-                      fit: BoxType.cover,
+                      item.imagem != ''
+                          ? item.imagem
+                          : 'https://images.unsplash.com/photo-1563805042-7684c019e1cb?w=200&h=200&fit=crop',
+                      fit: BoxFit.cover,
                       width: double.infinity,
                       height: double.infinity,
                     ),
@@ -168,7 +175,7 @@ class _VendaRapidaWidgetState extends State<VendaRapidaWidget> {
               maxLines: 1,
               overflow: TextOverflow.ellipsis,
               style: GoogleFonts.syne(
-                color: Colors.white,
+                color: Color(0xFFF0EFFB),
                 fontSize: 14,
                 fontWeight: FontWeight.bold,
               ),
@@ -177,12 +184,13 @@ class _VendaRapidaWidgetState extends State<VendaRapidaWidget> {
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Icon(Icons.shopping_bag_outlined, color: Color(0xFF7F00FF), size: 12),
+                Icon(Icons.shopping_bag_outlined,
+                    color: Color(0xFF6B5FEF), size: 12),
                 SizedBox(width: 4),
                 Text(
                   '${item.vendidosFinal} / ${item.quantidade}',
                   style: GoogleFonts.dmSans(
-                    color: Color(0xFF7F00FF),
+                    color: Color(0xFF6B5FEF),
                     fontSize: 12,
                     fontWeight: FontWeight.bold,
                   ),
@@ -237,3 +245,4 @@ class _VendaRapidaWidgetState extends State<VendaRapidaWidget> {
     }
   }
 }
+

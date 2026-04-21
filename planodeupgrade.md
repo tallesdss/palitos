@@ -14,7 +14,7 @@ Este documento detalha o roadmap para a reconstrução completa do frontend do a
 Implementação do novo Design System para garantir consistência em todo o app.
 - [x] **1.1 Design Tokens**: Definir paleta de cores primárias, secundárias e semânticas.
 - [x] **1.2 Tipografia**: Configurar pesos e escalas de fonte para máxima legibilidade no sol.
-- [ ] **1.3 Componentes Base**: Criar widgets de botões premium, cards interativos e inputs com validação integrada.
+- [x] **1.3 Componentes Base**: Criar widgets de botões premium, cards interativos e inputs com validação integrada.
 - [x] **1.4 Tematização**: Suporte completo para modo claro e escuro.
 
 ## 🔑 Fase 2: Autenticação e Onboarding
@@ -29,7 +29,7 @@ O coração operacional do app.
 - [x] **3.1 Carregamento de Carrinho**: Interface visual para selecionar produtos e quantidades ao sair para venda.
 - [x] **3.2 Retorno de Estoque**: Check-out do dia, calculando automaticamente as devoluções.
 - [x] **3.3 Registro de Vendas**: Interface rápida ("One-Tap") para registrar uma venda realizada na rua.
-- [ ] **3.4 Suporte Integrado**: Canal direto para reporte de problemas operacionais.
+- [x] **3.4 Suporte Integrado**: Canal direto para reporte de problemas operacionais.
 
 ## 💰 Fase 4: Digital Wallet & Transferências (Social Finance)
 Transformando o app em uma ferramenta financeira potente.
@@ -39,9 +39,9 @@ Transformando o app em uma ferramenta financeira potente.
 
 ## 📱 Fase 5: Feed Social e Comunidade
 Engajamento entre os colaboradores.
-- [ ] **5.1 Feed de Atividades**: Postagens de conquistas, fotos do dia e dicas de locais de venda.
-- [ ] **5.2 Sistema de Comentários**: Interação social em tempo real.
-- [ ] **5.3 Notificações Push**: Alertas de faturamento, metas atingidas e transferências recebidas.
+- [x] **5.1 Feed de Atividades**: Postagens de conquistas, fotos do dia e dicas de locais de venda.
+- [x] **5.2 Sistema de Comentários**: Interação social em tempo real.
+- [x] **5.3 Notificações Push**: Alertas de faturamento, metas atingidas e transferências recebidas.
 
 ## 📊 Fase 6: Analytics e Performance (Vendedor)
 Entender o lucro para crescer.

@@ -1,6 +1,5 @@
 import '/backend/backend.dart';
 import '/auth/firebase_auth/auth_util.dart';
-import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import 'package:flutter/material.dart';
@@ -75,12 +74,12 @@ class _RetornoEstoqueWidgetState extends State<RetornoEstoqueWidget> {
     for (int i = 0; i < _diarias.length; i++) {
       int sold = int.tryParse(_controllers[i]!.text) ?? 0;
       if (sold > _diarias[i].quantidade) {
-        showSnackbar(context, 'A quantidade vendida de ${_diarias[i].nome} não pode ser maior que a carregada (${_diarias[i].quantidade}).');
+        showSnackbar(context, 'A quantidade vendida de ${_diarias[i].nome} nÃ£o pode ser maior que a carregada (${_diarias[i].quantidade}).');
         return;
       }
     }
 
-    showSnackbar(context, 'Finalizando sessão...', loading: true);
+    showSnackbar(context, 'Finalizando sessÃ£o...', loading: true);
 
     try {
       // 1. Prepare updated diarias list
@@ -118,13 +117,13 @@ class _RetornoEstoqueWidgetState extends State<RetornoEstoqueWidget> {
         'diarias': getDiariaListFirestoreData(updatedDiarias),
       });
 
-      // 3. Update User Balance (Comissão)
+      // 3. Update User Balance (ComissÃ£o)
       await currentUserReference!.update({
         'saldo': FieldValue.increment(totalComissaoVal),
       });
 
       ScaffoldMessenger.of(context).hideCurrentSnackBar();
-      showSnackbar(context, 'Sessão finalizada com sucesso! Boas vendas!');
+      showSnackbar(context, 'SessÃ£o finalizada com sucesso! Boas vendas!');
       
       context.goNamed('VendedorAdm');
     } catch (e) {
@@ -139,20 +138,21 @@ class _RetornoEstoqueWidgetState extends State<RetornoEstoqueWidget> {
       onTap: () => FocusScope.of(context).unfocus(),
       child: Scaffold(
         key: scaffoldKey,
-        backgroundColor: Color(0xFF0A0A0A),
+        backgroundColor: Color(0xFF0A0B10),
         appBar: AppBar(
           backgroundColor: Colors.transparent,
           elevation: 0,
           leading: IconButton(
-            icon: Icon(Icons.arrow_back_ios_new_rounded, color: Colors.white),
+            icon: Icon(Icons.arrow_back_ios_new_rounded, color: Color(0xFFF0EFFB)),
             onPressed: () => context.safePop(),
           ),
           title: Text(
-            'Finalizar Dia',
+            'Retorno de Estoque',
             style: GoogleFonts.syne(
-              color: Colors.white,
+              color: Color(0xFFF0EFFB),
               fontSize: 20.0,
-              fontWeight: FontWeight.bold,
+              fontWeight: FontWeight.w800,
+              letterSpacing: -0.5,
             ),
           ),
           centerTitle: true,
@@ -162,7 +162,7 @@ class _RetornoEstoqueWidgetState extends State<RetornoEstoqueWidget> {
           height: double.infinity,
           decoration: BoxDecoration(
             gradient: LinearGradient(
-              colors: [Color(0xFF0A0A0A), Color(0xFF121212)],
+              colors: [Color(0xFF0A0B10), Color(0xFF12141C)],
               begin: AlignmentDirectional(0, -1),
               end: AlignmentDirectional(0, 1),
             ),
@@ -204,7 +204,7 @@ class _RetornoEstoqueWidgetState extends State<RetornoEstoqueWidget> {
               diaria.imagem != '' ? diaria.imagem : 'https://images.unsplash.com/photo-1563805042-7684c019e1cb?w=100&h=100&fit=crop',
               width: 60,
               height: 60,
-              fit: BoxType.cover,
+              fit: BoxFit.cover,
             ),
           ),
           SizedBox(width: 16),
@@ -281,7 +281,7 @@ class _RetornoEstoqueWidgetState extends State<RetornoEstoqueWidget> {
         borderRadius: BorderRadius.vertical(top: Radius.circular(32)),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withOpacity(0.5),
+            color: Colors.black.withValues(alpha: 0.5),
             blurRadius: 20,
             offset: Offset(0, -5),
           ),
@@ -294,7 +294,7 @@ class _RetornoEstoqueWidgetState extends State<RetornoEstoqueWidget> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               _buildSummaryStat('Vendas', 'R\$ ${formatNumber(totalSoldValue, formatType: FormatType.decimal)}', Icons.payments_rounded),
-              _buildSummaryStat('Comissão', 'R\$ ${formatNumber(totalCommission, formatType: FormatType.decimal)}', Icons.stars_rounded),
+              _buildSummaryStat('ComissÃ£o', 'R\$ ${formatNumber(totalCommission, formatType: FormatType.decimal)}', Icons.stars_rounded),
             ],
           ),
           SizedBox(height: 24),
@@ -349,3 +349,4 @@ class _RetornoEstoqueWidgetState extends State<RetornoEstoqueWidget> {
     );
   }
 }
+
