@@ -36,7 +36,7 @@ dependencies:
   cloud_firestore: ^5.5.0
   cloud_firestore_platform_interface: 6.5.0
   cloud_firestore_web: 4.3.4
-  collection: 1.19.0
+  collection: ^1.19.1
   csslib: 0.17.3
   easy_debounce: 2.0.1
   equatable: 2.0.5
@@ -83,7 +83,7 @@ dependencies:
   image_picker_macos: 0.2.1+1
   image_picker_platform_interface: 2.10.0
   image_picker_windows: 0.2.1+1
-  intl: ^0.19.0
+  intl: ^0.20.2
   json_path: 0.7.2
   mask_text_input_formatter: 2.9.0
   mdcharts: ^6.3.6
@@ -114,7 +114,7 @@ dependencies:
   sqflite: 2.3.3+1
   sqflite_common: 2.5.4+3
   stream_transform: 2.1.0
-  timeago: 3.6.1
+  timeago: ^3.7.0
   universal_io: 2.2.2
   url_launcher: 6.3.0
   url_launcher_android: 6.3.10
@@ -139,6 +139,8 @@ dependency_overrides:
   http: 1.2.2
   uuid: ^4.0.0
   win32: 5.5.1
+  intl: ^0.20.2
+  collection: ^1.19.1
 
 dev_dependencies:
   flutter_launcher_icons: 0.13.1

@@ -5,7 +5,9 @@ import 'package:google_fonts/google_fonts.dart';
 
 abstract class FlutterFlowTheme {
   static FlutterFlowTheme of(BuildContext context) {
-    return LightModeTheme();
+    return Theme.of(context).brightness == Brightness.dark
+        ? DarkModeTheme()
+        : LightModeTheme();
   }
 
   @Deprecated('Use primary instead')
@@ -103,22 +105,48 @@ class LightModeTheme extends FlutterFlowTheme {
   @Deprecated('Use tertiary instead')
   Color get tertiaryColor => tertiary;
 
-  late Color primary = const Color(0xFF045589);
-  late Color secondary = const Color(0xFF1E88E5);
-  late Color tertiary = const Color(0xFF2196F3);
-  late Color alternate = const Color(0xFFE6F7FF);
-  late Color primaryText = const Color(0xFF000000);
-  late Color secondaryText = const Color(0xFF666666);
-  late Color primaryBackground = const Color(0xFFF8F9FA);
-  late Color secondaryBackground = const Color(0xFFF0F8FF);
-  late Color accent1 = const Color(0xFF8F00FF);
-  late Color accent2 = const Color(0xFFFF00A5);
-  late Color accent3 = const Color(0xFFFF007F);
-  late Color accent4 = const Color(0xFFFF004C);
-  late Color success = const Color(0xFF00B300);
-  late Color warning = const Color(0xFFFFCB00);
-  late Color error = const Color(0xFFFF0033);
-  late Color info = const Color(0xFF0099FF);
+  late Color primary = const Color(0xFF6B5FEF); // accent-primary
+  late Color secondary = const Color(0xFFE0E3E7); // background soft
+  late Color tertiary = const Color(0xFFF5A623); // amber
+  late Color alternate = const Color(0xFFF1F4F8);
+  late Color primaryText = const Color(0xFF12141C);
+  late Color secondaryText = const Color(0xFF5C5A6A);
+  late Color primaryBackground = const Color(0xFFF8F9FF);
+  late Color secondaryBackground = const Color(0xFFFFFFFF);
+  late Color accent1 = const Color(0x406B5FEF);
+  late Color accent2 = const Color(0x4C00BFFF);
+  late Color accent3 = const Color(0x4C2ECC71);
+  late Color accent4 = const Color(0xCCFFFFFF);
+  late Color success = const Color(0xFF1FBF7A);
+  late Color warning = const Color(0xFFF5A623);
+  late Color error = const Color(0xFFE84040);
+  late Color info = const Color(0xFFFFFFFF);
+}
+
+class DarkModeTheme extends FlutterFlowTheme {
+  @Deprecated('Use primary instead')
+  Color get primaryColor => primary;
+  @Deprecated('Use secondary instead')
+  Color get secondaryColor => secondary;
+  @Deprecated('Use tertiary instead')
+  Color get tertiaryColor => tertiary;
+
+  late Color primary = const Color(0xFF6B5FEF); // accent-primary
+  late Color secondary = const Color(0xFF1A1D28); // bg-card
+  late Color tertiary = const Color(0xFFF5A623); // amber
+  late Color alternate = const Color(0xFF222535); // bg-elevated
+  late Color primaryText = const Color(0xFFF0EFFB); // text-primary
+  late Color secondaryText = const Color(0xFF9896A8); // text-secondary
+  late Color primaryBackground = const Color(0xFF0A0B10); // bg-base
+  late Color secondaryBackground = const Color(0xFF12141C); // bg-surface
+  late Color accent1 = const Color(0x406B5FEF); // accent-glow
+  late Color accent2 = const Color(0xFF2A2E3F); // bg-hover
+  late Color accent3 = const Color(0xFF5C5A6A); // text-muted
+  late Color accent4 = const Color(0x1AFFFFFF); // border-default
+  late Color success = const Color(0xFF1FBF7A); // green
+  late Color warning = const Color(0xFFF5A623); // amber
+  late Color error = const Color(0xFFE84040); // red
+  late Color info = const Color(0xFF6B5FEF);
 }
 
 abstract class Typography {
@@ -159,107 +187,117 @@ class ThemeTypography extends Typography {
 
   final FlutterFlowTheme theme;
 
-  String get displayLargeFamily => 'baloo2';
-  TextStyle get displayLarge => TextStyle(
-        fontFamily: 'baloo2',
+  String get displayLargeFamily => 'Syne';
+  TextStyle get displayLarge => GoogleFonts.getFont(
+        'Syne',
         color: theme.primaryText,
-        fontWeight: FontWeight.normal,
+        fontWeight: FontWeight.w800,
         fontSize: 57.0,
+        letterSpacing: -0.03,
       );
-  String get displayMediumFamily => 'baloo2';
-  TextStyle get displayMedium => TextStyle(
-        fontFamily: 'baloo2',
+  String get displayMediumFamily => 'Syne';
+  TextStyle get displayMedium => GoogleFonts.getFont(
+        'Syne',
         color: theme.primaryText,
-        fontWeight: FontWeight.normal,
+        fontWeight: FontWeight.w800,
         fontSize: 45.0,
+        letterSpacing: -0.03,
       );
-  String get displaySmallFamily => 'baloo2';
-  TextStyle get displaySmall => TextStyle(
-        fontFamily: 'baloo2',
+  String get displaySmallFamily => 'Syne';
+  TextStyle get displaySmall => GoogleFonts.getFont(
+        'Syne',
         color: theme.primaryText,
-        fontWeight: FontWeight.w500,
-        fontSize: 34.0,
+        fontWeight: FontWeight.w800,
+        fontSize: 32.0,
+        letterSpacing: -0.03,
       );
-  String get headlineLargeFamily => 'baloo2';
-  TextStyle get headlineLarge => TextStyle(
-        fontFamily: 'baloo2',
+  String get headlineLargeFamily => 'Syne';
+  TextStyle get headlineLarge => GoogleFonts.getFont(
+        'Syne',
         color: theme.primaryText,
-        fontWeight: FontWeight.normal,
+        fontWeight: FontWeight.w700,
         fontSize: 32.0,
       );
-  String get headlineMediumFamily => 'baloo2';
-  TextStyle get headlineMedium => TextStyle(
-        fontFamily: 'baloo2',
+  String get headlineMediumFamily => 'Syne';
+  TextStyle get headlineMedium => GoogleFonts.getFont(
+        'Syne',
         color: theme.primaryText,
-        fontWeight: FontWeight.normal,
-        fontSize: 28.0,
+        fontWeight: FontWeight.w700,
+        fontSize: 24.0,
       );
-  String get headlineSmallFamily => 'baloo2';
-  TextStyle get headlineSmall => TextStyle(
-        fontFamily: 'baloo2',
+  String get headlineSmallFamily => 'Syne';
+  TextStyle get headlineSmall => GoogleFonts.getFont(
+        'Syne',
         color: theme.primaryText,
-        fontWeight: FontWeight.w500,
+        fontWeight: FontWeight.w700,
         fontSize: 20.0,
       );
-  String get titleLargeFamily => 'baloo2';
-  TextStyle get titleLarge => TextStyle(
-        fontFamily: 'baloo2',
+  String get titleLargeFamily => 'Syne';
+  TextStyle get titleLarge => GoogleFonts.getFont(
+        'Syne',
         color: theme.primaryText,
-        fontWeight: FontWeight.w500,
-        fontSize: 22.0,
+        fontWeight: FontWeight.w600,
+        fontSize: 18.0,
       );
-  String get titleMediumFamily => 'Roboto Mono';
+  String get titleMediumFamily => 'Syne';
   TextStyle get titleMedium => GoogleFonts.getFont(
-        'Roboto Mono',
-        color: theme.info,
-        fontWeight: FontWeight.w500,
-        fontSize: 16.0,
-      );
-  String get titleSmallFamily => 'Roboto Mono';
-  TextStyle get titleSmall => GoogleFonts.getFont(
-        'Roboto Mono',
-        color: theme.info,
-        fontWeight: FontWeight.w500,
-        fontSize: 14.0,
-      );
-  String get labelLargeFamily => 'Roboto Mono';
-  TextStyle get labelLarge => GoogleFonts.getFont(
-        'Roboto Mono',
-        color: theme.secondaryText,
-        fontWeight: FontWeight.w500,
-        fontSize: 16.0,
-      );
-  String get labelMediumFamily => 'Roboto Mono';
-  TextStyle get labelMedium => GoogleFonts.getFont(
-        'Roboto Mono',
-        color: theme.secondaryText,
-        fontWeight: FontWeight.w500,
-        fontSize: 14.0,
-      );
-  String get labelSmallFamily => 'Roboto Mono';
-  TextStyle get labelSmall => GoogleFonts.getFont(
-        'Roboto Mono',
-        color: theme.secondaryText,
-        fontWeight: FontWeight.w500,
-        fontSize: 12.0,
-      );
-  String get bodyLargeFamily => 'Roboto Mono';
-  TextStyle get bodyLarge => GoogleFonts.getFont(
-        'Roboto Mono',
+        'Syne',
         color: theme.primaryText,
+        fontWeight: FontWeight.w600,
+        fontSize: 16.0,
+        letterSpacing: 0.02,
+      );
+  String get titleSmallFamily => 'DM Sans';
+  TextStyle get titleSmall => GoogleFonts.getFont(
+        'DM Sans',
+        color: theme.secondaryText,
+        fontWeight: FontWeight.w500,
         fontSize: 16.0,
       );
-  String get bodyMediumFamily => 'Roboto Mono';
-  TextStyle get bodyMedium => GoogleFonts.getFont(
-        'Roboto Mono',
+  String get labelLargeFamily => 'Syne';
+  TextStyle get labelLarge => GoogleFonts.getFont(
+        'Syne',
+        color: theme.secondaryText,
+        fontWeight: FontWeight.w600,
+        fontSize: 14.0,
+        letterSpacing: 0.02,
+      );
+  String get labelMediumFamily => 'Syne';
+  TextStyle get labelMedium => GoogleFonts.getFont(
+        'Syne',
+        color: theme.secondaryText,
+        fontWeight: FontWeight.w600,
+        fontSize: 12.0,
+        letterSpacing: 0.02,
+      );
+  String get labelSmallFamily => 'Syne';
+  TextStyle get labelSmall => GoogleFonts.getFont(
+        'Syne',
+        color: theme.secondaryText,
+        fontWeight: FontWeight.w700,
+        fontSize: 10.0,
+        letterSpacing: 0.18,
+      );
+  String get bodyLargeFamily => 'DM Sans';
+  TextStyle get bodyLarge => GoogleFonts.getFont(
+        'DM Sans',
         color: theme.primaryText,
         fontWeight: FontWeight.normal,
-        fontSize: 14.0,
+        fontSize: 16.0,
+        height: 1.6,
       );
-  String get bodySmallFamily => 'Roboto Mono';
-  TextStyle get bodySmall => GoogleFonts.getFont(
-        'Roboto Mono',
+  String get bodyMediumFamily => 'DM Sans';
+  TextStyle get bodyMedium => GoogleFonts.getFont(
+        'DM Sans',
         color: theme.primaryText,
+        fontWeight: FontWeight.normal,
+        fontSize: 15.0,
+        height: 1.6,
+      );
+  String get bodySmallFamily => 'DM Sans';
+  TextStyle get bodySmall => GoogleFonts.getFont(
+        'DM Sans',
+        color: theme.secondaryText,
         fontWeight: FontWeight.normal,
         fontSize: 12.0,
       );

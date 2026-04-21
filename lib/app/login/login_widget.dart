@@ -1,4 +1,4 @@
-import '';
+import 'dart:ui';
 import '/auth/firebase_auth/auth_util.dart';
 import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
@@ -96,621 +96,296 @@ class _LoginWidgetState extends State<LoginWidget>
       },
       child: Scaffold(
         key: scaffoldKey,
-        backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
-        body: SafeArea(
-          top: true,
-          child: Row(
-            mainAxisSize: MainAxisSize.max,
-            children: [
-              Expanded(
-                flex: 8,
-                child: Container(
-                  width: 100.0,
-                  height: double.infinity,
-                  decoration: BoxDecoration(
-                    color: FlutterFlowTheme.of(context).secondaryBackground,
+        backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
+        body: Stack(
+          children: [
+            // Full screen background image
+            Container(
+              width: double.infinity,
+              height: double.infinity,
+              decoration: BoxDecoration(
+                image: DecorationImage(
+                  image: AssetImage('assets/images/login_bg.png'),
+                  fit: BoxFit.cover,
+                ),
+              ),
+              child: Container(
+                decoration: BoxDecoration(
+                  gradient: LinearGradient(
+                    colors: [
+                      Colors.black.withOpacity(0.3),
+                      Colors.transparent,
+                      Colors.black.withOpacity(0.6),
+                    ],
+                    begin: Alignment.topCenter,
+                    end: Alignment.bottomCenter,
                   ),
-                  alignment: AlignmentDirectional(0.0, -1.0),
-                  child: SingleChildScrollView(
-                    child: Column(
-                      mainAxisSize: MainAxisSize.max,
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
-                              0.0, 100.0, 0.0, 0.0),
-                          child: Container(
-                            width: double.infinity,
-                            decoration: BoxDecoration(
-                              color: FlutterFlowTheme.of(context)
-                                  .secondaryBackground,
-                              borderRadius: BorderRadius.only(
-                                bottomLeft: Radius.circular(16.0),
-                                bottomRight: Radius.circular(16.0),
-                                topLeft: Radius.circular(0.0),
-                                topRight: Radius.circular(0.0),
+                ),
+              ),
+            ),
+            
+            // Login Card centering
+            Center(
+              child: SingleChildScrollView(
+                child: Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 24.0, vertical: 40.0),
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(24.0),
+                    child: BackdropFilter(
+                      filter: ImageFilter.blur(sigmaX: 10.0, sigmaY: 10.0),
+                      child: Container(
+                        width: double.infinity,
+                        constraints: BoxConstraints(maxWidth: 450.0),
+                        decoration: BoxDecoration(
+                          color: FlutterFlowTheme.of(context).secondaryBackground.withOpacity(0.7),
+                          borderRadius: BorderRadius.circular(24.0),
+                          border: Border.all(
+                            color: Colors.white.withOpacity(0.2),
+                            width: 1.5,
+                          ),
+                        ),
+                        child: Column(
+                          mainAxisSize: MainAxisSize.min,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            // Logo/Header section
+                            Padding(
+                              padding: EdgeInsetsDirectional.fromSTEB(0.0, 40.0, 0.0, 20.0),
+                              child: Container(
+                                width: 120.0,
+                                height: 120.0,
+                                decoration: BoxDecoration(
+                                  color: Colors.white.withOpacity(0.1),
+                                  shape: BoxShape.circle,
+                                  border: Border.all(
+                                    color: FlutterFlowTheme.of(context).primary,
+                                    width: 2.0,
+                                  ),
+                                ),
+                                child: Padding(
+                                  padding: EdgeInsets.all(15.0),
+                                  child: Image.asset(
+                                    'assets/images/Sem_ttulo_(20).png',
+                                    fit: BoxFit.contain,
+                                  ),
+                                ),
                               ),
                             ),
-                            alignment: AlignmentDirectional(0.0, 0.0),
-                            child: Row(
-                              mainAxisSize: MainAxisSize.max,
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Align(
-                                  alignment: AlignmentDirectional(-1.0, 0.0),
-                                  child: Column(
-                                    mainAxisSize: MainAxisSize.max,
+                            
+                            Text(
+                              'Carteira Palito',
+                              style: FlutterFlowTheme.of(context).displaySmall.override(
+                                fontFamily: 'Outfit',
+                                color: FlutterFlowTheme.of(context).primaryText,
+                                fontWeight: FontWeight.bold,
+                                letterSpacing: 0.0,
+                              ),
+                            ),
+                            
+                            Padding(
+                              padding: EdgeInsets.only(top: 8.0, bottom: 32.0),
+                              child: Text(
+                                'Bem-vindo de volta!',
+                                style: FlutterFlowTheme.of(context).labelLarge.override(
+                                  fontFamily: 'Inter',
+                                  color: FlutterFlowTheme.of(context).secondaryText,
+                                  letterSpacing: 0.0,
+                                ),
+                              ),
+                            ),
+
+                            // Form Fields
+                            Padding(
+                              padding: EdgeInsets.symmetric(horizontal: 32.0),
+                              child: Column(
+                                children: [
+                                  TextFormField(
+                                    controller: _model.emailAddressTextController,
+                                    focusNode: _model.emailAddressFocusNode,
+                                    autofillHints: [AutofillHints.email],
+                                    decoration: InputDecoration(
+                                      labelText: 'Email',
+                                      labelStyle: FlutterFlowTheme.of(context).labelMedium,
+                                      enabledBorder: OutlineInputBorder(
+                                        borderSide: BorderSide(
+                                          color: FlutterFlowTheme.of(context).alternate,
+                                          width: 1.0,
+                                        ),
+                                        borderRadius: BorderRadius.circular(16.0),
+                                      ),
+                                      focusedBorder: OutlineInputBorder(
+                                        borderSide: BorderSide(
+                                          color: FlutterFlowTheme.of(context).primary,
+                                          width: 2.0,
+                                        ),
+                                        borderRadius: BorderRadius.circular(16.0),
+                                      ),
+                                      filled: true,
+                                      fillColor: FlutterFlowTheme.of(context).primaryBackground.withOpacity(0.5),
+                                      prefixIcon: Icon(Icons.email_outlined, color: FlutterFlowTheme.of(context).primary),
+                                    ),
+                                    style: FlutterFlowTheme.of(context).bodyMedium,
+                                    keyboardType: TextInputType.emailAddress,
+                                  ),
+                                  const SizedBox(height: 16.0),
+                                  TextFormField(
+                                    controller: _model.passwordTextController,
+                                    focusNode: _model.passwordFocusNode,
+                                    obscureText: !_model.passwordVisibility,
+                                    decoration: InputDecoration(
+                                      labelText: 'Senha',
+                                      labelStyle: FlutterFlowTheme.of(context).labelMedium,
+                                      enabledBorder: OutlineInputBorder(
+                                        borderSide: BorderSide(
+                                          color: FlutterFlowTheme.of(context).alternate,
+                                          width: 1.0,
+                                        ),
+                                        borderRadius: BorderRadius.circular(16.0),
+                                      ),
+                                      focusedBorder: OutlineInputBorder(
+                                        borderSide: BorderSide(
+                                          color: FlutterFlowTheme.of(context).primary,
+                                          width: 2.0,
+                                        ),
+                                        borderRadius: BorderRadius.circular(16.0),
+                                      ),
+                                      filled: true,
+                                      fillColor: FlutterFlowTheme.of(context).primaryBackground.withOpacity(0.5),
+                                      prefixIcon: Icon(Icons.lock_outline, color: FlutterFlowTheme.of(context).primary),
+                                      suffixIcon: InkWell(
+                                        onTap: () => safeSetState(() => _model.passwordVisibility = !_model.passwordVisibility),
+                                        child: Icon(
+                                          _model.passwordVisibility ? Icons.visibility_outlined : Icons.visibility_off_outlined,
+                                          color: FlutterFlowTheme.of(context).secondaryText,
+                                          size: 20.0,
+                                        ),
+                                      ),
+                                    ),
+                                    style: FlutterFlowTheme.of(context).bodyMedium,
+                                  ),
+                                ],
+                              ),
+                            ),
+
+                            // Actions
+                            Padding(
+                              padding: EdgeInsets.symmetric(vertical: 32.0, horizontal: 32.0),
+                              child: Column(
+                                children: [
+                                  FFButtonWidget(
+                                    onPressed: () async {
+                                      GoRouter.of(context).prepareAuthEvent();
+                                      final user = await authManager.signInWithEmail(
+                                        context,
+                                        _model.emailAddressTextController.text,
+                                        _model.passwordTextController.text,
+                                      );
+                                      if (user == null) return;
+                                      context.goNamedAuth(VerificacaoWidget.routeName, context.mounted);
+                                    },
+                                    text: 'Entrar',
+                                    options: FFButtonOptions(
+                                      width: double.infinity,
+                                      height: 54.0,
+                                      color: FlutterFlowTheme.of(context).primary,
+                                      textStyle: FlutterFlowTheme.of(context).titleSmall.override(
+                                        fontFamily: 'Inter',
+                                        color: Colors.white,
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                      elevation: 3.0,
+                                      borderRadius: BorderRadius.circular(16.0),
+                                    ),
+                                  ),
+                                  const SizedBox(height: 16.0),
+                                  FFButtonWidget(
+                                    onPressed: () async {
+                                      GoRouter.of(context).prepareAuthEvent();
+                                      final user = await authManager.signInWithGoogle(context);
+                                      if (user == null) return;
+                                      context.goNamedAuth(VerificacaoWidget.routeName, context.mounted);
+                                    },
+                                    text: 'Continuar com Google',
+                                    icon: FaIcon(
+                                      FontAwesomeIcons.google,
+                                      size: 18.0,
+                                    ),
+                                    options: FFButtonOptions(
+                                      width: double.infinity,
+                                      height: 54.0,
+                                      color: FlutterFlowTheme.of(context).secondaryBackground,
+                                      textStyle: FlutterFlowTheme.of(context).bodyLarge.override(
+                                        fontFamily: 'Inter',
+                                        fontWeight: FontWeight.w600,
+                                      ),
+                                      elevation: 0.0,
+                                      borderSide: BorderSide(
+                                        color: FlutterFlowTheme.of(context).alternate,
+                                        width: 1.0,
+                                      ),
+                                      borderRadius: BorderRadius.circular(16.0),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                            
+                            // Bottom Links
+                            Padding(
+                              padding: EdgeInsets.only(bottom: 40.0),
+                              child: Column(
+                                children: [
+                                  TextButton(
+                                    onPressed: () => context.pushNamed(RedefinirsenhadousuarioWidget.routeName),
+                                    child: Text(
+                                      'Esqueci minha senha',
+                                      style: FlutterFlowTheme.of(context).bodyMedium.override(
+                                        fontFamily: 'Inter',
+                                        color: FlutterFlowTheme.of(context).primary,
+                                        fontWeight: FontWeight.w600,
+                                      ),
+                                    ),
+                                  ),
+                                  Row(
                                     mainAxisAlignment: MainAxisAlignment.center,
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
                                     children: [
-                                      Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
-                                            0.0, 0.0, 10.0, 0.0),
-                                        child: ClipRRect(
-                                          borderRadius:
-                                              BorderRadius.circular(20.0),
-                                          child: Image.asset(
-                                            'assets/images/Sem_ttulo_(20).png',
-                                            width: 200.0,
-                                            height: 100.0,
-                                            fit: BoxFit.cover,
+                                      Text(
+                                        'Não tem uma conta? ',
+                                        style: FlutterFlowTheme.of(context).bodyMedium,
+                                      ),
+                                      TextButton(
+                                        onPressed: () => context.pushNamed(CriarcontaWidget.routeName),
+                                        style: TextButton.styleFrom(
+                                          padding: EdgeInsets.zero,
+                                          minimumSize: Size.zero,
+                                          tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                                        ),
+                                        child: Text(
+                                          'Cadastre-se',
+                                          style: FlutterFlowTheme.of(context).bodyMedium.override(
+                                            fontFamily: 'Inter',
+                                            color: FlutterFlowTheme.of(context).primary,
+                                            fontWeight: FontWeight.bold,
                                           ),
                                         ),
                                       ),
                                     ],
                                   ),
-                                ),
-                              ],
+                                ],
+                              ),
                             ),
-                          ),
+                          ],
                         ),
-                        Container(
-                          width: double.infinity,
-                          constraints: BoxConstraints(
-                            maxWidth: 579.0,
-                          ),
-                          decoration: BoxDecoration(
-                            color: FlutterFlowTheme.of(context)
-                                .secondaryBackground,
-                          ),
-                          child: Padding(
-                            padding: EdgeInsets.all(4.0),
-                            child: Column(
-                              mainAxisSize: MainAxisSize.max,
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Row(
-                                  mainAxisSize: MainAxisSize.max,
-                                  children: [
-                                    Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
-                                          32.0, 24.0, 0.0, 0.0),
-                                      child: InkWell(
-                                        splashColor: Colors.transparent,
-                                        focusColor: Colors.transparent,
-                                        hoverColor: Colors.transparent,
-                                        highlightColor: Colors.transparent,
-                                        onTap: () async {
-                                          _model.create = false;
-                                          safeSetState(() {});
-                                        },
-                                        child: Text(
-                                          'Login',
-                                          style: FlutterFlowTheme.of(context)
-                                              .displaySmall
-                                              .override(
-                                                fontFamily: 'baloo2',
-                                                color: _model.create == false
-                                                    ? FlutterFlowTheme.of(
-                                                            context)
-                                                        .primaryText
-                                                    : FlutterFlowTheme.of(
-                                                            context)
-                                                        .secondaryText,
-                                                letterSpacing: 0.0,
-                                                useGoogleFonts: false,
-                                              ),
-                                        ),
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                                Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
-                                      32.0, 12.0, 0.0, 24.0),
-                                  child: Text(
-                                    'Vamos começar preenchendo o formulário abaixo.',
-                                    style: FlutterFlowTheme.of(context)
-                                        .labelMedium
-                                        .override(
-                                          fontFamily: 'Roboto Mono',
-                                          letterSpacing: 0.0,
-                                        ),
-                                  ),
-                                ),
-                                Align(
-                                  alignment: AlignmentDirectional(0.0, 0.0),
-                                  child: Padding(
-                                    padding: EdgeInsets.all(12.0),
-                                    child: Column(
-                                      mainAxisSize: MainAxisSize.max,
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        Padding(
-                                          padding:
-                                              EdgeInsetsDirectional.fromSTEB(
-                                                  0.0, 0.0, 0.0, 16.0),
-                                          child: Container(
-                                            width: double.infinity,
-                                            child: TextFormField(
-                                              controller: _model
-                                                  .emailAddressTextController,
-                                              focusNode:
-                                                  _model.emailAddressFocusNode,
-                                              autofocus: true,
-                                              autofillHints: [
-                                                AutofillHints.email
-                                              ],
-                                              obscureText: false,
-                                              decoration: InputDecoration(
-                                                labelText: 'Email',
-                                                labelStyle:
-                                                    FlutterFlowTheme.of(context)
-                                                        .labelMedium
-                                                        .override(
-                                                          fontFamily:
-                                                              'Roboto Mono',
-                                                          letterSpacing: 0.0,
-                                                        ),
-                                                enabledBorder:
-                                                    OutlineInputBorder(
-                                                  borderSide: BorderSide(
-                                                    color: FlutterFlowTheme.of(
-                                                            context)
-                                                        .secondaryText,
-                                                    width: 2.0,
-                                                  ),
-                                                  borderRadius:
-                                                      BorderRadius.circular(
-                                                          40.0),
-                                                ),
-                                                focusedBorder:
-                                                    OutlineInputBorder(
-                                                  borderSide: BorderSide(
-                                                    color: FlutterFlowTheme.of(
-                                                            context)
-                                                        .primary,
-                                                    width: 2.0,
-                                                  ),
-                                                  borderRadius:
-                                                      BorderRadius.circular(
-                                                          40.0),
-                                                ),
-                                                errorBorder: OutlineInputBorder(
-                                                  borderSide: BorderSide(
-                                                    color: FlutterFlowTheme.of(
-                                                            context)
-                                                        .error,
-                                                    width: 2.0,
-                                                  ),
-                                                  borderRadius:
-                                                      BorderRadius.circular(
-                                                          40.0),
-                                                ),
-                                                focusedErrorBorder:
-                                                    OutlineInputBorder(
-                                                  borderSide: BorderSide(
-                                                    color: FlutterFlowTheme.of(
-                                                            context)
-                                                        .error,
-                                                    width: 2.0,
-                                                  ),
-                                                  borderRadius:
-                                                      BorderRadius.circular(
-                                                          40.0),
-                                                ),
-                                                filled: true,
-                                                fillColor:
-                                                    FlutterFlowTheme.of(context)
-                                                        .secondaryBackground,
-                                                contentPadding:
-                                                    EdgeInsets.all(24.0),
-                                              ),
-                                              style:
-                                                  FlutterFlowTheme.of(context)
-                                                      .bodyMedium
-                                                      .override(
-                                                        fontFamily:
-                                                            'Roboto Mono',
-                                                        letterSpacing: 0.0,
-                                                      ),
-                                              keyboardType:
-                                                  TextInputType.emailAddress,
-                                              validator: _model
-                                                  .emailAddressTextControllerValidator
-                                                  .asValidator(context),
-                                            ),
-                                          ),
-                                        ),
-                                        Padding(
-                                          padding:
-                                              EdgeInsetsDirectional.fromSTEB(
-                                                  0.0, 0.0, 0.0, 16.0),
-                                          child: Container(
-                                            width: double.infinity,
-                                            child: TextFormField(
-                                              controller:
-                                                  _model.passwordTextController,
-                                              focusNode:
-                                                  _model.passwordFocusNode,
-                                              autofocus: false,
-                                              autofillHints: [
-                                                AutofillHints.password
-                                              ],
-                                              obscureText:
-                                                  !_model.passwordVisibility,
-                                              decoration: InputDecoration(
-                                                labelText: 'Password',
-                                                labelStyle:
-                                                    FlutterFlowTheme.of(context)
-                                                        .labelMedium
-                                                        .override(
-                                                          fontFamily:
-                                                              'Roboto Mono',
-                                                          letterSpacing: 0.0,
-                                                        ),
-                                                enabledBorder:
-                                                    OutlineInputBorder(
-                                                  borderSide: BorderSide(
-                                                    color: FlutterFlowTheme.of(
-                                                            context)
-                                                        .secondaryText,
-                                                    width: 2.0,
-                                                  ),
-                                                  borderRadius:
-                                                      BorderRadius.circular(
-                                                          40.0),
-                                                ),
-                                                focusedBorder:
-                                                    OutlineInputBorder(
-                                                  borderSide: BorderSide(
-                                                    color: FlutterFlowTheme.of(
-                                                            context)
-                                                        .primary,
-                                                    width: 2.0,
-                                                  ),
-                                                  borderRadius:
-                                                      BorderRadius.circular(
-                                                          40.0),
-                                                ),
-                                                errorBorder: OutlineInputBorder(
-                                                  borderSide: BorderSide(
-                                                    color: FlutterFlowTheme.of(
-                                                            context)
-                                                        .error,
-                                                    width: 2.0,
-                                                  ),
-                                                  borderRadius:
-                                                      BorderRadius.circular(
-                                                          40.0),
-                                                ),
-                                                focusedErrorBorder:
-                                                    OutlineInputBorder(
-                                                  borderSide: BorderSide(
-                                                    color: FlutterFlowTheme.of(
-                                                            context)
-                                                        .error,
-                                                    width: 2.0,
-                                                  ),
-                                                  borderRadius:
-                                                      BorderRadius.circular(
-                                                          40.0),
-                                                ),
-                                                filled: true,
-                                                fillColor:
-                                                    FlutterFlowTheme.of(context)
-                                                        .secondaryBackground,
-                                                contentPadding:
-                                                    EdgeInsets.all(24.0),
-                                                suffixIcon: InkWell(
-                                                  onTap: () => safeSetState(
-                                                    () => _model
-                                                            .passwordVisibility =
-                                                        !_model
-                                                            .passwordVisibility,
-                                                  ),
-                                                  focusNode: FocusNode(
-                                                      skipTraversal: true),
-                                                  child: Icon(
-                                                    _model.passwordVisibility
-                                                        ? Icons
-                                                            .visibility_outlined
-                                                        : Icons
-                                                            .visibility_off_outlined,
-                                                    color: FlutterFlowTheme.of(
-                                                            context)
-                                                        .secondaryText,
-                                                    size: 24.0,
-                                                  ),
-                                                ),
-                                              ),
-                                              style:
-                                                  FlutterFlowTheme.of(context)
-                                                      .bodyMedium
-                                                      .override(
-                                                        fontFamily:
-                                                            'Roboto Mono',
-                                                        letterSpacing: 0.0,
-                                                      ),
-                                              validator: _model
-                                                  .passwordTextControllerValidator
-                                                  .asValidator(context),
-                                            ),
-                                          ),
-                                        ),
-                                        Align(
-                                          alignment:
-                                              AlignmentDirectional(0.0, 0.0),
-                                          child: Padding(
-                                            padding:
-                                                EdgeInsetsDirectional.fromSTEB(
-                                                    0.0, 0.0, 0.0, 16.0),
-                                            child: FFButtonWidget(
-                                              onPressed: () async {
-                                                GoRouter.of(context)
-                                                    .prepareAuthEvent();
-
-                                                final user = await authManager
-                                                    .signInWithEmail(
-                                                  context,
-                                                  _model
-                                                      .emailAddressTextController
-                                                      .text,
-                                                  _model.passwordTextController
-                                                      .text,
-                                                );
-                                                if (user == null) {
-                                                  return;
-                                                }
-
-                                                context.goNamedAuth(
-                                                    VerificacaoWidget.routeName,
-                                                    context.mounted);
-                                              },
-                                              text: 'Entrar',
-                                              options: FFButtonOptions(
-                                                width: 230.0,
-                                                height: 52.0,
-                                                padding: EdgeInsetsDirectional
-                                                    .fromSTEB(
-                                                        0.0, 0.0, 0.0, 0.0),
-                                                iconPadding:
-                                                    EdgeInsetsDirectional
-                                                        .fromSTEB(
-                                                            0.0, 0.0, 0.0, 0.0),
-                                                color:
-                                                    FlutterFlowTheme.of(context)
-                                                        .primary,
-                                                textStyle:
-                                                    FlutterFlowTheme.of(context)
-                                                        .titleSmall
-                                                        .override(
-                                                          fontFamily:
-                                                              'Roboto Mono',
-                                                          color: Colors.white,
-                                                          letterSpacing: 0.0,
-                                                        ),
-                                                elevation: 3.0,
-                                                borderSide: BorderSide(
-                                                  color: Colors.transparent,
-                                                  width: 1.0,
-                                                ),
-                                                borderRadius:
-                                                    BorderRadius.circular(40.0),
-                                              ),
-                                            ),
-                                          ),
-                                        ),
-                                        Align(
-                                          alignment:
-                                              AlignmentDirectional(0.0, 0.0),
-                                          child: Padding(
-                                            padding:
-                                                EdgeInsetsDirectional.fromSTEB(
-                                                    0.0, 0.0, 0.0, 16.0),
-                                            child: FFButtonWidget(
-                                              onPressed: () async {
-                                                GoRouter.of(context)
-                                                    .prepareAuthEvent();
-                                                final user = await authManager
-                                                    .signInWithGoogle(context);
-                                                if (user == null) {
-                                                  return;
-                                                }
-
-                                                context.goNamedAuth(
-                                                    VerificacaoWidget.routeName,
-                                                    context.mounted);
-                                              },
-                                              text: 'Entrar com Google',
-                                              icon: FaIcon(
-                                                FontAwesomeIcons.googlePlusG,
-                                                size: 20.0,
-                                              ),
-                                              options: FFButtonOptions(
-                                                width: 230.0,
-                                                height: 52.0,
-                                                padding: EdgeInsetsDirectional
-                                                    .fromSTEB(
-                                                        0.0, 0.0, 0.0, 0.0),
-                                                iconAlignment:
-                                                    IconAlignment.end,
-                                                iconPadding:
-                                                    EdgeInsetsDirectional
-                                                        .fromSTEB(
-                                                            0.0, 0.0, 0.0, 0.0),
-                                                color:
-                                                    FlutterFlowTheme.of(context)
-                                                        .accent4,
-                                                textStyle:
-                                                    FlutterFlowTheme.of(context)
-                                                        .titleSmall
-                                                        .override(
-                                                          fontFamily:
-                                                              'Roboto Mono',
-                                                          color: Colors.white,
-                                                          letterSpacing: 0.0,
-                                                        ),
-                                                elevation: 3.0,
-                                                borderSide: BorderSide(
-                                                  color: Colors.transparent,
-                                                  width: 1.0,
-                                                ),
-                                                borderRadius:
-                                                    BorderRadius.circular(40.0),
-                                              ),
-                                            ),
-                                          ),
-                                        ),
-                                        Align(
-                                          alignment:
-                                              AlignmentDirectional(0.0, 0.0),
-                                          child: Padding(
-                                            padding:
-                                                EdgeInsetsDirectional.fromSTEB(
-                                                    0.0, 0.0, 0.0, 16.0),
-                                            child: FFButtonWidget(
-                                              onPressed: () async {
-                                                context.pushNamed(
-                                                    RedefinirsenhadousuarioWidget
-                                                        .routeName);
-                                              },
-                                              text: 'Esqueci minha senha',
-                                              options: FFButtonOptions(
-                                                width: 230.0,
-                                                height: 44.0,
-                                                padding: EdgeInsetsDirectional
-                                                    .fromSTEB(
-                                                        0.0, 0.0, 0.0, 0.0),
-                                                iconPadding:
-                                                    EdgeInsetsDirectional
-                                                        .fromSTEB(
-                                                            0.0, 0.0, 0.0, 0.0),
-                                                color:
-                                                    FlutterFlowTheme.of(context)
-                                                        .secondaryBackground,
-                                                textStyle:
-                                                    FlutterFlowTheme.of(context)
-                                                        .bodyMedium
-                                                        .override(
-                                                          fontFamily:
-                                                              'Roboto Mono',
-                                                          letterSpacing: 0.0,
-                                                        ),
-                                                elevation: 0.0,
-                                                borderSide: BorderSide(
-                                                  color: FlutterFlowTheme.of(
-                                                          context)
-                                                      .secondaryBackground,
-                                                  width: 2.0,
-                                                ),
-                                                borderRadius:
-                                                    BorderRadius.circular(12.0),
-                                              ),
-                                            ),
-                                          ),
-                                        ),
-                                        Column(
-                                          mainAxisSize: MainAxisSize.max,
-                                          children: [
-                                            Align(
-                                              alignment: AlignmentDirectional(
-                                                  0.0, 0.0),
-                                              child: Padding(
-                                                padding: EdgeInsetsDirectional
-                                                    .fromSTEB(
-                                                        16.0, 0.0, 16.0, 24.0),
-                                                child: InkWell(
-                                                  splashColor:
-                                                      Colors.transparent,
-                                                  focusColor:
-                                                      Colors.transparent,
-                                                  hoverColor:
-                                                      Colors.transparent,
-                                                  highlightColor:
-                                                      Colors.transparent,
-                                                  onTap: () async {
-                                                    context.pushNamed(
-                                                        CriarcontaWidget
-                                                            .routeName);
-                                                  },
-                                                  child: Text(
-                                                    'Criar uma conta',
-                                                    textAlign: TextAlign.center,
-                                                    style: FlutterFlowTheme.of(
-                                                            context)
-                                                        .labelMedium
-                                                        .override(
-                                                          fontFamily:
-                                                              'Roboto Mono',
-                                                          letterSpacing: 0.0,
-                                                          fontWeight:
-                                                              FontWeight.bold,
-                                                          decoration:
-                                                              TextDecoration
-                                                                  .underline,
-                                                        ),
-                                                  ),
-                                                ),
-                                              ),
-                                            ),
-                                          ],
-                                        ),
-                                      ],
-                                    ).animateOnPageLoad(animationsMap[
-                                        'columnOnPageLoadAnimation']!),
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-              ),
-              if (responsiveVisibility(
-                context: context,
-                phone: false,
-                tablet: false,
-              ))
-                Expanded(
-                  flex: 6,
-                  child: Padding(
-                    padding: EdgeInsets.all(16.0),
-                    child: Container(
-                      width: 100.0,
-                      height: double.infinity,
-                      decoration: BoxDecoration(
-                        color: FlutterFlowTheme.of(context).secondaryBackground,
-                        image: DecorationImage(
-                          fit: BoxFit.cover,
-                          image: CachedNetworkImageProvider(
-                            'https://midias.correiobraziliense.com.br/_midias/jpg/2023/09/15/640x853/1_12_a_nestle_e_uma_das_maiores_empresas_de_alimentos_do_mundo_leite_condensado_dornum72_wikimedia_commons-29481913.jpg?20230915105916?20230915105916',
-                          ),
-                        ),
-                        borderRadius: BorderRadius.circular(16.0),
                       ),
                     ),
                   ),
                 ),
-            ],
-          ),
+              ),
+            ),
+          ],
         ),
       ),
     );
   }
 }
+
