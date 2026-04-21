@@ -1,4 +1,4 @@
-﻿import '/auth/firebase_auth/auth_util.dart';
+import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
 import '/backend/firebase_storage/storage.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
@@ -42,19 +42,6 @@ class _IniciovendedorWidgetState extends State<IniciovendedorWidget> {
   }
 
   Future<void> _submitRegistration() async {
-    if (_model.uploadedFileUrl1.isEmpty || _model.uploadedFileUrl2.isEmpty) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          content: Text(
-            'Por favor, envie todas as fotos necessÃ¡rias antes de continuar.',
-            style: TextStyle(color: Colors.white),
-          ),
-          backgroundColor: FlutterFlowTheme.of(context).error,
-        ),
-      );
-      return;
-    }
-
     // Update User Record
     await currentUserReference!.update(createUserRecordData(
       candidato: true,
@@ -220,12 +207,6 @@ class _IniciovendedorWidgetState extends State<IniciovendedorWidget> {
                           },
                         ),
                         onNext: () {
-                          if (_model.uploadedFileUrl1.isEmpty) {
-                            ScaffoldMessenger.of(context).showSnackBar(
-                              SnackBar(content: Text('Por favor, envie a foto do documento.')),
-                            );
-                            return;
-                          }
                           _model.pageViewController?.nextPage(
                               duration: Duration(milliseconds: 300), curve: Curves.easeInOut);
                         },
