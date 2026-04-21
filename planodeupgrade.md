@@ -33,7 +33,7 @@ O coração operacional do app.
 
 ## 💰 Fase 4: Digital Wallet & Transferências (Social Finance)
 Transformando o app em uma ferramenta financeira potente.
-- [/] **4.1 Saldo Dinâmico**: Visualizador de saldo com histórico detalhado de entradas e saídas (Iniciado).
+- [x] **4.1 Saldo Dinâmico**: Visualizador de saldo com histórico detalhado de entradas e saídas.
 - [ ] **4.2 Transferência P2P**: Buscar vendedores próximos ou via QR Code para enviar dinheiro.
 - [ ] **4.3 Histórico de Transações**: Gráficos simples de fluxo de caixa pessoal.
 

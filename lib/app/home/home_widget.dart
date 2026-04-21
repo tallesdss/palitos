@@ -1,4 +1,3 @@
-import '';
 import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
 import '/components/datas_widget.dart';
@@ -6,7 +5,6 @@ import '/flutter_flow/flutter_flow_choice_chips.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/form_field_controller.dart';
 import '/pages/notifications/notifications_widget.dart';
 import '/pages/scanearqrcode/scanearqrcode_widget.dart';
@@ -15,7 +13,6 @@ import '/index.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
 import 'home_model.dart';
 export 'home_model.dart';
@@ -425,7 +422,6 @@ class _HomeWidgetState extends State<HomeWidget> {
                                               ),
                                             ),
                                           ),
-           ),
                                       ],
                                     ),
                                   ),
@@ -438,6 +434,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                                 scrollDirection: Axis.horizontal,
                                 child: Row(
                                   mainAxisSize: MainAxisSize.max,
+                                  children: [
                                     SizedBox(width: 20.0),
                                     ...[
                                       _buildNavIcon(
@@ -516,7 +513,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                                         label: 'Admin',
                                         onTap: () => context.pushNamed(DashboardWidget.routeName),
                                       ),
-                                    ].divide(SizedBox(width: 20.0)),
+                                    ].divide(SizedBox(width: 16.0)),
                                     SizedBox(width: 20.0),
                                   ],
                                 ),
@@ -894,7 +891,8 @@ class _HomeWidgetState extends State<HomeWidget> {
           ],
         ),
       ),
-    );
+    ),
+  );
   }
 
   Widget _buildNavIcon(BuildContext context, {required IconData icon, required String label, required VoidCallback onTap}) {
